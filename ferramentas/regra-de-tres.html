@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="../styles.css" />
   </head>
   <body>
+    <a class="skip-link" href="#conteudo-principal">Pular para conteúdo</a>
     <header class="header">
       <div class="container nav">
         <a class="brand" href="/gametools/">GameTools</a>
@@ -23,7 +24,7 @@
       </div>
     </header>
 
-    <main class="container page-main">
+    <main id="conteudo-principal" class="container page-main">
       <section class="section-intro">
         <h1>Regra de três simples e composta</h1>
         <p>Use para resolver proporções do dia a dia, como custo por quantidade ou produtividade com mais variáveis.</p>
@@ -58,7 +59,7 @@
             <button class="btn btn-primary" id="calcular">Calcular</button>
             <button class="btn btn-secondary" id="copiar" type="button">Copiar resultado</button>
           </div>
-          <p id="resultado" class="result">Preencha os campos e calcule.</p>
+          <p id="resultado" class="result" aria-live="polite" role="status">Preencha os campos e calcule.</p>
         </article>
       </section>
     </main>

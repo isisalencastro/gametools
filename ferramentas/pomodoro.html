@@ -9,15 +9,16 @@
     <link rel="stylesheet" href="../styles.css" />
   </head>
   <body>
+    <a class="skip-link" href="#conteudo-principal">Pular para conteúdo</a>
     <header class="header"><div class="container nav"><a class="brand" href="/gametools/">GameTools</a><nav><a href="/gametools/">Home</a><a href="/gametools/jogos.html">Jogos</a><a href="/gametools/ferramentas.html">Ferramentas</a></nav></div></header>
-    <main class="container page-main">
+    <main id="conteudo-principal" class="container page-main">
       <section class="section-intro"><h1>Cronômetro / Pomodoro</h1><p>Organize estudos e trabalho em blocos de foco e pausa para manter consistência e produtividade.</p></section>
       <section class="section"><article class="card tool-card">
         <div class="field"><label for="foco">Minutos de foco (1 a 180)</label><input id="foco" type="number" min="1" max="180" value="25" /></div>
         <div class="field"><label for="pausa">Minutos de pausa (1 a 60)</label><input id="pausa" type="number" min="1" max="60" value="5" /></div>
         <div class="field-row"><button class="btn btn-primary" id="iniciar">Iniciar</button><button class="btn btn-secondary" id="pausar" type="button">Pausar</button><button class="btn btn-secondary" id="resetar" type="button">Resetar</button><button class="btn btn-secondary" id="copiar" type="button">Copiar resultado</button></div>
-        <p id="timer" class="result">25:00</p>
-        <p id="resultado" class="result">Modo atual: foco. Fórmula prática: ciclos de foco + pausa para sustentar atenção.</p>
+        <p id="timer" class="result" aria-live="polite" role="status">25:00</p>
+        <p id="resultado" class="result" aria-live="polite" role="status">Modo atual: foco. Fórmula prática: ciclos de foco + pausa para sustentar atenção.</p>
       </article></section>
     </main>
     <footer class="footer"><div class="container footer-content"><p>Explore: <a href="/gametools/">Home</a> · <a href="/gametools/ferramentas.html">Ferramentas</a></p></div></footer>

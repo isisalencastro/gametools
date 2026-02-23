@@ -9,8 +9,9 @@
     <link rel="stylesheet" href="../styles.css" />
   </head>
   <body>
+    <a class="skip-link" href="#conteudo-principal">Pular para conteúdo</a>
     <header class="header"><div class="container nav"><a class="brand" href="/gametools/">GameTools</a><nav><a href="/gametools/">Home</a><a href="/gametools/jogos.html">Jogos</a><a href="/gametools/ferramentas.html">Ferramentas</a></nav></div></header>
-    <main class="container page-main">
+    <main id="conteudo-principal" class="container page-main">
       <section class="section-intro"><h1>Calculadora de juros simples e compostos</h1><p>Faça simulações financeiras para empréstimos, investimentos ou parcelamentos em minutos.</p></section>
       <section class="section"><article class="card tool-card">
         <div class="field"><label for="tipo">Tipo</label><select id="tipo"><option value="simples">Juros simples</option><option value="compostos">Juros compostos</option></select></div>
@@ -18,7 +19,7 @@
         <div class="field"><label for="taxa">Taxa de juros (%) por período</label><input id="taxa" type="number" step="any" /></div>
         <div class="field"><label for="tempo">Tempo (nº de períodos)</label><input id="tempo" type="number" step="any" /></div>
         <div class="field-row"><button class="btn btn-primary" id="calcular">Calcular</button><button class="btn btn-secondary" id="copiar" type="button">Copiar resultado</button></div>
-        <p id="resultado" class="result">Preencha os campos e calcule o montante.</p>
+        <p id="resultado" class="result" aria-live="polite" role="status">Preencha os campos e calcule o montante.</p>
       </article></section>
     </main>
     <footer class="footer"><div class="container footer-content"><p>Explore: <a href="/gametools/">Home</a> · <a href="/gametools/ferramentas.html">Ferramentas</a></p></div></footer>
