@@ -1,16 +1,34 @@
 // Bootstrap principal: inicializa módulos por domínio conforme elementos disponíveis na página.
 import { initCatalogExperience } from './common/catalog.js';
 import { initThemeToggle } from './common/theme.js';
+import { initFastClickFeature } from './games/fast-click.js';
 import { initGuessFeature } from './games/guess.js';
+import { initMemoryFeature } from './games/memory.js';
+import { initQuickQuizFeature } from './games/quick-quiz.js';
 import { initReactionFeature } from './games/reaction.js';
+import { initRockPaperScissorsFeature } from './games/rock-paper-scissors.js';
+import { initCurrencyConverterFeature } from './tools/currency-converter.js';
+import { initIdadeExataFeature } from './tools/idade-exata.js';
 import { initImcFeature } from './tools/imc.js';
+import { initJurosFeature } from './tools/juros.js';
+import { initPomodoroFeature } from './tools/pomodoro.js';
 import { initPercentageFeature } from './tools/percentage.js';
+import { initRuleOfThreeFeature } from './tools/rule-of-three.js';
 import { initTemperatureFeature } from './tools/temperature.js';
 
 initThemeToggle();
 initReactionFeature();
 initGuessFeature();
+initRockPaperScissorsFeature();
+initFastClickFeature();
+initQuickQuizFeature();
+initMemoryFeature();
 initCatalogExperience();
 initImcFeature();
 initPercentageFeature();
 initTemperatureFeature();
+initJurosFeature();
+initIdadeExataFeature();
+initPomodoroFeature();
+initCurrencyConverterFeature();
+initRuleOfThreeFeature();

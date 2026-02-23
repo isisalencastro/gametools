@@ -85,20 +85,31 @@ Este projeto adota **links relativos** como estratégia única de navegação in
 ├── robots.txt
 ├── sitemap.xml
 ├── jogos/
-│   ├── *.html
-│   └── *.js
+│   └── *.html
 ├── ferramentas/
 │   └── *.html
 ├── js/
+│   ├── main.js
 │   ├── common/
+│   │   ├── catalog.js
+│   │   ├── theme.js
 │   │   └── utils.js
 │   ├── games/
 │   │   ├── guess.js
-│   │   └── reaction.js
+│   │   ├── reaction.js
+│   │   ├── rock-paper-scissors.js
+│   │   ├── fast-click.js
+│   │   ├── quick-quiz.js
+│   │   └── memory.js
 │   └── tools/
 │       ├── imc.js
 │       ├── percentage.js
-│       └── temperature.js
+│       ├── temperature.js
+│       ├── juros.js
+│       ├── idade-exata.js
+│       ├── pomodoro.js
+│       ├── currency-converter.js
+│       └── rule-of-three.js
 └── docs/
     ├── FEATURE_TEMPLATE.md
     └── SEO_CHECKLIST.md
@@ -106,8 +117,8 @@ Este projeto adota **links relativos** como estratégia única de navegação in
 
 ### Convenções rápidas
 
-- Nova página de jogo: `jogos/<slug>.html` + (opcional) `jogos/<slug>.js`.
-- Nova página de ferramenta: `ferramentas/<slug>.html` + JS em `js/tools/`.
+- Nova página de jogo: `jogos/<slug>.html` + `js/games/<slug>.js` com `init*Feature`.
+- Nova página de ferramenta: `ferramentas/<slug>.html` + `js/tools/<slug>.js` com `init*Feature`.
 - Slug sempre em minúsculo, com hífen (`regra-de-tres`, `quiz-rapido`).
 
 ## Roadmap
