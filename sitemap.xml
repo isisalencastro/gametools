@@ -16,22 +16,7 @@
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://isisalencastro.github.io/gametools/jogos/reacao.html</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://isisalencastro.github.io/gametools/jogos/pedra-papel-tesoura.html</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://isisalencastro.github.io/gametools/jogos/clique-rapido.html</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://isisalencastro.github.io/gametools/jogos/quiz-rapido.html</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -41,12 +26,17 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://isisalencastro.github.io/gametools/ferramentas/imc.html</loc>
+    <loc>https://isisalencastro.github.io/gametools/jogos/pedra-papel-tesoura.html</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://isisalencastro.github.io/gametools/ferramentas/regra-de-tres.html</loc>
+    <loc>https://isisalencastro.github.io/gametools/jogos/quiz-rapido.html</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://isisalencastro.github.io/gametools/jogos/reacao.html</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -61,12 +51,22 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://isisalencastro.github.io/gametools/ferramentas/imc.html</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://isisalencastro.github.io/gametools/ferramentas/juros.html</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://isisalencastro.github.io/gametools/ferramentas/pomodoro.html</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://isisalencastro.github.io/gametools/ferramentas/regra-de-tres.html</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
