@@ -3,177 +3,104 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>IBAGameTools | Mini jogos e ferramentas</title>
+    <title>GameTools | Home com jogos e ferramentas online</title>
     <meta
       name="description"
-      content="Plataforma em HTML, CSS e JavaScript puro com mini jogos e ferramentas como IMC, porcentagem e conversor de temperatura."
+      content="Veja a visão geral do GameTools e encontre páginas de jogos e ferramentas com navegação interna otimizada para SEO."
     />
-
-    <!-- SEO base -->
     <link rel="canonical" href="https://isisalencastro.github.io/gametools/" />
     <link rel="alternate" hreflang="pt-BR" href="https://isisalencastro.github.io/gametools/" />
-    <!-- Futuro i18n: publicar versão em inglês e habilitar a linha abaixo -->
-    <!-- <link rel="alternate" hreflang="en" href="https://isisalencastro.github.io/gametools/en/" /> -->
 
-    <!-- Open Graph -->
-    <meta property="og:title" content="IBAGameTools | Mini jogos e ferramentas" />
+    <meta property="og:title" content="GameTools | Home com jogos e ferramentas online" />
     <meta
       property="og:description"
-      content="Jogue mini games rápidos e use ferramentas úteis como IMC, porcentagem e conversor de temperatura em uma interface leve e responsiva."
+      content="Página inicial do GameTools com visão geral, links para catálogo de jogos e catálogo de ferramentas."
     />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://isisalencastro.github.io/gametools/" />
     <meta property="og:image" content="https://isisalencastro.github.io/gametools/assets/social-card.png" />
 
-    <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="IBAGameTools | Mini jogos e ferramentas" />
+    <meta name="twitter:title" content="GameTools | Home com jogos e ferramentas online" />
     <meta
       name="twitter:description"
-      content="Mini jogos e ferramentas online em HTML, CSS e JavaScript puro para uso rápido no navegador."
+      content="Acesse os catálogos de jogos e ferramentas do GameTools e navegue por páginas individuais."
     />
     <meta name="twitter:image" content="https://isisalencastro.github.io/gametools/assets/social-card.png" />
-
-    <!-- Dados estruturados -->
-    <script type="application/ld+json">
-      {
-        "@context": "https://schema.org",
-        "@type": "WebSite",
-        "name": "IBAGameTools",
-        "url": "https://isisalencastro.github.io/gametools/",
-        "inLanguage": "pt-BR",
-        "description": "Plataforma com mini jogos e ferramentas úteis feita com HTML, CSS e JavaScript.",
-        "publisher": {
-          "@type": "Person",
-          "name": "Isis Beatriz de Alencastro"
-        }
-      }
-    </script>
-    <script type="application/ld+json">
-      {
-        "@context": "https://schema.org",
-        "@type": "SoftwareApplication",
-        "name": "IBAGameTools",
-        "applicationCategory": "GameApplication",
-        "operatingSystem": "Any",
-        "url": "https://isisalencastro.github.io/gametools/",
-        "inLanguage": "pt-BR",
-        "description": "Coleção web de mini jogos e ferramentas online de uso gratuito.",
-        "offers": {
-          "@type": "Offer",
-          "price": "0",
-          "priceCurrency": "BRL"
-        }
-      }
-    </script>
 
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
     <header class="header">
       <div class="container nav">
-        <a class="brand" href="#home">GameTools</a>
+        <a class="brand" href="/gametools/">GameTools</a>
         <nav>
-          <a href="#games">Mini Jogos</a>
-          <a href="#tools">Ferramentas</a>
+          <a href="/gametools/">Home</a>
+          <a href="/gametools/jogos.html">Jogos</a>
+          <a href="/gametools/ferramentas.html">Ferramentas</a>
         </nav>
       </div>
     </header>
 
-    <main id="home" class="container">
+    <main class="container page-main">
       <section class="hero">
-        <span class="badge">v1.0 em HTML/CSS/JS</span>
-        <h1>Mini jogos e ferramentas em um só lugar</h1>
+        <span class="badge">Arquitetura estática</span>
+        <h1>Encontre jogos e ferramentas em páginas organizadas</h1>
         <p>
-          Plataforma com mini jogos rápidos e ferramentas práticas para o dia a dia, com experiência simples e responsiva.
+          A home apresenta uma visão geral rápida com acesso direto ao catálogo de jogos,
+          catálogo de ferramentas e páginas individuais por feature.
         </p>
         <div class="hero-actions">
-          <a class="btn btn-primary" href="#games">Explorar jogos</a>
-          <a class="btn btn-secondary" href="#tools">Explorar ferramentas</a>
+          <a class="btn btn-primary" href="/gametools/jogos.html">Ver catálogo de jogos</a>
+          <a class="btn btn-secondary" href="/gametools/ferramentas.html">Ver catálogo de ferramentas</a>
         </div>
       </section>
 
-      <section id="games" class="section">
-        <h2>Mini Jogos</h2>
+      <section class="section">
+        <h2>Navegação por seções</h2>
         <div class="grid two-columns">
           <article class="card">
-            <h3>Teste de Reação</h3>
-            <p>Clique em iniciar e aguarde o bloco ficar verde para testar seus reflexos.</p>
-            <button id="reaction-start" class="btn btn-primary" type="button">Iniciar</button>
-            <button id="reaction-box" class="reaction-box" type="button">Aguardando...</button>
-            <p id="reaction-result" class="result">Seu resultado aparecerá aqui.</p>
+            <h3>Mini jogos</h3>
+            <p>Explore páginas dedicadas para cada experiência, começando pelo teste de reação.</p>
+            <a class="text-link" href="/gametools/jogos.html">Ir para Jogos</a>
           </article>
-
           <article class="card">
-            <h3>Adivinhe o Número</h3>
-            <p>Adivinhe o número secreto entre 1 e 100.</p>
-            <div class="field-row">
-              <input id="guess-input" type="number" min="1" max="100" placeholder="Digite um número" />
-              <button id="guess-btn" class="btn btn-primary" type="button">Tentar</button>
-            </div>
-            <p id="guess-result" class="result">Você tem 10 tentativas.</p>
-            <button id="guess-reset" class="btn btn-secondary" type="button">Novo jogo</button>
+            <h3>Ferramentas úteis</h3>
+            <p>Veja as calculadoras organizadas por tema, incluindo IMC.</p>
+            <a class="text-link" href="/gametools/ferramentas.html">Ir para Ferramentas</a>
           </article>
         </div>
       </section>
 
-      <section id="tools" class="section">
-        <h2>Ferramentas</h2>
-        <div class="grid three-columns">
-          <article class="card">
-            <h3>Calculadora de IMC</h3>
-            <div class="field">
-              <label for="imc-height">Altura (m)</label>
-              <input id="imc-height" type="number" step="0.01" placeholder="Ex.: 1.75" />
-            </div>
-            <div class="field">
-              <label for="imc-weight">Peso (kg)</label>
-              <input id="imc-weight" type="number" step="0.1" placeholder="Ex.: 72" />
-            </div>
-            <button id="imc-btn" class="btn btn-primary" type="button">Calcular IMC</button>
-            <p id="imc-result" class="result">Informe altura e peso para calcular.</p>
-          </article>
-
-          <article class="card">
-            <h3>Calculadora de Porcentagem</h3>
-            <div class="field-row">
-              <input id="pct-value" type="number" step="0.01" placeholder="Valor" />
-              <input id="pct-percent" type="number" step="0.01" placeholder="%" />
-            </div>
-            <button id="pct-btn" class="btn btn-primary" type="button">Calcular</button>
-            <p id="pct-result" class="result">Ex.: 20% de 150 = 30</p>
-          </article>
-
-          <article class="card">
-            <h3>Conversor de Temperatura</h3>
-            <div class="field">
-              <label for="temp-value">Valor</label>
-              <input id="temp-value" type="number" step="0.1" placeholder="Ex.: 25" />
-            </div>
-            <div class="field-row">
-              <select id="temp-from">
-                <option value="c">°C</option>
-                <option value="f">°F</option>
-              </select>
-              <span class="arrow">→</span>
-              <select id="temp-to">
-                <option value="f">°F</option>
-                <option value="c">°C</option>
-              </select>
-            </div>
-            <button id="temp-btn" class="btn btn-primary" type="button">Converter</button>
-            <p id="temp-result" class="result">Escolha os tipos e converta.</p>
-          </article>
-        </div>
+      <section class="section faq">
+        <h2>FAQ rápida da Home</h2>
+        <details>
+          <summary>Onde encontro todos os jogos disponíveis?</summary>
+          <p>Você encontra a lista completa na página <a href="/gametools/jogos.html">Jogos</a>.</p>
+        </details>
+        <details>
+          <summary>Como acessar uma ferramenta específica?</summary>
+          <p>Acesse o catálogo em <a href="/gametools/ferramentas.html">Ferramentas</a> e entre na página individual.</p>
+        </details>
+        <details>
+          <summary>Existe navegação interna entre páginas?</summary>
+          <p>Sim. Todas as páginas têm links contextuais para facilitar a jornada e SEO interno.</p>
+        </details>
       </section>
     </main>
 
     <footer class="footer">
-      <div class="container">
-        <p>© 2026 - Todos os direitos reservados. Desenvolvido por <a href="https://isisalencastro.github.io/portfolio/" target="_blank" rel="noopener noreferrer">Isis Beatriz de Alencastro</a>.</p>
+      <div class="container footer-content">
+        <p>
+          Explore: <a href="/gametools/">Home</a> · <a href="/gametools/jogos.html">Jogos</a> ·
+          <a href="/gametools/ferramentas.html">Ferramentas</a>
+        </p>
+        <p>
+          © 2026 - Desenvolvido por
+          <a href="https://isisalencastro.github.io/portfolio/" target="_blank" rel="noopener noreferrer">Isis Beatriz de Alencastro</a>.
+        </p>
       </div>
     </footer>
 
-    <script src="script.js"></script>
   </body>
 </html>

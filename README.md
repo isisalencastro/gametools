@@ -19,9 +19,11 @@ O GameTools reúne utilidade e entretenimento em uma interface simples, leve e r
 
 ## 🧱 Estrutura do repositório
 
-- `index.html` → estrutura da página e componentes visuais.
+- `index.html` → home com visão geral e links para catálogos.
+- `jogos.html` e `ferramentas.html` → páginas de catálogo.
+- `jogos/reacao.html` e `ferramentas/imc.html` → páginas individuais de features.
 - `styles.css` → estilos globais e responsividade.
-- `script.js` → regras dos jogos e ferramentas.
+- `script.js` → regras JS dos widgets na home (legado v1).
 - `robots.txt` → diretrizes para crawlers e referência do sitemap.
 - `sitemap.xml` → lista de URLs públicas para indexação.
 - `package.json` → scripts NPM para validação estática.
