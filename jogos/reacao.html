@@ -6,7 +6,7 @@
     <title>Teste de Reação online | Jogo GameTools</title>
     <meta
       name="description"
-      content="Página individual do teste de reação no GameTools com contexto do jogo, FAQ e links para outras páginas do projeto."
+      content="Treine seus reflexos com o jogo de reação do GameTools."
     />
     <link rel="canonical" href="https://isisalencastro.github.io/gametools/jogos/reacao.html" />
     <link rel="stylesheet" href="../styles.css" />
@@ -21,36 +21,29 @@
           <a href="/gametools/jogos.html">Jogos</a>
           <a href="/gametools/ferramentas.html">Ferramentas</a>
         </nav>
+        <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Alternar tema claro e escuro">🌙 Modo escuro</button>
       </div>
     </header>
 
     <main id="conteudo-principal" class="container page-main">
       <section class="section-intro">
         <h1>Teste de Reação</h1>
-        <p>Esta é a página individual da feature de reação, ideal para quem busca melhorar reflexos e tempo de resposta.</p>
+        <p>Quando o bloco ficar verde, clique o mais rápido possível.</p>
       </section>
 
       <section class="section">
-        <article class="card">
-          <h2>Sobre este jogo</h2>
-          <p>Use esta página como destino SEO específico para buscas de "jogo de reflexo online" e termos relacionados.</p>
+        <article class="card game-card">
+          <div class="field-row">
+            <button id="reaction-start" class="btn btn-primary" type="button">Iniciar rodada</button>
+          </div>
+          <button id="reaction-box" class="reaction-box" type="button">Clique em “Iniciar rodada”</button>
+          <p id="reaction-result" class="result">Seu resultado aparecerá aqui.</p>
+
           <p class="context-links">
             Veja também: <a href="/gametools/jogos.html">Catálogo de Jogos</a> ·
             <a href="/gametools/ferramentas/imc.html">Calculadora de IMC</a>
           </p>
         </article>
-      </section>
-
-      <section class="section faq">
-        <h2>FAQ do Teste de Reação</h2>
-        <details>
-          <summary>Este jogo de reação é gratuito?</summary>
-          <p>Sim, o acesso é gratuito dentro do ecossistema GameTools.</p>
-        </details>
-        <details>
-          <summary>Onde encontro outros jogos curtos online?</summary>
-          <p>Na página <a href="/gametools/jogos.html">Jogos</a> você encontra mais opções.</p>
-        </details>
       </section>
     </main>
 
@@ -62,6 +55,6 @@
         </p>
       </div>
     </footer>
-      <script type="module" src="/gametools/js/main.js"></script>
+    <script type="module" src="../js/main.js"></script>
   </body>
 </html>

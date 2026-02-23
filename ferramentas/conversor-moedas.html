@@ -4,25 +4,66 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Conversor de moedas manual | GameTools</title>
-    <meta name="description" content="Converta moedas com taxa manual inserida pelo usuário, validação de valores e fórmula do cálculo." />
+    <meta
+      name="description"
+      content="Converta moedas com taxa manual e teste conversão de temperatura em um só lugar."
+    />
     <link rel="canonical" href="https://isisalencastro.github.io/gametools/ferramentas/conversor-moedas.html" />
     <link rel="stylesheet" href="../styles.css" />
   </head>
   <body>
     <a class="skip-link" href="#conteudo-principal">Pular para conteúdo</a>
-    <header class="header"><div class="container nav"><a class="brand" href="/gametools/">GameTools</a><nav><a href="/gametools/">Home</a><a href="/gametools/jogos.html">Jogos</a><a href="/gametools/ferramentas.html">Ferramentas</a></nav></div></header>
+    <header class="header">
+      <div class="container nav">
+        <a class="brand" href="/gametools/">GameTools</a>
+        <nav>
+          <a href="/gametools/">Home</a>
+          <a href="/gametools/jogos.html">Jogos</a>
+          <a href="/gametools/ferramentas.html">Ferramentas</a>
+        </nav>
+        <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Alternar tema claro e escuro">🌙 Modo escuro</button>
+      </div>
+    </header>
+
     <main id="conteudo-principal" class="container page-main">
-      <section class="section-intro"><h1>Conversor de moedas (manual)</h1><p>Ideal para viagens, compras internacionais e simulações com taxa definida por você.</p></section>
-      <section class="section"><article class="card tool-card">
-        <div class="field"><label for="valor">Valor de origem</label><input id="valor" type="number" step="any" min="0" /></div>
-        <div class="field"><label for="taxa">Taxa de câmbio (1 origem = ? destino)</label><input id="taxa" type="number" step="any" min="0" /></div>
-        <div class="field"><label for="origem">Moeda origem</label><input id="origem" type="text" maxlength="10" placeholder="Ex.: BRL" /></div>
-        <div class="field"><label for="destino">Moeda destino</label><input id="destino" type="text" maxlength="10" placeholder="Ex.: USD" /></div>
-        <div class="field-row"><button class="btn btn-primary" id="calcular">Converter</button><button class="btn btn-secondary" id="copiar" type="button">Copiar resultado</button></div>
-        <p id="resultado" class="result" aria-live="polite" role="status">Informe valor e taxa para converter.</p>
-      </article></section>
+      <section class="section-intro">
+        <h1>Conversão rápida</h1>
+        <p>Faça contas de câmbio e conversão de temperatura sem perder tempo.</p>
+      </section>
+
+      <section class="section">
+        <article class="card tool-card">
+          <h2>Conversor de moedas (manual)</h2>
+          <div class="field"><label for="valor">Valor de origem</label><input id="valor" type="number" step="any" min="0" /></div>
+          <div class="field"><label for="taxa">Taxa de câmbio (1 origem = ? destino)</label><input id="taxa" type="number" step="any" min="0" /></div>
+          <div class="field"><label for="origem">Moeda origem</label><input id="origem" type="text" maxlength="10" placeholder="Ex.: BRL" /></div>
+          <div class="field"><label for="destino">Moeda destino</label><input id="destino" type="text" maxlength="10" placeholder="Ex.: USD" /></div>
+          <div class="field-row">
+            <button class="btn btn-primary" id="calcular" type="button">Converter</button>
+            <button class="btn btn-secondary" id="copiar" type="button">Copiar resultado</button>
+          </div>
+          <p id="resultado" class="result" aria-live="polite" role="status">Informe valor e taxa para converter.</p>
+        </article>
+      </section>
+
+      <section class="section">
+        <article class="card tool-card">
+          <h2>Teste de conversão de temperatura</h2>
+          <div class="field"><label for="temp-value">Valor</label><input id="temp-value" type="number" step="any" placeholder="Ex.: 32" /></div>
+          <div class="field"><label for="temp-from">De</label><select id="temp-from"><option value="c">Celsius</option><option value="f">Fahrenheit</option></select></div>
+          <div class="field"><label for="temp-to">Para</label><select id="temp-to"><option value="f">Fahrenheit</option><option value="c">Celsius</option></select></div>
+          <div class="field-row"><button id="temp-btn" class="btn btn-primary" type="button">Converter temperatura</button></div>
+          <p id="temp-result" class="result">Digite um valor para converter.</p>
+        </article>
+      </section>
     </main>
-    <footer class="footer"><div class="container footer-content"><p>Explore: <a href="/gametools/">Home</a> · <a href="/gametools/ferramentas.html">Ferramentas</a></p></div></footer>
+
+    <footer class="footer">
+      <div class="container footer-content">
+        <p>Explore: <a href="/gametools/">Home</a> · <a href="/gametools/ferramentas.html">Ferramentas</a></p>
+      </div>
+    </footer>
+
     <script>
       const resultado = document.getElementById('resultado');
       const LIMITE = 1e9;
@@ -48,7 +89,7 @@
         }
 
         const convertido = valor * taxa;
-        resultado.textContent = `Resultado: ${valor.toFixed(2)} ${origem} = ${convertido.toFixed(2)} ${destino}. Fórmula: valor × taxa = ${valor} × ${taxa}.`;
+        resultado.textContent = `Resultado: ${valor.toFixed(2)} ${origem} = ${convertido.toFixed(2)} ${destino}.`;
       });
 
       document.getElementById('copiar').addEventListener('click', async () => {
@@ -60,6 +101,6 @@
         }
       });
     </script>
-      <script type="module" src="/gametools/js/main.js"></script>
+    <script type="module" src="../js/main.js"></script>
   </body>
 </html>

@@ -6,7 +6,7 @@
     <title>Calculadora de IMC online | Ferramenta GameTools</title>
     <meta
       name="description"
-      content="Página individual da calculadora de IMC no GameTools com contexto da ferramenta, FAQ curta e links internos úteis."
+      content="Calcule seu IMC de forma rápida e prática no GameTools."
     />
     <link rel="canonical" href="https://isisalencastro.github.io/gametools/ferramentas/imc.html" />
     <link rel="stylesheet" href="../styles.css" />
@@ -21,36 +21,36 @@
           <a href="/gametools/jogos.html">Jogos</a>
           <a href="/gametools/ferramentas.html">Ferramentas</a>
         </nav>
+        <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Alternar tema claro e escuro">🌙 Modo escuro</button>
       </div>
     </header>
 
     <main id="conteudo-principal" class="container page-main">
       <section class="section-intro">
         <h1>Calculadora de IMC</h1>
-        <p>Página dedicada para a feature de IMC, pensada para buscas como "como calcular IMC online grátis".</p>
+        <p>Informe seus dados e descubra seu resultado agora.</p>
       </section>
 
       <section class="section">
-        <article class="card">
-          <h2>Sobre esta ferramenta</h2>
-          <p>Esta página centraliza o conteúdo da calculadora de IMC e reforça a navegação interna entre utilidades e jogos.</p>
+        <article class="card tool-card">
+          <div class="field">
+            <label for="imc-height">Altura (m)</label>
+            <input id="imc-height" type="number" min="0" step="0.01" placeholder="Ex.: 1.75" />
+          </div>
+          <div class="field">
+            <label for="imc-weight">Peso (kg)</label>
+            <input id="imc-weight" type="number" min="0" step="0.1" placeholder="Ex.: 72.5" />
+          </div>
+          <div class="field-row">
+            <button id="imc-btn" class="btn btn-primary" type="button">Calcular IMC</button>
+          </div>
+          <p id="imc-result" class="result">Preencha os campos e clique em calcular.</p>
+
           <p class="context-links">
             Veja também: <a href="/gametools/ferramentas.html">Catálogo de Ferramentas</a> ·
             <a href="/gametools/jogos/reacao.html">Teste de Reação</a>
           </p>
         </article>
-      </section>
-
-      <section class="section faq">
-        <h2>FAQ da Calculadora de IMC</h2>
-        <details>
-          <summary>Como calcular IMC de forma rápida?</summary>
-          <p>Use a calculadora de IMC da plataforma na seção de ferramentas.</p>
-        </details>
-        <details>
-          <summary>Onde vejo outras utilidades além do IMC?</summary>
-          <p>Acesse <a href="/gametools/ferramentas.html">/ferramentas.html</a> para ver o catálogo completo.</p>
-        </details>
       </section>
     </main>
 
@@ -62,6 +62,6 @@
         </p>
       </div>
     </footer>
-      <script type="module" src="/gametools/js/main.js"></script>
+    <script type="module" src="../js/main.js"></script>
   </body>
 </html>
