@@ -301,21 +301,6 @@ select {
   font-weight: 700;
 }
 
-.favorite-toggle {
-  border: 2px solid var(--ink);
-  background: var(--paper-soft);
-  border-radius: 999px;
-  padding: 6px 10px;
-  font-weight: 700;
-  cursor: pointer;
-  color: var(--ink);
-}
-
-.favorite-toggle.active {
-  background: var(--accent);
-  color: #fff;
-}
-
 .no-results {
   display: none;
   margin-top: 12px;
