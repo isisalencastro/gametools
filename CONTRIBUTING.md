@@ -39,6 +39,23 @@ tipo(escopo-opcional): resumo curto no imperativo
 - `feat(jogos): adicionar modo difícil ao quiz rápido`
 - `fix(imc): corrigir arredondamento em entradas decimais`
 
+## Fluxo de validação (lint)
+
+O projeto usa um comando agregador e comandos específicos:
+
+```bash
+npm run lint
+npm run lint:js
+npm run lint:css
+npm run lint:html
+```
+
+Regras atuais:
+
+- `lint` executa JS + CSS + HTML em sequência.
+- `lint:html` cobre automaticamente páginas na raiz e em `jogos/` e `ferramentas/` (sem necessidade de ajustar script quando novas páginas forem criadas).
+- `lint:css` usa Stylelint para validar regras CSS reais (não apenas balanceamento de chaves).
+
 ## Checklist de Pull Request
 
 Antes de abrir PR, confirme:
