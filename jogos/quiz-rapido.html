@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Quiz Rápido | GameTools</title>
+    <meta
+      name="description"
+      content="Quiz rápido com 10 perguntas, tempo por pergunta e pontuação final com recorde salvo localmente."
+    />
+    <link rel="canonical" href="https://isisalencastro.github.io/gametools/jogos/quiz-rapido.html" />
+    <link rel="stylesheet" href="../styles.css" />
+  </head>
+  <body>
+    <header class="header">
+      <div class="container nav">
+        <a class="brand" href="/gametools/">GameTools</a>
+        <nav>
+          <a href="/gametools/">Home</a>
+          <a href="/gametools/jogos.html">Jogos</a>
+          <a href="/gametools/ferramentas.html">Ferramentas</a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="container page-main">
+      <section class="section-intro">
+        <h1>Quiz Rápido</h1>
+        <p>Responda 10 perguntas antes do tempo acabar em cada rodada.</p>
+      </section>
+
+      <section class="section">
+        <article class="card game-card">
+          <p id="quiz-status" class="result"></p>
+          <h2 id="quiz-question"></h2>
+          <div id="quiz-options" class="quiz-options"></div>
+          <p id="quiz-feedback"></p>
+          <div class="field-row">
+            <button id="quiz-reset" class="btn btn-primary">Jogar novamente</button>
+            <button id="quiz-share" class="btn btn-secondary">Compartilhar resultado</button>
+          </div>
+        </article>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="container footer-content">
+        <p>
+          Explore: <a href="/gametools/">Home</a> · <a href="/gametools/jogos.html">Jogos</a> ·
+          <a href="/gametools/ferramentas.html">Ferramentas</a>
+        </p>
+      </div>
+    </footer>
+
+    <script src="./quiz-rapido.js"></script>
+  </body>
+</html>
