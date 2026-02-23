@@ -285,3 +285,13 @@ nav a:hover {
   gap: 8px;
   margin-bottom: 12px;
 }
+
+.tool-card {
+  max-width: 760px;
+}
+
+.helper-text {
+  color: var(--muted);
+  margin-top: 4px;
+  font-size: 0.95rem;
+}

@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Regra de três simples e composta | GameTools</title>
+    <meta
+      name="description"
+      content="Calculadora de regra de três simples e composta com validação robusta, fórmula detalhada e botão para copiar resultado."
+    />
+    <link rel="canonical" href="https://isisalencastro.github.io/gametools/ferramentas/regra-de-tres.html" />
+    <link rel="stylesheet" href="../styles.css" />
+  </head>
+  <body>
+    <header class="header">
+      <div class="container nav">
+        <a class="brand" href="/gametools/">GameTools</a>
+        <nav>
+          <a href="/gametools/">Home</a>
+          <a href="/gametools/jogos.html">Jogos</a>
+          <a href="/gametools/ferramentas.html">Ferramentas</a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="container page-main">
+      <section class="section-intro">
+        <h1>Regra de três simples e composta</h1>
+        <p>Use para resolver proporções do dia a dia, como custo por quantidade ou produtividade com mais variáveis.</p>
+      </section>
+
+      <section class="section">
+        <article class="card tool-card">
+          <div class="field">
+            <label for="tipo">Tipo de cálculo</label>
+            <select id="tipo">
+              <option value="simples">Regra de três simples</option>
+              <option value="composta">Regra de três composta</option>
+            </select>
+          </div>
+
+          <div id="simples-area">
+            <div class="field"><label for="a">A</label><input id="a" type="number" step="any" /></div>
+            <div class="field"><label for="b">B</label><input id="b" type="number" step="any" /></div>
+            <div class="field"><label for="c">C</label><input id="c" type="number" step="any" /></div>
+            <p class="helper-text">Fórmula: <strong>x = (B × C) / A</strong></p>
+          </div>
+
+          <div id="composta-area" hidden>
+            <div class="field"><label for="base">Valor base conhecido</label><input id="base" type="number" step="any" /></div>
+            <div class="field"><label for="v1">Variável 1 (razão)</label><input id="v1" type="number" step="any" /></div>
+            <div class="field"><label for="v2">Variável 2 (razão)</label><input id="v2" type="number" step="any" /></div>
+            <div class="field"><label for="v3">Variável 3 (razão)</label><input id="v3" type="number" step="any" /></div>
+            <p class="helper-text">Fórmula simplificada usada: <strong>x = base × v1 × v2 ÷ v3</strong></p>
+          </div>
+
+          <div class="field-row">
+            <button class="btn btn-primary" id="calcular">Calcular</button>
+            <button class="btn btn-secondary" id="copiar" type="button">Copiar resultado</button>
+          </div>
+          <p id="resultado" class="result">Preencha os campos e calcule.</p>
+        </article>
+      </section>
+    </main>
+
+    <footer class="footer"><div class="container footer-content"><p>Explore: <a href="/gametools/">Home</a> · <a href="/gametools/ferramentas.html">Ferramentas</a></p></div></footer>
+
+    <script>
+      const tipo = document.getElementById('tipo');
+      const simplesArea = document.getElementById('simples-area');
+      const compostaArea = document.getElementById('composta-area');
+      const resultado = document.getElementById('resultado');
+      const maxAbs = 1e9;
+
+      function parseValid(id, label) {
+        const el = document.getElementById(id);
+        const raw = el.value.trim();
+        if (raw === '') return { ok: false, msg: `${label}: campo obrigatório.` };
+        const n = Number(raw);
+        if (!Number.isFinite(n)) return { ok: false, msg: `${label}: valor inválido.` };
+        if (n === 0) return { ok: false, msg: `${label}: não pode ser zero.` };
+        if (Math.abs(n) > maxAbs) return { ok: false, msg: `${label}: use valor entre -1.000.000.000 e 1.000.000.000.` };
+        return { ok: true, value: n };
+      }
+
+      tipo.addEventListener('change', () => {
+        const simples = tipo.value === 'simples';
+        simplesArea.hidden = !simples;
+        compostaArea.hidden = simples;
+      });
+
+      document.getElementById('calcular').addEventListener('click', () => {
+        if (tipo.value === 'simples') {
+          const a = parseValid('a', 'A');
+          const b = parseValid('b', 'B');
+          const c = parseValid('c', 'C');
+          if (!a.ok || !b.ok || !c.ok) {
+            resultado.textContent = [a.msg, b.msg, c.msg].filter(Boolean).join(' ');
+            return;
+          }
+          const x = (b.value * c.value) / a.value;
+          resultado.textContent = `Resultado: x = ${x.toFixed(4)}. Fórmula: x = (B × C) / A = (${b.value} × ${c.value}) / ${a.value}.`;
+          return;
+        }
+
+        const base = parseValid('base', 'Valor base');
+        const v1 = parseValid('v1', 'Variável 1');
+        const v2 = parseValid('v2', 'Variável 2');
+        const v3 = parseValid('v3', 'Variável 3');
+        if (!base.ok || !v1.ok || !v2.ok || !v3.ok) {
+          resultado.textContent = [base.msg, v1.msg, v2.msg, v3.msg].filter(Boolean).join(' ');
+          return;
+        }
+        const x = (base.value * v1.value * v2.value) / v3.value;
+        resultado.textContent = `Resultado composto: x = ${x.toFixed(4)}. Fórmula: x = base × v1 × v2 ÷ v3 = ${base.value} × ${v1.value} × ${v2.value} ÷ ${v3.value}.`;
+      });
+
+      document.getElementById('copiar').addEventListener('click', async () => {
+        try {
+          await navigator.clipboard.writeText(resultado.textContent);
+          resultado.textContent += ' (Resultado copiado!)';
+        } catch {
+          resultado.textContent += ' (Não foi possível copiar automaticamente.)';
+        }
+      });
+    </script>
+  </body>
+</html>
