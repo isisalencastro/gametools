@@ -1,6 +1,6 @@
 # Contributing Guide
 
-Obrigado por contribuir com o GameTools! Este guia define o fluxo mínimo para manter o projeto consistente e fácil de revisar.
+Obrigado por contribuir com o IBAGameTools! Este guia define o fluxo mínimo para manter o projeto consistente e fácil de revisar.
 
 ## Fluxo de branch
 
@@ -14,7 +14,7 @@ Padrão recomendado:
 ### Exemplo prático
 
 ```bash
-git checkout -b docs/expandir-documentacao-onboarding
+git checkout -b feature/calculadora-desconto
 ```
 
 ## Padrão de commit
@@ -44,17 +44,21 @@ tipo(escopo-opcional): resumo curto no imperativo
 O projeto usa um comando agregador e comandos específicos:
 
 ```bash
-npm run lint
-npm run lint:js
-npm run lint:css
-npm run lint:html
+npm run lint        # Executa JS + CSS + HTML em sequência
+npm run lint:js     # ESLint para js/**/*.js
+npm run lint:css    # Validação estrutural de styles.css
+npm run lint:html   # Validação estrutural de index.html
 ```
 
-Regras atuais:
+### O que cada lint valida
 
-- `lint` executa JS + CSS + HTML em sequência.
-- `lint:html` cobre automaticamente páginas na raiz e em `jogos/` e `ferramentas/` (sem necessidade de ajustar script quando novas páginas forem criadas).
-- `lint:css` usa Stylelint para validar regras CSS reais (não apenas balanceamento de chaves).
+| Script | O que faz | Escopo |
+| --- | --- | --- |
+| `lint:js` | Executa ESLint em `js/**/*.js` | Todos os arquivos JS na pasta `js/` |
+| `lint:css` | Verifica chaves balanceadas e presença do bloco `:root` em `styles.css` | Apenas `styles.css` |
+| `lint:html` | Verifica presença de `<!DOCTYPE html>`, `<html`, `<head>` e `<body>` em `index.html` | Apenas `index.html` |
+
+> **Nota**: os scripts de lint atuais são validações estruturais básicas. `lint:css` não usa Stylelint e `lint:html` não cobre páginas em `jogos/` ou `ferramentas/` automaticamente. Novas páginas HTML não entram nessa validação sem alteração manual do script.
 
 ## Checklist de Pull Request
 
@@ -66,7 +70,7 @@ Antes de abrir PR, confirme:
 - [ ] Links internos da feature foram atualizados (catálogo + navegação).
 - [ ] SEO básico revisado (title, description, canonical, Open Graph).
 - [ ] `sitemap.xml` atualizado ao adicionar nova página pública.
-- [ ] Toda URL pública listada em `jogos.html` e `ferramentas.html` também aparece no `sitemap.xml`.
+- [ ] Toda URL pública listada em `jogos.html` ou `ferramentas.html` também aparece no `sitemap.xml`.
 - [ ] URL declarada no `sitemap.xml` é idêntica ao `canonical` da página correspondente (sem variações de caminho).
 - [ ] Mudanças relevantes documentadas no `CHANGELOG.md`.
 
@@ -92,6 +96,16 @@ git commit -m "feat(ferramentas): adicionar calculadora de desconto"
 git push -u origin feature/calculadora-desconto
 ```
 
+### Passos ao adicionar uma nova feature
+
+1. Criar página HTML em `jogos/<slug>.html` ou `ferramentas/<slug>.html`.
+2. Criar módulo JS em `js/games/<slug>.js` ou `js/tools/<slug>.js` exportando `init*Feature()`.
+3. Importar e chamar a função de inicialização em `js/main.js`.
+4. Adicionar card/link no catálogo (`jogos.html` ou `ferramentas.html`).
+5. Adicionar URL no `sitemap.xml`.
+6. Validar metatags com `docs/SEO_CHECKLIST.md`.
+7. Rodar `npm run lint`.
+
 ## Boas práticas de revisão
 
 - Prefira PRs de até ~300 linhas alteradas quando possível.
@@ -100,7 +114,9 @@ git push -u origin feature/calculadora-desconto
 
 ## Dúvidas comuns
 
-- **“Preciso atualizar o changelog para mudança de docs?”**
+- **"Preciso atualizar o changelog para mudança de docs?"**
   - Sim, quando a mudança melhora onboarding, fluxo de contribuição ou governança.
-- **“Preciso criar JS separado para toda ferramenta?”**
+- **"Preciso criar JS separado para toda ferramenta?"**
   - Preferencialmente sim, para manter isolamento e facilitar manutenção.
+- **"Onde registro o módulo JS da nova feature?"**
+  - Importe e chame a função `init*Feature()` em `js/main.js`. O módulo faz guard check de DOM automaticamente.
