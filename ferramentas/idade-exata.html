@@ -9,14 +9,15 @@
     <link rel="stylesheet" href="../styles.css" />
   </head>
   <body>
+    <a class="skip-link" href="#conteudo-principal">Pular para conteúdo</a>
     <header class="header"><div class="container nav"><a class="brand" href="/gametools/">GameTools</a><nav><a href="/gametools/">Home</a><a href="/gametools/jogos.html">Jogos</a><a href="/gametools/ferramentas.html">Ferramentas</a></nav></div></header>
-    <main class="container page-main">
+    <main id="conteudo-principal" class="container page-main">
       <section class="section-intro"><h1>Calculadora de idade exata</h1><p>Útil para cadastro, aposentadoria, concursos e qualquer situação que exige idade detalhada.</p></section>
       <section class="section"><article class="card tool-card">
         <div class="field"><label for="nascimento">Data de nascimento</label><input id="nascimento" type="date" /></div>
         <div class="field"><label for="referencia">Data de referência</label><input id="referencia" type="date" /></div>
         <div class="field-row"><button class="btn btn-primary" id="calcular">Calcular idade</button><button class="btn btn-secondary" id="copiar" type="button">Copiar resultado</button></div>
-        <p id="resultado" class="result">Selecione as datas para calcular.</p>
+        <p id="resultado" class="result" aria-live="polite" role="status">Selecione as datas para calcular.</p>
       </article></section>
     </main>
     <footer class="footer"><div class="container footer-content"><p>Explore: <a href="/gametools/">Home</a> · <a href="/gametools/ferramentas.html">Ferramentas</a></p></div></footer>

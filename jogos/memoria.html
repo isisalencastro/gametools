@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="../styles.css" />
   </head>
   <body>
+    <a class="skip-link" href="#conteudo-principal">Pular para conteúdo</a>
     <header class="header">
       <div class="container nav">
         <a class="brand" href="/gametools/">GameTools</a>
@@ -23,7 +24,7 @@
       </div>
     </header>
 
-    <main class="container page-main">
+    <main id="conteudo-principal" class="container page-main">
       <section class="section-intro">
         <h1>Jogo da Memória</h1>
         <p>Encontre todos os pares no menor tempo possível e com poucas jogadas.</p>
@@ -31,7 +32,7 @@
 
       <section class="section">
         <article class="card game-card">
-          <p id="memoria-status" class="result">Tempo: 0s · Jogadas: 0 · Melhor: --</p>
+          <p id="memoria-status" class="result" aria-live="polite" role="status">Tempo: 0s · Jogadas: 0 · Melhor: --</p>
           <div id="memoria-grid" class="memory-grid" aria-label="Tabuleiro do jogo da memória"></div>
           <div class="field-row">
             <button id="memoria-reset" class="btn btn-primary">Jogar novamente</button>

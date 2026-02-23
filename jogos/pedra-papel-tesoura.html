@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="../styles.css" />
   </head>
   <body>
+    <a class="skip-link" href="#conteudo-principal">Pular para conteúdo</a>
     <header class="header">
       <div class="container nav">
         <a class="brand" href="/gametools/">GameTools</a>
@@ -23,7 +24,7 @@
       </div>
     </header>
 
-    <main class="container page-main">
+    <main id="conteudo-principal" class="container page-main">
       <section class="section-intro">
         <h1>Pedra-Papel-Tesoura</h1>
         <p>Dispute contra o computador e acompanhe seu placar e sequência máxima de vitórias.</p>
@@ -31,13 +32,13 @@
 
       <section class="section">
         <article class="card game-card">
-          <p id="ppt-status" class="result">Placar: Você 0 x 0 CPU · Melhor sequência: 0</p>
+          <p id="ppt-status" class="result" aria-live="polite" role="status">Placar: Você 0 x 0 CPU · Melhor sequência: 0</p>
           <div class="field-row">
             <button class="btn btn-primary" data-ppt="pedra">Pedra</button>
             <button class="btn btn-primary" data-ppt="papel">Papel</button>
             <button class="btn btn-primary" data-ppt="tesoura">Tesoura</button>
           </div>
-          <p id="ppt-result"></p>
+          <p id="ppt-result" aria-live="polite" role="status"></p>
           <div class="field-row">
             <button id="ppt-reset" class="btn btn-secondary">Jogar novamente</button>
             <button id="ppt-share" class="btn btn-secondary">Compartilhar resultado</button>

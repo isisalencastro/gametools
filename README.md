@@ -79,6 +79,23 @@ npm run lint:css
 npm run lint:html
 ```
 
+
+## ♿ Critérios de acessibilidade (padrão para novas features)
+
+Ao criar ou alterar páginas no GameTools, siga este checklist mínimo:
+
+- **Atualizações dinâmicas anunciáveis**: todo bloco de status/resultado deve usar `aria-live="polite"` (preferencialmente com `role="status"`).
+- **Teclado primeiro**: controles interativos devem ser elementos nativos (`button`, `a`, `input`, `select`) ou equivalentes com foco e ativação por teclado.
+- **Foco visível**: manter estilo de `:focus-visible` com alto contraste em links, botões, inputs, selects e summaries.
+- **Rótulos explícitos**: todo campo de formulário deve ter `<label for="...">`; placeholder nunca substitui label.
+- **Validação clara**: bloquear ações inválidas e informar o erro em linguagem objetiva, dizendo como corrigir.
+- **Atalho de navegação**: incluir link “Pular para conteúdo” no topo e `id` no conteúdo principal (`main`).
+
+### Critérios de aceite rápidos
+- Navegação completa com `Tab`, `Shift+Tab`, `Enter` e `Espaço` sem perder contexto.
+- Foco sempre visível em qualquer controle ativo.
+- Mensagens de erro/resultado compreensíveis para leitor de tela e sem ambiguidade.
+
 ## 🛠️ Tecnologias
 
 - HTML5
