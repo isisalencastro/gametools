@@ -4,7 +4,7 @@ Plataforma web com mini jogos e ferramentas úteis, construída em HTML, CSS e J
 
 ## 📌 Sobre o projeto
 
-O GameTools foi criado para reunir utilidade e entretenimento em uma interface simples, leve e rápida, com foco em funcionamento direto no navegador e deploy fácil no GitHub Pages.
+O GameTools reúne utilidade e entretenimento em uma interface simples, leve e rápida, com foco em execução direta no navegador e deploy estático.
 
 ## ✨ Funcionalidades disponíveis (v1)
 
@@ -17,56 +17,51 @@ O GameTools foi criado para reunir utilidade e entretenimento em uma interface s
 - **Calculadora de Porcentagem** (`x% de y`).
 - **Conversor de Temperatura** (°C ↔ °F).
 
-## 🎨 Identidade visual
-
-Paleta principal utilizada no projeto:
-- Azul
-- Branco
-- Preto
-- Amarelo (detalhes)
-
 ## 🧱 Estrutura do repositório
 
 - `index.html` → estrutura da página e componentes visuais.
 - `styles.css` → estilos globais e responsividade.
 - `script.js` → regras dos jogos e ferramentas.
-- `.github/workflows/deploy.yml` → deploy automático para GitHub Pages.
-- `.nojekyll` → compatibilidade de publicação estática no Pages.
+- `package.json` → scripts NPM para validação estática.
+- `eslint.config.js` → configuração de lint JavaScript.
 
 ## ▶️ Como executar localmente
 
 ### Opção 1 (mais simples)
 Abra o arquivo `index.html` diretamente no navegador.
 
-### Opção 2 (recomendado)
+### Opção 2 (recomendada)
 Suba um servidor local:
 
 ```bash
 python3 -m http.server 8080
 ```
 
-Depois acesse:
+Depois acesse `http://localhost:8080`.
 
-```text
-http://localhost:8080
+## ✅ Validação de qualidade (NPM)
+
+Execute validações do projeto estático:
+
+```bash
+npm run lint
 ```
 
-## 🚀 Publicação no GitHub Pages
+Validações individuais:
 
-1. Faça push do projeto para a branch `main`.
-2. No GitHub, abra **Settings > Pages**.
-3. Em **Build and deployment > Source**, selecione **GitHub Actions**.
-4. Aguarde o workflow `Deploy static site to Pages` concluir.
-5. Acesse a URL publicada:
-   - `https://<usuario>.github.io/<repositorio>/`
+```bash
+npm run lint:js
+npm run lint:css
+npm run lint:html
+```
 
 ## 🛠️ Tecnologias
 
 - HTML5
 - CSS3
 - JavaScript (ES6+)
-- GitHub Actions
-- GitHub Pages
+- ESLint (JS)
+- Scripts Node.js para checagem estrutural de HTML/CSS
 
 ## 📄 Licença
 
