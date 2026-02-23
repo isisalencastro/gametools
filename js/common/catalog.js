@@ -1,3 +1,11 @@
+function normalizeSearchValue(value) {
+  return String(value || '')
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .toLowerCase()
+    .trim();
+}
+
 export function initCatalogExperience() {
   const root = document.querySelector('[data-catalog-root]');
   if (!root) return;
@@ -10,13 +18,13 @@ export function initCatalogExperience() {
   const items = [...root.querySelectorAll('[data-catalog-item]')];
 
   function applyFilters() {
-    const term = (search?.value || '').trim().toLowerCase();
-    const category = (filter?.value || 'all').toLowerCase();
+    const term = normalizeSearchValue(search?.value);
+    const category = normalizeSearchValue(filter?.value || 'all');
     let visible = 0;
 
     items.forEach((item) => {
-      const tags = (item.dataset.tags || '').toLowerCase();
-      const title = (item.dataset.title || '').toLowerCase();
+      const tags = normalizeSearchValue(item.dataset.tags);
+      const title = normalizeSearchValue(item.dataset.title);
       const matchesTerm = !term || title.includes(term) || tags.includes(term);
       const matchesCategory = category === 'all' || tags.includes(category);
       const show = matchesTerm && matchesCategory;
