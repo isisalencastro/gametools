@@ -253,3 +253,35 @@ nav a:hover {
   flex-direction: column;
   gap: 8px;
 }
+
+.game-card {
+  max-width: 760px;
+}
+
+.memory-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(64px, 1fr));
+  gap: 10px;
+  margin: 14px 0;
+}
+
+.memory-card {
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  background: #eff6ff;
+  min-height: 58px;
+  font-size: 1.3rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.memory-card.flipped,
+.memory-card.matched {
+  background: #dbeafe;
+}
+
+.quiz-options {
+  display: grid;
+  gap: 8px;
+  margin-bottom: 12px;
+}

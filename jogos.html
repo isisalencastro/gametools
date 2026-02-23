@@ -6,7 +6,7 @@
     <title>Jogos online | Catálogo de mini jogos GameTools</title>
     <meta
       name="description"
-      content="Catálogo de jogos do GameTools com acesso a páginas individuais como teste de reação, com foco em navegação simples."
+      content="Catálogo de jogos do GameTools com páginas de Jogo da Memória, Pedra-Papel-Tesoura, Quiz Rápido, Clique Rápido 10s e muito mais."
     />
     <link rel="canonical" href="https://isisalencastro.github.io/gametools/jogos.html" />
     <link rel="stylesheet" href="styles.css" />
@@ -26,20 +26,39 @@
     <main class="container page-main">
       <section class="section-intro">
         <h1>Catálogo de mini jogos</h1>
-        <p>Selecione um jogo para abrir a página detalhada da feature e navegar para outras áreas do projeto.</p>
+        <p>Escolha um jogo para abrir a página dedicada e salvar seus melhores resultados localmente.</p>
       </section>
 
       <section class="section">
         <div class="grid two-columns">
           <article class="card">
+            <h2>Jogo da Memória</h2>
+            <p>Encontre pares de cartas, acompanhe o cronômetro e conte suas jogadas.</p>
+            <a class="btn btn-primary" href="/gametools/jogos/memoria.html">Abrir jogo</a>
+          </article>
+
+          <article class="card">
+            <h2>Pedra-Papel-Tesoura</h2>
+            <p>Jogue contra a CPU com placar local e sequência de vitórias.</p>
+            <a class="btn btn-primary" href="/gametools/jogos/pedra-papel-tesoura.html">Abrir jogo</a>
+          </article>
+
+          <article class="card">
+            <h2>Quiz Rápido</h2>
+            <p>Responda 10 perguntas com limite de tempo por rodada e veja a pontuação final.</p>
+            <a class="btn btn-primary" href="/gametools/jogos/quiz-rapido.html">Abrir jogo</a>
+          </article>
+
+          <article class="card">
+            <h2>Clique Rápido 10s</h2>
+            <p>Conte quantos cliques você consegue fazer em 10 segundos.</p>
+            <a class="btn btn-primary" href="/gametools/jogos/clique-rapido.html">Abrir jogo</a>
+          </article>
+
+          <article class="card">
             <h2>Teste de Reação</h2>
             <p>Treine seus reflexos e acompanhe sua velocidade de resposta.</p>
-            <a class="btn btn-primary" href="/gametools/jogos/reacao.html">Abrir página do jogo</a>
-          </article>
-          <article class="card">
-            <h2>Adivinhe o Número</h2>
-            <p>Desafie seu palpite tentando descobrir o número secreto.</p>
-            <a class="btn btn-secondary" href="/gametools/">Ver versão da Home</a>
+            <a class="btn btn-secondary" href="/gametools/jogos/reacao.html">Abrir página do jogo</a>
           </article>
         </div>
       </section>
@@ -47,12 +66,12 @@
       <section class="section faq">
         <h2>FAQ de jogos</h2>
         <details>
-          <summary>Como abrir o jogo de reação?</summary>
-          <p>Use o link para <a href="/gametools/jogos/reacao.html">/jogos/reacao.html</a>.</p>
+          <summary>Os jogos salvam meus recordes?</summary>
+          <p>Sim. Os melhores resultados ficam salvos no <code>localStorage</code> do seu navegador.</p>
         </details>
         <details>
-          <summary>Tem link para ferramentas a partir da área de jogos?</summary>
-          <p>Sim, você pode ir direto para <a href="/gametools/ferramentas.html">Ferramentas</a>.</p>
+          <summary>Como compartilhar minha pontuação?</summary>
+          <p>Dentro de cada jogo há um botão de compartilhar resultado com fallback para cópia.</p>
         </details>
       </section>
 
