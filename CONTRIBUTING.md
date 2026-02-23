@@ -49,6 +49,8 @@ Antes de abrir PR, confirme:
 - [ ] Links internos da feature foram atualizados (catálogo + navegação).
 - [ ] SEO básico revisado (title, description, canonical, Open Graph).
 - [ ] `sitemap.xml` atualizado ao adicionar nova página pública.
+- [ ] Toda URL pública listada em `jogos.html` e `ferramentas.html` também aparece no `sitemap.xml`.
+- [ ] URL declarada no `sitemap.xml` é idêntica ao `canonical` da página correspondente (sem variações de caminho).
 - [ ] Mudanças relevantes documentadas no `CHANGELOG.md`.
 
 ## Processo sugerido (passo a passo)

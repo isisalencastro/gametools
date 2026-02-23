@@ -21,6 +21,26 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://isisalencastro.github.io/gametools/jogos/pedra-papel-tesoura.html</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://isisalencastro.github.io/gametools/jogos/clique-rapido.html</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://isisalencastro.github.io/gametools/jogos/quiz-rapido.html</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://isisalencastro.github.io/gametools/jogos/memoria.html</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://isisalencastro.github.io/gametools/ferramentas/imc.html</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
