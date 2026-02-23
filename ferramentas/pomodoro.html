@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cronômetro Pomodoro online | GameTools</title>
+    <meta name="description" content="Cronômetro Pomodoro para foco com tempos personalizáveis, validações, estado atual e botão para copiar resumo." />
+    <link rel="canonical" href="https://isisalencastro.github.io/gametools/ferramentas/pomodoro.html" />
+    <link rel="stylesheet" href="../styles.css" />
+  </head>
+  <body>
+    <header class="header"><div class="container nav"><a class="brand" href="/gametools/">GameTools</a><nav><a href="/gametools/">Home</a><a href="/gametools/jogos.html">Jogos</a><a href="/gametools/ferramentas.html">Ferramentas</a></nav></div></header>
+    <main class="container page-main">
+      <section class="section-intro"><h1>Cronômetro / Pomodoro</h1><p>Organize estudos e trabalho em blocos de foco e pausa para manter consistência e produtividade.</p></section>
+      <section class="section"><article class="card tool-card">
+        <div class="field"><label for="foco">Minutos de foco (1 a 180)</label><input id="foco" type="number" min="1" max="180" value="25" /></div>
+        <div class="field"><label for="pausa">Minutos de pausa (1 a 60)</label><input id="pausa" type="number" min="1" max="60" value="5" /></div>
+        <div class="field-row"><button class="btn btn-primary" id="iniciar">Iniciar</button><button class="btn btn-secondary" id="pausar" type="button">Pausar</button><button class="btn btn-secondary" id="resetar" type="button">Resetar</button><button class="btn btn-secondary" id="copiar" type="button">Copiar resultado</button></div>
+        <p id="timer" class="result">25:00</p>
+        <p id="resultado" class="result">Modo atual: foco. Fórmula prática: ciclos de foco + pausa para sustentar atenção.</p>
+      </article></section>
+    </main>
+    <footer class="footer"><div class="container footer-content"><p>Explore: <a href="/gametools/">Home</a> · <a href="/gametools/ferramentas.html">Ferramentas</a></p></div></footer>
+    <script>
+      const timerEl = document.getElementById('timer');
+      const resultado = document.getElementById('resultado');
+      let segundosRestantes = 25 * 60;
+      let emFoco = true;
+      let intervalo = null;
+
+      function dois(n) { return String(n).padStart(2, '0'); }
+      function desenhar() {
+        const m = Math.floor(segundosRestantes / 60);
+        const s = segundosRestantes % 60;
+        timerEl.textContent = `${dois(m)}:${dois(s)}`;
+      }
+      function lerFaixa(id, nome, min, max) {
+        const n = Number(document.getElementById(id).value);
+        if (!Number.isFinite(n) || Number.isNaN(n)) return `${nome}: inválido.`;
+        if (n < min || n > max) return `${nome}: use de ${min} a ${max}.`;
+        return Math.floor(n);
+      }
+      function aplicarInicio(estadoFoco) {
+        const foco = lerFaixa('foco', 'Foco', 1, 180);
+        const pausa = lerFaixa('pausa', 'Pausa', 1, 60);
+        if (typeof foco === 'string' || typeof pausa === 'string') {
+          resultado.textContent = [foco, pausa].filter((v) => typeof v === 'string').join(' ');
+          return false;
+        }
+        emFoco = estadoFoco;
+        segundosRestantes = (emFoco ? foco : pausa) * 60;
+        resultado.textContent = `Modo atual: ${emFoco ? 'foco' : 'pausa'}. Duração configurada: ${emFoco ? foco : pausa} min.`;
+        desenhar();
+        return true;
+      }
+
+      document.getElementById('iniciar').addEventListener('click', () => {
+        if (intervalo) return;
+        if (!aplicarInicio(emFoco) && segundosRestantes <= 0) return;
+        intervalo = setInterval(() => {
+          segundosRestantes -= 1;
+          desenhar();
+          if (segundosRestantes <= 0) {
+            clearInterval(intervalo);
+            intervalo = null;
+            emFoco = !emFoco;
+            aplicarInicio(emFoco);
+            resultado.textContent += ' Ciclo concluído!';
+          }
+        }, 1000);
+      });
+
+      document.getElementById('pausar').addEventListener('click', () => {
+        clearInterval(intervalo);
+        intervalo = null;
+        resultado.textContent += ' Cronômetro pausado.';
+      });
+
+      document.getElementById('resetar').addEventListener('click', () => {
+        clearInterval(intervalo);
+        intervalo = null;
+        emFoco = true;
+        aplicarInicio(true);
+      });
+
+      document.getElementById('copiar').addEventListener('click', async () => {
+        try {
+          await navigator.clipboard.writeText(`${timerEl.textContent} - ${resultado.textContent}`);
+          resultado.textContent += ' (Resultado copiado!)';
+        } catch {
+          resultado.textContent += ' (Falha ao copiar automaticamente.)';
+        }
+      });
+
+      desenhar();
+    </script>
+  </body>
+</html>

@@ -14,14 +14,17 @@ O GameTools reúne utilidade e entretenimento em uma interface simples, leve e r
 
 ### Ferramentas
 - **Calculadora de IMC** com classificação básica.
-- **Calculadora de Porcentagem** (`x% de y`).
-- **Conversor de Temperatura** (°C ↔ °F).
+- **Regra de três** (simples e composta).
+- **Conversor de moedas manual** (taxa inserida pelo usuário).
+- **Calculadora de idade exata** (anos, meses e dias).
+- **Calculadora de juros** (simples e compostos).
+- **Cronômetro/Pomodoro** com foco e pausa.
 
 ## 🧱 Estrutura do repositório
 
 - `index.html` → home com visão geral e links para catálogos.
 - `jogos.html` e `ferramentas.html` → páginas de catálogo.
-- `jogos/reacao.html` e `ferramentas/imc.html` → páginas individuais de features.
+- `jogos/reacao.html` e `ferramentas/*.html` → páginas individuais de features (IMC, regra de três, moedas, idade, juros e pomodoro).
 - `styles.css` → estilos globais e responsividade.
 - `script.js` → regras JS dos widgets na home (legado v1).
 - `robots.txt` → diretrizes para crawlers e referência do sitemap.

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Calculadora de idade exata | GameTools</title>
+    <meta name="description" content="Descubra idade exata em anos, meses e dias com validação de datas e explicação da lógica de cálculo." />
+    <link rel="canonical" href="https://isisalencastro.github.io/gametools/ferramentas/idade-exata.html" />
+    <link rel="stylesheet" href="../styles.css" />
+  </head>
+  <body>
+    <header class="header"><div class="container nav"><a class="brand" href="/gametools/">GameTools</a><nav><a href="/gametools/">Home</a><a href="/gametools/jogos.html">Jogos</a><a href="/gametools/ferramentas.html">Ferramentas</a></nav></div></header>
+    <main class="container page-main">
+      <section class="section-intro"><h1>Calculadora de idade exata</h1><p>Útil para cadastro, aposentadoria, concursos e qualquer situação que exige idade detalhada.</p></section>
+      <section class="section"><article class="card tool-card">
+        <div class="field"><label for="nascimento">Data de nascimento</label><input id="nascimento" type="date" /></div>
+        <div class="field"><label for="referencia">Data de referência</label><input id="referencia" type="date" /></div>
+        <div class="field-row"><button class="btn btn-primary" id="calcular">Calcular idade</button><button class="btn btn-secondary" id="copiar" type="button">Copiar resultado</button></div>
+        <p id="resultado" class="result">Selecione as datas para calcular.</p>
+      </article></section>
+    </main>
+    <footer class="footer"><div class="container footer-content"><p>Explore: <a href="/gametools/">Home</a> · <a href="/gametools/ferramentas.html">Ferramentas</a></p></div></footer>
+    <script>
+      const resultado = document.getElementById('resultado');
+      function diasNoMes(ano, mesIndex) {
+        return new Date(ano, mesIndex + 1, 0).getDate();
+      }
+      document.getElementById('calcular').addEventListener('click', () => {
+        const nascRaw = document.getElementById('nascimento').value;
+        const refRaw = document.getElementById('referencia').value;
+        if (!nascRaw || !refRaw) {
+          resultado.textContent = 'Preencha as duas datas.';
+          return;
+        }
+        const nasc = new Date(`${nascRaw}T00:00:00`);
+        const ref = new Date(`${refRaw}T00:00:00`);
+        if (!Number.isFinite(nasc.getTime()) || !Number.isFinite(ref.getTime())) {
+          resultado.textContent = 'Data inválida.';
+          return;
+        }
+        if (nasc > ref) {
+          resultado.textContent = 'A data de nascimento não pode ser maior que a data de referência.';
+          return;
+        }
+
+        let anos = ref.getFullYear() - nasc.getFullYear();
+        let meses = ref.getMonth() - nasc.getMonth();
+        let dias = ref.getDate() - nasc.getDate();
+
+        if (dias < 0) {
+          meses -= 1;
+          const mesAnterior = ref.getMonth() === 0 ? 11 : ref.getMonth() - 1;
+          const anoMesAnterior = ref.getMonth() === 0 ? ref.getFullYear() - 1 : ref.getFullYear();
+          dias += diasNoMes(anoMesAnterior, mesAnterior);
+        }
+        if (meses < 0) {
+          anos -= 1;
+          meses += 12;
+        }
+
+        resultado.textContent = `Idade exata: ${anos} ano(s), ${meses} mês(es) e ${dias} dia(s). Lógica: diferença entre datas com ajuste de empréstimo de mês/dia.`;
+      });
+
+      document.getElementById('copiar').addEventListener('click', async () => {
+        try {
+          await navigator.clipboard.writeText(resultado.textContent);
+          resultado.textContent += ' (Resultado copiado!)';
+        } catch {
+          resultado.textContent += ' (Falha ao copiar automaticamente.)';
+        }
+      });
+    </script>
+  </body>
+</html>

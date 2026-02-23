@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Conversor de moedas manual | GameTools</title>
+    <meta name="description" content="Converta moedas com taxa manual inserida pelo usuário, validação de valores e fórmula do cálculo." />
+    <link rel="canonical" href="https://isisalencastro.github.io/gametools/ferramentas/conversor-moedas.html" />
+    <link rel="stylesheet" href="../styles.css" />
+  </head>
+  <body>
+    <header class="header"><div class="container nav"><a class="brand" href="/gametools/">GameTools</a><nav><a href="/gametools/">Home</a><a href="/gametools/jogos.html">Jogos</a><a href="/gametools/ferramentas.html">Ferramentas</a></nav></div></header>
+    <main class="container page-main">
+      <section class="section-intro"><h1>Conversor de moedas (manual)</h1><p>Ideal para viagens, compras internacionais e simulações com taxa definida por você.</p></section>
+      <section class="section"><article class="card tool-card">
+        <div class="field"><label for="valor">Valor de origem</label><input id="valor" type="number" step="any" min="0" /></div>
+        <div class="field"><label for="taxa">Taxa de câmbio (1 origem = ? destino)</label><input id="taxa" type="number" step="any" min="0" /></div>
+        <div class="field"><label for="origem">Moeda origem</label><input id="origem" type="text" maxlength="10" placeholder="Ex.: BRL" /></div>
+        <div class="field"><label for="destino">Moeda destino</label><input id="destino" type="text" maxlength="10" placeholder="Ex.: USD" /></div>
+        <div class="field-row"><button class="btn btn-primary" id="calcular">Converter</button><button class="btn btn-secondary" id="copiar" type="button">Copiar resultado</button></div>
+        <p id="resultado" class="result">Informe valor e taxa para converter.</p>
+      </article></section>
+    </main>
+    <footer class="footer"><div class="container footer-content"><p>Explore: <a href="/gametools/">Home</a> · <a href="/gametools/ferramentas.html">Ferramentas</a></p></div></footer>
+    <script>
+      const resultado = document.getElementById('resultado');
+      const LIMITE = 1e9;
+      function valNum(id, nome) {
+        const raw = document.getElementById(id).value.trim();
+        if (raw === '') return `${nome}: campo obrigatório.`;
+        const n = Number(raw);
+        if (!Number.isFinite(n) || Number.isNaN(n)) return `${nome}: valor inválido.`;
+        if (n <= 0) return `${nome}: deve ser maior que zero.`;
+        if (n > LIMITE) return `${nome}: máximo permitido é ${LIMITE}.`;
+        return n;
+      }
+
+      document.getElementById('calcular').addEventListener('click', () => {
+        const valor = valNum('valor', 'Valor');
+        const taxa = valNum('taxa', 'Taxa');
+        const origem = document.getElementById('origem').value.trim().toUpperCase() || 'ORIGEM';
+        const destino = document.getElementById('destino').value.trim().toUpperCase() || 'DESTINO';
+
+        if (typeof valor === 'string' || typeof taxa === 'string') {
+          resultado.textContent = [valor, taxa].filter((v) => typeof v === 'string').join(' ');
+          return;
+        }
+
+        const convertido = valor * taxa;
+        resultado.textContent = `Resultado: ${valor.toFixed(2)} ${origem} = ${convertido.toFixed(2)} ${destino}. Fórmula: valor × taxa = ${valor} × ${taxa}.`;
+      });
+
+      document.getElementById('copiar').addEventListener('click', async () => {
+        try {
+          await navigator.clipboard.writeText(resultado.textContent);
+          resultado.textContent += ' (Resultado copiado!)';
+        } catch {
+          resultado.textContent += ' (Falha ao copiar automaticamente.)';
+        }
+      });
+    </script>
+  </body>
+</html>
