@@ -189,3 +189,13 @@ select {
   padding: 18px 0;
   text-align: center;
 }
+
+.footer a {
+  color: var(--yellow);
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.footer a:hover {
+  text-decoration: underline;
+}
