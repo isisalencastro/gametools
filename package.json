@@ -3,25 +3,9 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "lint": "next lint"
-  },
-  "dependencies": {
-    "next": "14.2.5",
-    "react": "18.3.1",
-    "react-dom": "18.3.1"
-  },
-  "devDependencies": {
-    "@types/node": "20.14.10",
-    "@types/react": "18.3.3",
-    "@types/react-dom": "18.3.0",
-    "autoprefixer": "10.4.19",
-    "eslint": "8.57.0",
-    "eslint-config-next": "14.2.5",
-    "postcss": "8.4.39",
-    "tailwindcss": "3.4.7",
-    "typescript": "5.5.3"
+    "lint": "npm run lint:js && npm run lint:css && npm run lint:html",
+    "lint:js": "eslint script.js",
+    "lint:css": "node -e \"const fs=require('fs');const css=fs.readFileSync('styles.css','utf8');let d=0;for(const c of css){if(c==='{' )d++;if(c==='}')d--;if(d<0)throw new Error('styles.css com chaves desbalanceadas');}if(d!==0)throw new Error('styles.css com chaves desbalanceadas');if(!css.includes(':root'))throw new Error('styles.css sem bloco :root');console.log('CSS structure OK');\"",
+    "lint:html": "node -e \"const fs=require('fs');const html=fs.readFileSync('index.html','utf8');const checks=['<!DOCTYPE html>','<html','<head>','<body>','<script src=\\\"script.js\\\"></script>'];for(const c of checks){if(!html.includes(c))throw new Error('index.html inválido: falta '+c);}console.log('HTML structure OK');\""
   }
 }
