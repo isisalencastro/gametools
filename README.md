@@ -45,6 +45,35 @@ A arquitetura atual segue o padrão **multi-page app (MPA) estática**:
 - **Reuso utilitário**: helpers em `js/common` para evitar duplicação.
 - **SEO first**: metadados, canonical e sitemap mantidos em sincronia.
 
+## Estratégia de links e base path
+
+Este projeto adota **links relativos** como estratégia única de navegação interna.
+
+- Páginas na raiz (`index.html`, `jogos.html`, `ferramentas.html`) usam `./...`.
+- Páginas em subpastas (`jogos/*.html`, `ferramentas/*.html`) usam `../...` para voltar à raiz.
+- Com isso, a navegação funciona tanto em:
+  - raiz de domínio (`https://meudominio.com/`), quanto
+  - subcaminho (`https://meudominio.com/gametools/`),
+  sem precisar reescrever links internos.
+
+### Configuração por ambiente
+
+| Ambiente | Navegação interna | Canonical/OG |
+| --- | --- | --- |
+| Local (`http://localhost:8080`) | Funciona automaticamente (links relativos) | Manter apontando para URL pública de produção |
+| Produção em subpath (`/gametools`) | Funciona automaticamente (links relativos) | Usar `https://isisalencastro.github.io/gametools/...` |
+| Produção na raiz (`/`) | Funciona automaticamente (links relativos) | Atualizar para `https://seu-dominio/...` |
+
+> Regra prática: **não usar links absolutos internos começando com `/gametools/...`**. Use sempre caminhos relativos ao arquivo atual.
+
+### Canonical e navegação local
+
+- Tags `rel="canonical"` permanecem com a URL pública absoluta para SEO.
+- Isso **não afeta** a navegação local, pois os links clicáveis do site são relativos.
+- Ao trocar domínio/caminho público de deploy:
+  1. Atualize os canonicals e metatags sociais (`og:url`, `og:image`, `twitter:image`) da Home.
+  2. Atualize `sitemap.xml` para o mesmo domínio/caminho.
+
 ## Estrutura de pastas
 
 ```text
@@ -160,6 +189,14 @@ npm run lint:js
 npm run lint:css
 npm run lint:html
 ```
+
+### Escopo automático de lint
+
+- `lint:html` valida todas as páginas HTML da raiz e dos diretórios `jogos/` e `ferramentas/` via glob (`*.html`, `jogos/**/*.html`, `ferramentas/**/*.html`).
+- `lint:css` usa Stylelint para validar sintaxe e regras CSS em qualquer arquivo `*.css` do repositório.
+- `lint` continua como agregador único de JS + CSS + HTML para uso em CI e pré-PR.
+
+Com isso, novas páginas HTML e novos arquivos CSS entram no lint automaticamente, sem precisar editar scripts manualmente.
 
 ## Documentação para contribuidores
 

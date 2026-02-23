@@ -32,6 +32,12 @@ Use este checklist sempre que criar ou alterar uma página pública.
 <meta name="twitter:card" content="summary_large_image">
 ```
 
+
+### Observações para o projeto IBAGameTools
+
+- A faixa de 140-160 caracteres em `description` é uma referência; em páginas específicas, pode variar para manter clareza do conteúdo.
+- `og:image` e `twitter:image` podem usar a imagem padrão global (`/assets/social-card.png`) quando não houver card dedicado por página.
+
 ## 2) Canonical e URL
 
 - [ ] `canonical` aponta para a versão preferida da própria página.
