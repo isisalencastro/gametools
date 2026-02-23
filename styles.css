@@ -199,3 +199,57 @@ select {
 .footer a:hover {
   text-decoration: underline;
 }
+
+.page-main {
+  padding-bottom: 24px;
+}
+
+.section-intro {
+  margin-top: 24px;
+}
+
+.section-intro p {
+  color: var(--muted);
+  max-width: 760px;
+}
+
+.text-link,
+.context-links a {
+  color: var(--blue);
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.text-link:hover,
+.context-links a:hover,
+nav a:hover {
+  text-decoration: underline;
+}
+
+.context-links {
+  margin-top: 16px;
+  color: var(--muted);
+}
+
+.faq details {
+  background: var(--white);
+  border: 1px solid #dbeafe;
+  border-radius: 10px;
+  padding: 12px;
+  margin-bottom: 10px;
+}
+
+.faq summary {
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.faq p {
+  margin-top: 8px;
+}
+
+.footer-content {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
