@@ -18,62 +18,78 @@
         <a class="brand" href="/gametools/">GameTools</a>
         <nav>
           <a href="/gametools/">Home</a>
-          <a href="/gametools/jogos.html">Jogos</a>
+          <a href="/gametools/jogos.html" aria-current="page">Jogos</a>
           <a href="/gametools/ferramentas.html">Ferramentas</a>
         </nav>
       </div>
     </header>
 
-    <main id="conteudo-principal" class="container page-main">
+    <main id="conteudo-principal" class="container page-main" data-catalog-root>
       <section class="section-intro">
         <h1>Catálogo de mini jogos</h1>
-        <p>Escolha um jogo para abrir a página dedicada e salvar seus melhores resultados localmente.</p>
+        <p>Use os filtros abaixo para encontrar rapidamente o jogo ideal para sua sessão.</p>
       </section>
 
       <section class="section">
-        <div class="grid two-columns">
-          <article class="card">
+        <div class="catalog-toolbar" aria-label="Filtros do catálogo de jogos">
+          <input id="catalog-search" type="search" placeholder="Buscar por nome ou objetivo..." />
+          <select id="catalog-filter">
+            <option value="all">Todas as categorias</option>
+            <option value="reflexo">Reflexo</option>
+            <option value="estrategia">Estratégia</option>
+            <option value="conhecimento">Conhecimento</option>
+          </select>
+          <button id="catalog-clear" class="btn" type="button">Limpar filtros</button>
+        </div>
+        <p id="catalog-count" class="catalog-count" aria-live="polite"></p>
+
+        <div class="grid two-columns" data-catalog-list>
+          <article class="card" data-catalog-item data-tags="estrategia memoria pares" data-title="Jogo da Memória">
             <h2>Jogo da Memória</h2>
             <p>Encontre pares de cartas, acompanhe o cronômetro e conte suas jogadas.</p>
-            <a class="btn btn-primary" href="/gametools/jogos/memoria.html">Abrir jogo</a>
+            <div class="card-actions">
+              <a class="btn btn-primary" href="/gametools/jogos/memoria.html">Abrir jogo</a>
+              <button class="favorite-toggle" type="button" data-favorite-key="jogos-memoria">☆ Favoritar</button>
+            </div>
           </article>
 
-          <article class="card">
+          <article class="card" data-catalog-item data-tags="estrategia duelo cpu" data-title="Pedra-Papel-Tesoura">
             <h2>Pedra-Papel-Tesoura</h2>
             <p>Jogue contra a CPU com placar local e sequência de vitórias.</p>
-            <a class="btn btn-primary" href="/gametools/jogos/pedra-papel-tesoura.html">Abrir jogo</a>
+            <div class="card-actions">
+              <a class="btn btn-primary" href="/gametools/jogos/pedra-papel-tesoura.html">Abrir jogo</a>
+              <button class="favorite-toggle" type="button" data-favorite-key="jogos-ppt">☆ Favoritar</button>
+            </div>
           </article>
 
-          <article class="card">
+          <article class="card" data-catalog-item data-tags="conhecimento perguntas quiz" data-title="Quiz Rápido">
             <h2>Quiz Rápido</h2>
             <p>Responda 10 perguntas com limite de tempo por rodada e veja a pontuação final.</p>
-            <a class="btn btn-primary" href="/gametools/jogos/quiz-rapido.html">Abrir jogo</a>
+            <div class="card-actions">
+              <a class="btn btn-primary" href="/gametools/jogos/quiz-rapido.html">Abrir jogo</a>
+              <button class="favorite-toggle" type="button" data-favorite-key="jogos-quiz">☆ Favoritar</button>
+            </div>
           </article>
 
-          <article class="card">
+          <article class="card" data-catalog-item data-tags="reflexo velocidade clique" data-title="Clique Rápido 10s">
             <h2>Clique Rápido 10s</h2>
             <p>Conte quantos cliques você consegue fazer em 10 segundos.</p>
-            <a class="btn btn-primary" href="/gametools/jogos/clique-rapido.html">Abrir jogo</a>
+            <div class="card-actions">
+              <a class="btn btn-primary" href="/gametools/jogos/clique-rapido.html">Abrir jogo</a>
+              <button class="favorite-toggle" type="button" data-favorite-key="jogos-clique">☆ Favoritar</button>
+            </div>
           </article>
 
-          <article class="card">
+          <article class="card" data-catalog-item data-tags="reflexo tempo reação" data-title="Teste de Reação">
             <h2>Teste de Reação</h2>
             <p>Treine seus reflexos e acompanhe sua velocidade de resposta.</p>
-            <a class="btn btn-secondary" href="/gametools/jogos/reacao.html">Abrir página do jogo</a>
+            <div class="card-actions">
+              <a class="btn btn-secondary" href="/gametools/jogos/reacao.html">Abrir jogo</a>
+              <button class="favorite-toggle" type="button" data-favorite-key="jogos-reacao">☆ Favoritar</button>
+            </div>
           </article>
         </div>
-      </section>
-
-      <section class="section faq">
-        <h2>FAQ de jogos</h2>
-        <details>
-          <summary>Os jogos salvam meus recordes?</summary>
-          <p>Sim. Os melhores resultados ficam salvos no <code>localStorage</code> do seu navegador.</p>
-        </details>
-        <details>
-          <summary>Como compartilhar minha pontuação?</summary>
-          <p>Dentro de cada jogo há um botão de compartilhar resultado com fallback para cópia.</p>
-        </details>
+        <p id="catalog-empty" class="no-results">Nenhum jogo encontrado com este filtro. Tente outro termo.</p>
       </section>
 
       <p class="context-links">
@@ -90,6 +106,6 @@
         </p>
       </div>
     </footer>
-      <script type="module" src="/gametools/js/main.js"></script>
+    <script type="module" src="/gametools/js/main.js"></script>
   </body>
 </html>
