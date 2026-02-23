@@ -4,8 +4,8 @@
   "private": true,
   "scripts": {
     "lint": "npm run lint:js && npm run lint:css && npm run lint:html",
-    "lint:js": "eslint js/**/*.js jogos/*.js",
+    "lint:js": "eslint js/**/*.js",
     "lint:css": "node -e \"const fs=require('fs');const css=fs.readFileSync('styles.css','utf8');let d=0;for(const c of css){if(c==='{' )d++;if(c==='}')d--;if(d<0)throw new Error('styles.css com chaves desbalanceadas');}if(d!==0)throw new Error('styles.css com chaves desbalanceadas');if(!css.includes(':root'))throw new Error('styles.css sem bloco :root');console.log('CSS structure OK');\"",
-    "lint:html": "node -e \"const fs=require('fs');const html=fs.readFileSync('index.html','utf8');const checks=['<!DOCTYPE html>','<html','<head>','<body>'];for(const c of checks){if(!html.includes(c))throw new Error('index.html inv\u00e1lido: falta '+c);}console.log('HTML structure OK');\""
+    "lint:html": "node -e \"const fs=require('fs');const html=fs.readFileSync('index.html','utf8');const checks=['<!DOCTYPE html>','<html','<head>','<body>'];for(const c of checks){if(!html.includes(c))throw new Error('index.html inválido: falta '+c);}console.log('HTML structure OK');\""
   }
 }

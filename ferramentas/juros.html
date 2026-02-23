@@ -24,50 +24,7 @@
       </article></section>
     </main>
     <footer class="footer"><div class="container footer-content"><p>Explore: <a href="/gametools/">Home</a> · <a href="/gametools/ferramentas.html">Ferramentas</a></p></div></footer>
-    <script>
-      const resultado = document.getElementById('resultado');
-      const LIMITE = 1e9;
-      function lerPositivo(id, nome) {
-        const raw = document.getElementById(id).value.trim();
-        if (raw === '') return `${nome}: campo obrigatório.`;
-        const n = Number(raw);
-        if (!Number.isFinite(n)) return `${nome}: valor inválido.`;
-        if (n <= 0) return `${nome}: deve ser maior que zero.`;
-        if (n > LIMITE) return `${nome}: valor muito alto.`;
-        return n;
-      }
-      document.getElementById('calcular').addEventListener('click', () => {
-        const tipo = document.getElementById('tipo').value;
-        const capital = lerPositivo('capital', 'Capital');
-        const taxa = lerPositivo('taxa', 'Taxa');
-        const tempo = lerPositivo('tempo', 'Tempo');
-        if (typeof capital === 'string' || typeof taxa === 'string' || typeof tempo === 'string') {
-          resultado.textContent = [capital, taxa, tempo].filter((v) => typeof v === 'string').join(' ');
-          return;
-        }
-
-        const i = taxa / 100;
-        if (tipo === 'simples') {
-          const juros = capital * i * tempo;
-          const montante = capital + juros;
-          resultado.textContent = `Juros simples: J = C × i × t = ${capital} × ${i.toFixed(4)} × ${tempo} = ${juros.toFixed(2)}. Montante: M = C + J = ${montante.toFixed(2)}.`;
-          return;
-        }
-
-        const montante = capital * (1 + i) ** tempo;
-        const juros = montante - capital;
-        resultado.textContent = `Juros compostos: M = C × (1 + i)^t = ${capital} × (1 + ${i.toFixed(4)})^${tempo} = ${montante.toFixed(2)}. Juros: ${juros.toFixed(2)}.`;
-      });
-
-      document.getElementById('copiar').addEventListener('click', async () => {
-        try {
-          await navigator.clipboard.writeText(resultado.textContent);
-          resultado.textContent += ' (Resultado copiado!)';
-        } catch {
-          resultado.textContent += ' (Falha ao copiar automaticamente.)';
-        }
-      });
-    </script>
+    
       <script type="module" src="../js/main.js"></script>
   </body>
 </html>

@@ -65,43 +65,7 @@
       </div>
     </footer>
 
-    <script>
-      const resultado = document.getElementById('resultado');
-      const LIMITE = 1e9;
-      function valNum(id, nome) {
-        const raw = document.getElementById(id).value.trim();
-        if (raw === '') return `${nome}: campo obrigatório.`;
-        const n = Number(raw);
-        if (!Number.isFinite(n) || Number.isNaN(n)) return `${nome}: valor inválido.`;
-        if (n <= 0) return `${nome}: deve ser maior que zero.`;
-        if (n > LIMITE) return `${nome}: máximo permitido é ${LIMITE}.`;
-        return n;
-      }
-
-      document.getElementById('calcular').addEventListener('click', () => {
-        const valor = valNum('valor', 'Valor');
-        const taxa = valNum('taxa', 'Taxa');
-        const origem = document.getElementById('origem').value.trim().toUpperCase() || 'ORIGEM';
-        const destino = document.getElementById('destino').value.trim().toUpperCase() || 'DESTINO';
-
-        if (typeof valor === 'string' || typeof taxa === 'string') {
-          resultado.textContent = [valor, taxa].filter((v) => typeof v === 'string').join(' ');
-          return;
-        }
-
-        const convertido = valor * taxa;
-        resultado.textContent = `Resultado: ${valor.toFixed(2)} ${origem} = ${convertido.toFixed(2)} ${destino}.`;
-      });
-
-      document.getElementById('copiar').addEventListener('click', async () => {
-        try {
-          await navigator.clipboard.writeText(resultado.textContent);
-          resultado.textContent += ' (Resultado copiado!)';
-        } catch {
-          resultado.textContent += ' (Falha ao copiar automaticamente.)';
-        }
-      });
-    </script>
+    
     <script type="module" src="../js/main.js"></script>
   </body>
 </html>
