@@ -3,10 +3,10 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Ferramentas online | Catálogo GameTools</title>
+    <title>Ferramentas online | Catálogo IBAGameTools</title>
     <meta
       name="description"
-      content="Catálogo de ferramentas online do GameTools com acesso rápido para páginas individuais como IMC, regra de três, juros e pomodoro."
+      content="Catálogo de ferramentas online do IBAGameTools com acesso rápido para páginas individuais como IMC, regra de três, juros e pomodoro."
     />
     <link rel="canonical" href="https://isisalencastro.github.io/gametools/ferramentas.html" />
     <link rel="stylesheet" href="styles.css" />
@@ -15,42 +15,86 @@
     <a class="skip-link" href="#conteudo-principal">Pular para conteúdo</a>
     <header class="header">
       <div class="container nav">
-        <a class="brand" href="/gametools/">GameTools</a>
+        <a class="brand" href="/gametools/">IBAGameTools</a>
         <nav>
           <a href="/gametools/">Home</a>
           <a href="/gametools/jogos.html">Jogos</a>
-          <a href="/gametools/ferramentas.html">Ferramentas</a>
+          <a href="/gametools/ferramentas.html" aria-current="page">Ferramentas</a>
         </nav>
+        <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Alternar tema claro e escuro">🌙 Modo escuro</button>
       </div>
     </header>
 
-    <main id="conteudo-principal" class="container page-main">
+    <main id="conteudo-principal" class="container page-main" data-catalog-root>
       <section class="section-intro">
         <h1>Catálogo de ferramentas</h1>
-        <p>Encontre calculadoras e utilitários em páginas dedicadas, com validação robusta e resultados explicativos.</p>
+        <p>Acesse calculadoras e utilitários com filtro rápido para acelerar sua rotina.</p>
       </section>
 
       <section class="section">
-        <div class="grid three-columns">
-          <article class="card"><h2>Calculadora de IMC</h2><p>Saiba seu índice de massa corporal e classificação básica.</p><a class="btn btn-primary" href="/gametools/ferramentas/imc.html">Abrir página da ferramenta</a></article>
-          <article class="card"><h2>Regra de três simples/composta</h2><p>Resolva proporções com explicação da fórmula usada.</p><a class="btn btn-primary" href="/gametools/ferramentas/regra-de-tres.html">Abrir ferramenta</a></article>
-          <article class="card"><h2>Conversor de moedas (manual)</h2><p>Converta usando taxa de câmbio inserida por você.</p><a class="btn btn-primary" href="/gametools/ferramentas/conversor-moedas.html">Abrir ferramenta</a></article>
-          <article class="card"><h2>Calculadora de idade exata</h2><p>Veja idade precisa em anos, meses e dias.</p><a class="btn btn-primary" href="/gametools/ferramentas/idade-exata.html">Abrir ferramenta</a></article>
-          <article class="card"><h2>Calculadora de juros</h2><p>Compare juros simples e compostos com fórmula.</p><a class="btn btn-primary" href="/gametools/ferramentas/juros.html">Abrir ferramenta</a></article>
-          <article class="card"><h2>Cronômetro / Pomodoro</h2><p>Organize ciclos de foco e pausa para produtividade.</p><a class="btn btn-primary" href="/gametools/ferramentas/pomodoro.html">Abrir ferramenta</a></article>
+        <div class="catalog-toolbar" aria-label="Filtros do catálogo de ferramentas">
+          <input id="catalog-search" type="search" placeholder="Buscar por cálculo, tema ou utilidade..." />
+          <select id="catalog-filter">
+            <option value="all">Todas as categorias</option>
+            <option value="estudo">Estudo</option>
+            <option value="financeiro">Financeiro</option>
+            <option value="produtividade">Produtividade</option>
+          </select>
+          <button id="catalog-clear" class="btn" type="button">Limpar filtros</button>
         </div>
-      </section>
+        <p id="catalog-count" class="catalog-count" aria-live="polite"></p>
 
-      <section class="section faq">
-        <h2>FAQ de ferramentas</h2>
-        <details>
-          <summary>As ferramentas mostram como o resultado foi calculado?</summary>
-          <p>Sim. As páginas novas exibem a fórmula aplicada e um texto explicativo do cálculo.</p>
-        </details>
-        <details>
-          <summary>Posso copiar o resultado?</summary>
-          <p>Sim. Cada ferramenta possui botão de "copiar resultado" para facilitar o uso em estudos e trabalho.</p>
-        </details>
+        <div class="grid three-columns" data-catalog-list>
+          <article class="card" data-catalog-item data-tags="estudo saude calculo" data-title="Calculadora de IMC">
+            <h2>Calculadora de IMC</h2>
+            <p>Saiba seu índice de massa corporal e classificação básica.</p>
+            <div class="card-actions">
+              <a class="btn btn-primary" href="/gametools/ferramentas/imc.html">Abrir ferramenta</a>
+              <button class="favorite-toggle" type="button" data-favorite-key="tool-imc">☆ Favoritar</button>
+            </div>
+          </article>
+          <article class="card" data-catalog-item data-tags="estudo proporcao matematica" data-title="Regra de três simples e composta">
+            <h2>Regra de três simples/composta</h2>
+            <p>Resolva proporções com explicação da fórmula usada.</p>
+            <div class="card-actions">
+              <a class="btn btn-primary" href="/gametools/ferramentas/regra-de-tres.html">Abrir ferramenta</a>
+              <button class="favorite-toggle" type="button" data-favorite-key="tool-regra3">☆ Favoritar</button>
+            </div>
+          </article>
+          <article class="card" data-catalog-item data-tags="financeiro cambio moedas" data-title="Conversor de moedas manual">
+            <h2>Conversor de moedas (manual)</h2>
+            <p>Converta usando taxa de câmbio inserida por você.</p>
+            <div class="card-actions">
+              <a class="btn btn-primary" href="/gametools/ferramentas/conversor-moedas.html">Abrir ferramenta</a>
+              <button class="favorite-toggle" type="button" data-favorite-key="tool-moedas">☆ Favoritar</button>
+            </div>
+          </article>
+          <article class="card" data-catalog-item data-tags="estudo datas idade" data-title="Calculadora de idade exata">
+            <h2>Calculadora de idade exata</h2>
+            <p>Veja idade precisa em anos, meses e dias.</p>
+            <div class="card-actions">
+              <a class="btn btn-primary" href="/gametools/ferramentas/idade-exata.html">Abrir ferramenta</a>
+              <button class="favorite-toggle" type="button" data-favorite-key="tool-idade">☆ Favoritar</button>
+            </div>
+          </article>
+          <article class="card" data-catalog-item data-tags="financeiro juros investimento" data-title="Calculadora de juros">
+            <h2>Calculadora de juros</h2>
+            <p>Compare juros simples e compostos com fórmula.</p>
+            <div class="card-actions">
+              <a class="btn btn-primary" href="/gametools/ferramentas/juros.html">Abrir ferramenta</a>
+              <button class="favorite-toggle" type="button" data-favorite-key="tool-juros">☆ Favoritar</button>
+            </div>
+          </article>
+          <article class="card" data-catalog-item data-tags="produtividade foco tempo" data-title="Cronômetro Pomodoro">
+            <h2>Cronômetro / Pomodoro</h2>
+            <p>Organize ciclos de foco e pausa para produtividade.</p>
+            <div class="card-actions">
+              <a class="btn btn-primary" href="/gametools/ferramentas/pomodoro.html">Abrir ferramenta</a>
+              <button class="favorite-toggle" type="button" data-favorite-key="tool-pomodoro">☆ Favoritar</button>
+            </div>
+          </article>
+        </div>
+        <p id="catalog-empty" class="no-results">Nenhuma ferramenta encontrada. Ajuste os filtros.</p>
       </section>
 
       <p class="context-links">
@@ -67,6 +111,6 @@
         </p>
       </div>
     </footer>
-      <script type="module" src="/gametools/js/main.js"></script>
+    <script type="module" src="./js/main.js"></script>
   </body>
 </html>
