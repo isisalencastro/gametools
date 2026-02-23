@@ -1,39 +1,36 @@
-# GameTools v1.0
+# GameTools v1.0 (HTML, CSS e JavaScript)
 
-Plataforma web com mini jogos e ferramentas úteis construída com Next.js + TypeScript + Tailwind CSS.
+Projeto de mini jogos e ferramentas úteis feito em **HTML, CSS e JS puro**, sem framework e sem etapa de build.
 
-## Stack
-
-- Next.js 14 (App Router)
-- TypeScript
-- Tailwind CSS
-
-## Funcionalidades v1.0
+## Funcionalidades
 
 ### Mini jogos
 - Teste de Reação
-- Adivinhe o Número
+- Adivinhe o Número (1 a 100)
 
 ### Ferramentas
 - Calculadora de IMC
 - Calculadora de Porcentagem
-- Conversor de Temperatura
+- Conversor de Temperatura (°C ↔ °F)
 
 ## Rodando localmente
 
+Basta abrir o arquivo `index.html` no navegador.
+
+Se quiser subir um servidor local:
+
 ```bash
-npm install
-npm run dev
+python3 -m http.server 8080
 ```
+
+Depois acesse `http://localhost:8080`.
 
 ## Deploy no GitHub Pages
 
-Este projeto já está preparado para deploy automático via GitHub Actions em `.github/workflows/deploy.yml`.
+O deploy está automatizado em `.github/workflows/deploy.yml`.
 
-1. No repositório, abra **Settings > Pages**.
-2. Em **Source**, selecione **GitHub Actions**.
+1. Vá em **Settings > Pages** no repositório.
+2. Em **Source**, escolha **GitHub Actions**.
 3. Faça push na branch `main`.
-4. A URL final ficará em:
+4. Acesse:
    - `https://<usuario>.github.io/<repositorio>/`
-
-> Observação: a URL `github.com/<usuario>/<repositorio>` sempre mostra o código/README, não o site publicado.
