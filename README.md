@@ -150,6 +150,14 @@ npm run lint:css
 npm run lint:html
 ```
 
+### Escopo automático de lint
+
+- `lint:html` valida todas as páginas HTML da raiz e dos diretórios `jogos/` e `ferramentas/` via glob (`*.html`, `jogos/**/*.html`, `ferramentas/**/*.html`).
+- `lint:css` usa Stylelint para validar sintaxe e regras CSS em qualquer arquivo `*.css` do repositório.
+- `lint` continua como agregador único de JS + CSS + HTML para uso em CI e pré-PR.
+
+Com isso, novas páginas HTML e novos arquivos CSS entram no lint automaticamente, sem precisar editar scripts manualmente.
+
 ## Documentação para contribuidores
 
 - Guia de contribuição: `CONTRIBUTING.md`
