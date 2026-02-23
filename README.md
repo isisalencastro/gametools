@@ -22,8 +22,27 @@ O GameTools reúne utilidade e entretenimento em uma interface simples, leve e r
 - `index.html` → estrutura da página e componentes visuais.
 - `styles.css` → estilos globais e responsividade.
 - `script.js` → regras dos jogos e ferramentas.
+- `robots.txt` → diretrizes para crawlers e referência do sitemap.
+- `sitemap.xml` → lista de URLs públicas para indexação.
 - `package.json` → scripts NPM para validação estática.
 - `eslint.config.js` → configuração de lint JavaScript.
+
+## 🌐 SEO / Social: onde atualizar ao publicar
+
+Ao publicar em outro domínio, atualize os valores abaixo:
+
+- **URL base do projeto**:
+  - `index.html` nas tags: `canonical`, `og:url`, JSON-LD `WebSite.url` e `SoftwareApplication.url`.
+  - `robots.txt` na linha `Sitemap:`.
+  - `sitemap.xml` em cada `<loc>`.
+- **Imagem social**:
+  - `index.html` nas tags `og:image` e `twitter:image`.
+  - Recomendação: imagem pública absoluta (ex.: `https://seu-dominio.com/assets/social-card.png`).
+- **Metadados sociais e descrição**:
+  - `index.html` nas tags `description`, `og:title`, `og:description`, `twitter:title`, `twitter:description`.
+- **Internacionalização (`pt-BR` e futura `en`)**:
+  - O documento principal já usa `lang="pt-BR"`.
+  - Quando houver versão em inglês, adicionar/ativar `hreflang="en"` no `index.html` e incluir a nova URL no `sitemap.xml`.
 
 ## ▶️ Como executar localmente
 
