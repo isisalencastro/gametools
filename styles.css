@@ -275,8 +275,8 @@ nav a:hover {
 }
 
 .btn:hover {
-  transform: translate(-1px, -1px);
-  box-shadow: 2px 2px 0 var(--ink);
+  transform: translate(-2px, -2px);
+  box-shadow: 4px 4px 0 var(--ink);
 }
 
 .catalog-toolbar {
@@ -396,6 +396,439 @@ select {
   gap: 8px;
   margin-bottom: 12px;
 }
+
+/* =============================================
+   KEYFRAMES
+   ============================================= */
+
+@keyframes fade-in-down {
+  from {
+    opacity: 0;
+    transform: translateY(-18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes pop-in {
+  0% {
+    opacity: 0;
+    transform: scale(0.85);
+  }
+  60% {
+    opacity: 1;
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes slide-in-left {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes shadow-pulse {
+  0%, 100% {
+    box-shadow: 3px 3px 0 var(--ink);
+  }
+  50% {
+    box-shadow: 5px 5px 0 var(--ink);
+  }
+}
+
+@keyframes badge-bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-3px); }
+}
+
+@keyframes flip-in {
+  from {
+    transform: rotateY(90deg);
+    opacity: 0;
+  }
+  to {
+    transform: rotateY(0);
+    opacity: 1;
+  }
+}
+
+/* =============================================
+   ENTRY ANIMATIONS
+   ============================================= */
+
+.header {
+  animation: fade-in-down 0.5s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.page-main {
+  animation: fade-in-up 0.6s 0.15s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.hero {
+  animation: fade-in-up 0.6s 0.25s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.badge {
+  animation: pop-in 0.5s 0.45s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.hero h1 {
+  animation: fade-in-up 0.6s 0.35s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.hero p {
+  animation: fade-in 0.6s 0.45s ease both;
+}
+
+.hero-actions {
+  animation: fade-in-up 0.5s 0.55s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.section-intro {
+  animation: slide-in-left 0.5s 0.2s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.section {
+  animation: fade-in-up 0.55s 0.3s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.card {
+  animation: fade-in-up 0.5s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.grid .card:nth-child(1) { animation-delay: 0.15s; }
+.grid .card:nth-child(2) { animation-delay: 0.25s; }
+.grid .card:nth-child(3) { animation-delay: 0.35s; }
+.grid .card:nth-child(4) { animation-delay: 0.45s; }
+.grid .card:nth-child(5) { animation-delay: 0.55s; }
+.grid .card:nth-child(6) { animation-delay: 0.65s; }
+
+.footer {
+  animation: fade-in-up 0.5s 0.4s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+/* =============================================
+   HOVER & INTERACTIVE TRANSITIONS
+   ============================================= */
+
+.brand {
+  transition: transform 0.2s cubic-bezier(0.22, 1, 0.36, 1),
+              letter-spacing 0.2s ease;
+}
+
+.brand:hover {
+  transform: scale(1.04);
+  letter-spacing: 0.1em;
+}
+
+nav a {
+  transition: border-color 0.2s ease,
+              background-color 0.25s ease,
+              transform 0.15s ease;
+}
+
+nav a:hover {
+  transform: translateY(-1px);
+}
+
+.theme-toggle {
+  transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1),
+              background-color 0.3s ease,
+              box-shadow 0.2s ease;
+}
+
+.theme-toggle:hover {
+  transform: rotate(-12deg) scale(1.06);
+  box-shadow: 2px 2px 0 var(--ink);
+}
+
+.theme-toggle:active {
+  transform: rotate(0deg) scale(0.95);
+}
+
+.card {
+  transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1),
+              box-shadow 0.25s cubic-bezier(0.22, 1, 0.36, 1),
+              background-color 0.4s ease,
+              color 0.4s ease,
+              border-color 0.3s ease;
+}
+
+.card:hover {
+  transform: translate(-2px, -4px);
+  box-shadow: 5px 7px 0 var(--ink);
+}
+
+.btn {
+  transition: transform 0.2s cubic-bezier(0.22, 1, 0.36, 1),
+              box-shadow 0.2s cubic-bezier(0.22, 1, 0.36, 1),
+              background-color 0.2s ease;
+}
+
+.btn:active {
+  transform: translate(1px, 1px);
+  box-shadow: 1px 1px 0 var(--ink);
+}
+
+.badge {
+  transition: transform 0.2s ease;
+}
+
+.badge:hover {
+  animation: badge-bounce 0.4s ease;
+}
+
+.hero {
+  transition: box-shadow 0.3s ease,
+              background-color 0.4s ease,
+              color 0.4s ease,
+              border-color 0.3s ease;
+}
+
+.hero:hover {
+  box-shadow: 5px 5px 0 var(--ink);
+}
+
+.section-intro {
+  transition: transform 0.25s ease,
+              box-shadow 0.25s ease,
+              background-color 0.4s ease,
+              color 0.4s ease,
+              border-color 0.3s ease;
+}
+
+.section-intro:hover {
+  transform: translateX(2px);
+  box-shadow: 5px 5px 0 var(--ink);
+}
+
+.footer-content {
+  transition: box-shadow 0.3s cubic-bezier(0.22, 1, 0.36, 1),
+              transform 0.3s cubic-bezier(0.22, 1, 0.36, 1),
+              background-color 0.4s ease,
+              color 0.4s ease,
+              border-color 0.3s ease;
+}
+
+.footer-content:hover {
+  transform: translate(-1px, -2px);
+  box-shadow: 7px 7px 0 var(--ink);
+}
+
+/* =============================================
+   INPUT & FORM TRANSITIONS
+   ============================================= */
+
+input,
+select {
+  transition: border-color 0.2s ease,
+              box-shadow 0.2s ease,
+              background-color 0.3s ease;
+}
+
+input:focus,
+select:focus {
+  border-color: var(--accent);
+  box-shadow: 3px 3px 0 var(--accent);
+}
+
+input:hover,
+select:hover {
+  border-color: var(--muted);
+}
+
+.result {
+  transition: opacity 0.3s ease;
+}
+
+/* =============================================
+   LINK UNDERLINE ANIMATION
+   ============================================= */
+
+.footer a,
+.context-links a,
+.text-link {
+  position: relative;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.footer a::after,
+.context-links a::after,
+.text-link::after {
+  content: '';
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--accent);
+  transition: width 0.25s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.footer a:hover::after,
+.context-links a:hover::after,
+.text-link:hover::after {
+  width: 100%;
+}
+
+/* =============================================
+   GAME-SPECIFIC ANIMATIONS
+   ============================================= */
+
+.reaction-box {
+  transition: background-color 0.2s ease,
+              transform 0.2s cubic-bezier(0.22, 1, 0.36, 1),
+              box-shadow 0.2s ease,
+              border-color 0.2s ease,
+              color 0.4s ease;
+}
+
+.reaction-box:hover {
+  transform: scale(1.01);
+  box-shadow: 0 0 0 3px var(--accent);
+  border-color: var(--accent);
+}
+
+.reaction-box:active {
+  transform: scale(0.98);
+}
+
+.memory-card {
+  transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1),
+              background-color 0.3s ease,
+              box-shadow 0.2s ease,
+              border-color 0.3s ease,
+              color 0.4s ease;
+  transform-style: preserve-3d;
+}
+
+.memory-card:hover {
+  transform: translateY(-3px) scale(1.03);
+  box-shadow: 3px 5px 0 var(--ink);
+}
+
+.memory-card:active {
+  transform: translateY(0) scale(0.97);
+}
+
+.memory-card.flipped {
+  animation: flip-in 0.35s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.memory-card.matched {
+  animation: pop-in 0.4s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.quiz-options button {
+  transition: transform 0.2s cubic-bezier(0.22, 1, 0.36, 1),
+              box-shadow 0.2s ease,
+              background-color 0.15s ease;
+}
+
+.quiz-options button:hover {
+  transform: translateX(4px);
+  box-shadow: 3px 3px 0 var(--ink);
+}
+
+.quiz-options button:active {
+  transform: translateX(1px);
+  box-shadow: 1px 1px 0 var(--ink);
+}
+
+/* =============================================
+   KPI ANIMATIONS
+   ============================================= */
+
+.kpi {
+  transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1),
+              box-shadow 0.25s ease,
+              background-color 0.4s ease,
+              color 0.4s ease,
+              border-color 0.3s ease;
+}
+
+.kpi:hover {
+  transform: translateY(-2px);
+  box-shadow: 3px 3px 0 var(--ink);
+}
+
+/* =============================================
+   CATALOG ANIMATIONS
+   ============================================= */
+
+.catalog-toolbar {
+  animation: fade-in 0.5s 0.3s ease both;
+}
+
+.no-results {
+  animation: fade-in 0.3s ease both;
+}
+
+/* =============================================
+   SMOOTH THEME TRANSITION (color-only, no override)
+   ============================================= */
+
+body {
+  transition: background 0.4s ease, color 0.4s ease;
+}
+
+.nav {
+  transition: background-color 0.4s ease, color 0.4s ease, border-color 0.3s ease;
+}
+
+.page-main {
+  transition: background-color 0.4s ease, color 0.4s ease, border-color 0.3s ease;
+}
+
+.section {
+  transition: background-color 0.4s ease, color 0.4s ease, border-color 0.3s ease;
+}
+
+/* =============================================
+   ACCESSIBILITY: REDUCED MOTION
+   ============================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-delay: 0s !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* =============================================
+   RESPONSIVE
+   ============================================= */
 
 @media (max-width: 760px) {
   .catalog-toolbar {
