@@ -1,15 +1,9 @@
-const FAVORITES_KEY = 'gametools:favorites';
-
-function loadFavorites() {
-  try {
-    return JSON.parse(localStorage.getItem(FAVORITES_KEY) || '{}');
-  } catch {
-    return {};
-  }
-}
-
-function saveFavorites(data) {
-  localStorage.setItem(FAVORITES_KEY, JSON.stringify(data));
+function normalizeSearchValue(value) {
+  return String(value || '')
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .toLowerCase()
+    .trim();
 }
 
 export function initCatalogExperience() {
@@ -22,26 +16,15 @@ export function initCatalogExperience() {
   const count = root.querySelector('#catalog-count');
   const empty = root.querySelector('#catalog-empty');
   const items = [...root.querySelectorAll('[data-catalog-item]')];
-  const favoriteButtons = [...root.querySelectorAll('.favorite-toggle')];
-
-  const favorites = loadFavorites();
-
-  function updateFavoriteButton(button) {
-    const key = button.dataset.favoriteKey;
-    const active = Boolean(favorites[key]);
-    button.classList.toggle('active', active);
-    button.textContent = active ? '★ Favorito' : '☆ Favoritar';
-    button.setAttribute('aria-pressed', String(active));
-  }
 
   function applyFilters() {
-    const term = (search?.value || '').trim().toLowerCase();
-    const category = (filter?.value || 'all').toLowerCase();
+    const term = normalizeSearchValue(search?.value);
+    const category = normalizeSearchValue(filter?.value || 'all');
     let visible = 0;
 
     items.forEach((item) => {
-      const tags = (item.dataset.tags || '').toLowerCase();
-      const title = (item.dataset.title || '').toLowerCase();
+      const tags = normalizeSearchValue(item.dataset.tags);
+      const title = normalizeSearchValue(item.dataset.title);
       const matchesTerm = !term || title.includes(term) || tags.includes(term);
       const matchesCategory = category === 'all' || tags.includes(category);
       const show = matchesTerm && matchesCategory;
@@ -60,16 +43,6 @@ export function initCatalogExperience() {
     if (search) search.value = '';
     if (filter) filter.value = 'all';
     applyFilters();
-  });
-
-  favoriteButtons.forEach((button) => {
-    updateFavoriteButton(button);
-    button.addEventListener('click', () => {
-      const key = button.dataset.favoriteKey;
-      favorites[key] = !favorites[key];
-      saveFavorites(favorites);
-      updateFavoriteButton(button);
-    });
   });
 
   applyFilters();
