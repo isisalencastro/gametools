@@ -26,8 +26,6 @@ npm install
 npm run dev
 ```
 
-A aplicação ficará disponível em `http://localhost:3000`.
-
 ## Deploy no GitHub Pages
 
 Este projeto já está preparado para deploy automático via GitHub Actions em `.github/workflows/deploy.yml`.
