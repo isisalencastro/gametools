@@ -232,6 +232,24 @@ nav a:hover {
   color: var(--muted);
 }
 
+.kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.kpi {
+  border: 2px solid var(--ink);
+  background: var(--paper-soft);
+  padding: 10px;
+}
+
+.kpi strong {
+  display: block;
+  font-size: 1.2rem;
+}
+
 .btn {
   border: 2px solid var(--ink);
   background: var(--white);
