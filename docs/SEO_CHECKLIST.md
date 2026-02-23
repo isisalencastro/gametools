@@ -22,21 +22,21 @@ Use este checklist sempre que criar ou alterar uma página pública.
 ### Exemplo mínimo (head)
 
 ```html
-<title>Calculadora de Desconto | GameTools</title>
+<title>Calculadora de Desconto | IBAGameTools</title>
 <meta name="description" content="Calcule rapidamente preço final após desconto percentual com resultado instantâneo.">
-<link rel="canonical" href="https://seu-dominio.com/ferramentas/desconto.html">
-<meta property="og:title" content="Calculadora de Desconto | GameTools">
+<link rel="canonical" href="https://isisalencastro.github.io/gametools/ferramentas/desconto.html">
+<meta property="og:title" content="Calculadora de Desconto | IBAGameTools">
 <meta property="og:description" content="Descubra o valor final com desconto em segundos.">
-<meta property="og:url" content="https://seu-dominio.com/ferramentas/desconto.html">
-<meta property="og:image" content="https://seu-dominio.com/assets/social-card.png">
+<meta property="og:url" content="https://isisalencastro.github.io/gametools/ferramentas/desconto.html">
+<meta property="og:image" content="https://isisalencastro.github.io/gametools/assets/social-card.png">
 <meta name="twitter:card" content="summary_large_image">
 ```
-
 
 ### Observações para o projeto IBAGameTools
 
 - A faixa de 140-160 caracteres em `description` é uma referência; em páginas específicas, pode variar para manter clareza do conteúdo.
-- `og:image` e `twitter:image` podem usar a imagem padrão global (`/assets/social-card.png`) quando não houver card dedicado por página.
+- `og:image` e `twitter:image` atualmente apontam para `assets/social-card.png`, que **ainda não existe** no repositório. As páginas já declaram essa URL nas metatags. Ao criar a imagem, mantenha as dimensões recomendadas de 1200x630px.
+- Enquanto a imagem social não for criada, ferramentas de preview (Facebook Debugger, Twitter Card Validator) exibirão fallback sem imagem.
 
 ## 2) Canonical e URL
 
@@ -57,7 +57,9 @@ Use este checklist sempre que criar ou alterar uma página pública.
 
 ```xml
 <url>
-  <loc>https://seu-dominio.com/ferramentas/desconto.html</loc>
+  <loc>https://isisalencastro.github.io/gametools/ferramentas/desconto.html</loc>
+  <changefreq>weekly</changefreq>
+  <priority>0.8</priority>
 </url>
 ```
 

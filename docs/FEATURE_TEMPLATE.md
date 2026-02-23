@@ -1,6 +1,6 @@
 # Feature Template (Jogos e Ferramentas)
 
-Use este template ao criar uma nova página para manter consistência de UX, SEO e manutenção.
+Use este template ao criar uma nova página de jogo ou ferramenta para manter consistência de UX, SEO e manutenção.
 
 ---
 
@@ -9,7 +9,8 @@ Use este template ao criar uma nova página para manter consistência de UX, SEO
 - **Tipo**: `jogo` | `ferramenta`
 - **Nome da feature**:
 - **Slug** (kebab-case):
-- **URL final**: `/<categoria>/<slug>.html`
+- **Página HTML**: `jogos/<slug>.html` ou `ferramentas/<slug>.html`
+- **Módulo JS**: `js/games/<slug>.js` ou `js/tools/<slug>.js`
 - **Objetivo em 1 frase**:
 - **Público-alvo principal**:
 
@@ -18,7 +19,8 @@ Use este template ao criar uma nova página para manter consistência de UX, SEO
 - **Tipo**: `ferramenta`
 - **Nome da feature**: Calculadora de Desconto
 - **Slug**: `desconto`
-- **URL final**: `/ferramentas/desconto.html`
+- **Página HTML**: `ferramentas/desconto.html`
+- **Módulo JS**: `js/tools/desconto.js`
 - **Objetivo em 1 frase**: Permitir cálculo rápido de valor final após desconto percentual.
 - **Público-alvo principal**: usuários que fazem comparações de preço.
 
@@ -63,7 +65,7 @@ Checklist:
 
 Checklist:
 
-- [ ] JS em arquivo separado (`jogos/<slug>.js` ou `js/tools/<slug>.js`).
+- [ ] JS em arquivo separado (`js/games/<slug>.js` ou `js/tools/<slug>.js`).
 - [ ] Validar entradas antes do cálculo.
 - [ ] Tratar estados inválidos com mensagem clara.
 - [ ] Atualizar resultado com texto compreensível.
@@ -106,9 +108,10 @@ Checklist:
 ### Exemplo prático de integração
 
 1. Criar `ferramentas/desconto.html`.
-2. Criar `js/tools/desconto.js`.
-3. Inserir card/link em `ferramentas.html`.
-4. Adicionar `<url><loc>https://seu-dominio.com/ferramentas/desconto.html</loc></url>` em `sitemap.xml`.
+2. Criar `js/tools/desconto.js` exportando `initDescontoFeature()`.
+3. Importar e chamar `initDescontoFeature()` em `js/main.js`.
+4. Inserir card/link em `ferramentas.html`.
+5. Adicionar `<url><loc>https://isisalencastro.github.io/gametools/ferramentas/desconto.html</loc></url>` em `sitemap.xml`.
 
 ---
 
