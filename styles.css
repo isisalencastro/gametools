@@ -483,12 +483,9 @@ select {
     transform: rotate(0deg) scale(1);
     opacity: 1;
   }
-  30% {
-    transform: rotate(140deg) scale(1.18);
-    opacity: 0.4;
-  }
-  60% {
-    opacity: 0.6;
+  40% {
+    transform: rotate(160deg) scale(1.06);
+    opacity: 0.7;
   }
   100% {
     transform: rotate(360deg) scale(1);
@@ -576,22 +573,22 @@ nav a:hover {
 }
 
 .theme-toggle {
-  transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1),
+  transition: transform 0.3s ease,
               background-color 0.3s ease,
-              box-shadow 0.2s ease;
+              box-shadow 0.3s ease;
 }
 
 .theme-toggle:hover {
-  transform: rotate(-12deg) scale(1.06);
+  transform: rotate(-4deg) scale(1.03);
   box-shadow: 2px 2px 0 var(--ink);
 }
 
 .theme-toggle:active {
-  transform: rotate(0deg) scale(0.95);
+  transform: scale(0.97);
 }
 
 .theme-toggle.toggling {
-  animation: toggle-spin 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+  animation: toggle-spin 0.5s ease;
   pointer-events: none;
 }
 
