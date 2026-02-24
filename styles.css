@@ -478,6 +478,24 @@ select {
   }
 }
 
+@keyframes toggle-spin {
+  0% {
+    transform: rotate(0deg) scale(1);
+    opacity: 1;
+  }
+  30% {
+    transform: rotate(140deg) scale(1.18);
+    opacity: 0.4;
+  }
+  60% {
+    opacity: 0.6;
+  }
+  100% {
+    transform: rotate(360deg) scale(1);
+    opacity: 1;
+  }
+}
+
 /* =============================================
    ENTRY ANIMATIONS
    ============================================= */
@@ -570,6 +588,11 @@ nav a:hover {
 
 .theme-toggle:active {
   transform: rotate(0deg) scale(0.95);
+}
+
+.theme-toggle.toggling {
+  animation: toggle-spin 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+  pointer-events: none;
 }
 
 .card {
