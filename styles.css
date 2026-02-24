@@ -478,19 +478,10 @@ select {
   }
 }
 
-@keyframes toggle-spin {
-  0% {
-    transform: rotate(0deg) scale(1);
-    opacity: 1;
-  }
-  40% {
-    transform: rotate(160deg) scale(1.06);
-    opacity: 0.7;
-  }
-  100% {
-    transform: rotate(360deg) scale(1);
-    opacity: 1;
-  }
+@keyframes toggle-fade {
+  0% { opacity: 1; }
+  50% { opacity: 0.6; }
+  100% { opacity: 1; }
 }
 
 /* =============================================
@@ -573,22 +564,23 @@ nav a:hover {
 }
 
 .theme-toggle {
-  transition: transform 0.3s ease,
-              background-color 0.3s ease,
-              box-shadow 0.3s ease;
+  transition: transform 0.35s ease,
+              background-color 0.35s ease,
+              box-shadow 0.35s ease,
+              opacity 0.35s ease;
 }
 
 .theme-toggle:hover {
-  transform: rotate(-4deg) scale(1.03);
+  transform: scale(1.02);
   box-shadow: 2px 2px 0 var(--ink);
 }
 
 .theme-toggle:active {
-  transform: scale(0.97);
+  transform: scale(0.98);
 }
 
 .theme-toggle.toggling {
-  animation: toggle-spin 0.5s ease;
+  animation: toggle-fade 0.4s ease;
   pointer-events: none;
 }
 
