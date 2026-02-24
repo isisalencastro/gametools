@@ -24,14 +24,8 @@ export function initThemeToggle() {
     const current = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'light';
     const next = current === 'dark' ? 'light' : 'dark';
 
-    button.classList.add('toggling');
-
     applyTheme(next);
     localStorage.setItem(THEME_KEY, next);
     setButtonText(button, next);
-
-    button.addEventListener('animationend', () => {
-      button.classList.remove('toggling');
-    }, { once: true });
   });
 }

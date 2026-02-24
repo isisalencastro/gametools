@@ -478,12 +478,6 @@ select {
   }
 }
 
-@keyframes toggle-fade {
-  0% { opacity: 1; }
-  50% { opacity: 0.6; }
-  100% { opacity: 1; }
-}
-
 /* =============================================
    ENTRY ANIMATIONS
    ============================================= */
@@ -564,24 +558,17 @@ nav a:hover {
 }
 
 .theme-toggle {
-  transition: transform 0.35s ease,
-              background-color 0.35s ease,
+  transition: background-color 0.35s ease,
               box-shadow 0.35s ease,
-              opacity 0.35s ease;
+              color 0.35s ease;
 }
 
 .theme-toggle:hover {
-  transform: scale(1.02);
   box-shadow: 2px 2px 0 var(--ink);
 }
 
 .theme-toggle:active {
-  transform: scale(0.98);
-}
-
-.theme-toggle.toggling {
-  animation: toggle-fade 0.4s ease;
-  pointer-events: none;
+  box-shadow: 0 0 0 var(--ink);
 }
 
 .card {
