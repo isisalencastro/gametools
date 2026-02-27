@@ -21,17 +21,28 @@ export function initReactionFeature() {
 
   setLiveRegion(reactionResult);
 
+  function updatePillText(pill, text) {
+    if (!pill) return;
+    const icon = pill.querySelector('.pill-icon');
+    if (icon) {
+      while (icon.nextSibling) icon.nextSibling.remove();
+      pill.append(` ${text}`);
+    } else {
+      pill.textContent = text;
+    }
+  }
+
   function updateStats() {
     if (reactionAvg) {
       if (attempts.length > 0) {
         const avg = Math.round(attempts.reduce((a, b) => a + b, 0) / attempts.length);
-        reactionAvg.textContent = `Média: ${avg} ms (${attempts.length} tentativa${attempts.length > 1 ? 's' : ''})`;
+        updatePillText(reactionAvg, `Média: ${avg} ms (${attempts.length} tentativa${attempts.length > 1 ? 's' : ''})`);
       } else {
-        reactionAvg.textContent = 'Média: --';
+        updatePillText(reactionAvg, 'Média: --');
       }
     }
     if (reactionBest) {
-      reactionBest.textContent = bestEver > 0 ? `Recorde: ${bestEver} ms` : 'Recorde: --';
+      updatePillText(reactionBest, bestEver > 0 ? `Recorde: ${bestEver} ms` : 'Recorde: --');
     }
     if (reactionHistory) {
       const last5 = attempts.slice(-5).reverse();
