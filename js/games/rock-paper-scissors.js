@@ -1,22 +1,30 @@
+import { copyToClipboard } from '../common/utils.js';
+import { fireConfetti } from '../tools/confetti.js';
+
+const EMOJIS = { pedra: '✊', papel: '✋', tesoura: '✌️' };
+const CHOICES = ['pedra', 'papel', 'tesoura'];
+
 export function initRockPaperScissorsFeature() {
   const pptButtons = document.querySelectorAll('[data-ppt]');
   const pptStatus = document.getElementById('ppt-status');
   const pptResult = document.getElementById('ppt-result');
   const pptReset = document.getElementById('ppt-reset');
   const pptShare = document.getElementById('ppt-share');
+  const pptArena = document.getElementById('ppt-arena');
 
   if (!pptButtons.length || !pptStatus || !pptResult || !pptReset || !pptShare) return;
 
   const pptStorageKey = 'gametools_ppt_best_streak';
-  const pptChoices = ['pedra', 'papel', 'tesoura'];
 
   let pptPlayer = 0;
   let pptCpu = 0;
+  let pptDraws = 0;
   let pptCurrentStreak = 0;
   let pptBestStreak = Number(localStorage.getItem(pptStorageKey) || '0');
+  let pptRounds = 0;
 
-  function pptUpdateStatus(extra = '') {
-    pptStatus.textContent = `Placar: Você ${pptPlayer} x ${pptCpu} CPU · Melhor sequência: ${pptBestStreak}${extra}`;
+  function pptUpdateStatus() {
+    pptStatus.textContent = `Placar: Você ${pptPlayer} × ${pptCpu} CPU · Empates: ${pptDraws} · Sequência: ${pptCurrentStreak} · Recorde: ${pptBestStreak}`;
   }
 
   function pptGetWinner(player, cpu) {
@@ -31,9 +39,23 @@ export function initRockPaperScissorsFeature() {
     return 'cpu';
   }
 
+  function renderArena(playerChoice, cpuChoice, winner) {
+    if (!pptArena) return;
+    const winClass = winner === 'player' ? 'style="border-color:#22c55e"' : '';
+    const loseClass = winner === 'cpu' ? 'style="border-color:#ef4444"' : '';
+    pptArena.innerHTML = `
+      <div class="ppt-hand" ${winClass}>${EMOJIS[playerChoice]}</div>
+      <span class="ppt-vs">VS</span>
+      <div class="ppt-hand" ${loseClass}>${EMOJIS[cpuChoice]}</div>
+    `;
+  }
+
   function pptPlay(playerChoice) {
-    const cpuChoice = pptChoices[Math.floor(Math.random() * pptChoices.length)];
+    const cpuChoice = CHOICES[Math.floor(Math.random() * CHOICES.length)];
     const winner = pptGetWinner(playerChoice, cpuChoice);
+    pptRounds += 1;
+
+    renderArena(playerChoice, cpuChoice, winner);
 
     if (winner === 'player') {
       pptPlayer += 1;
@@ -42,13 +64,15 @@ export function initRockPaperScissorsFeature() {
         pptBestStreak = pptCurrentStreak;
         localStorage.setItem(pptStorageKey, String(pptBestStreak));
       }
-      pptResult.textContent = `Você jogou ${playerChoice}, CPU jogou ${cpuChoice}. Você venceu!`;
+      pptResult.textContent = `Você jogou ${EMOJIS[playerChoice]}, CPU jogou ${EMOJIS[cpuChoice]}. Você venceu!`;
+      if (pptCurrentStreak >= 3) fireConfetti();
     } else if (winner === 'cpu') {
       pptCpu += 1;
       pptCurrentStreak = 0;
-      pptResult.textContent = `Você jogou ${playerChoice}, CPU jogou ${cpuChoice}. CPU venceu.`;
+      pptResult.textContent = `Você jogou ${EMOJIS[playerChoice]}, CPU jogou ${EMOJIS[cpuChoice]}. CPU venceu.`;
     } else {
-      pptResult.textContent = `Empate! Ambos jogaram ${playerChoice}.`;
+      pptDraws += 1;
+      pptResult.textContent = `Empate! Ambos jogaram ${EMOJIS[playerChoice]}.`;
     }
 
     pptUpdateStatus();
@@ -57,25 +81,22 @@ export function initRockPaperScissorsFeature() {
   function pptResetGame() {
     pptPlayer = 0;
     pptCpu = 0;
+    pptDraws = 0;
     pptCurrentStreak = 0;
-    pptResult.textContent = 'Novo jogo iniciado.';
+    pptRounds = 0;
+    pptResult.textContent = 'Escolha sua jogada!';
+    if (pptArena) pptArena.innerHTML = '';
     pptUpdateStatus();
   }
 
   async function pptShareResult() {
-    const text = `No Pedra-Papel-Tesoura estou ${pptPlayer} x ${pptCpu} com sequência máxima ${pptBestStreak} no GameTools!`;
+    const winRate = pptRounds > 0 ? ((pptPlayer / pptRounds) * 100).toFixed(0) : 0;
+    const text = `No Pedra-Papel-Tesoura: ${pptPlayer}×${pptCpu} (${winRate}% vitórias, sequência máx ${pptBestStreak}) no GameTools!`;
     if (navigator.share) {
       await navigator.share({ title: 'Pedra-Papel-Tesoura - GameTools', text });
       return;
     }
-
-    if (navigator.clipboard?.writeText) {
-      await navigator.clipboard.writeText(text);
-      pptUpdateStatus(' · Resultado copiado para compartilhar.');
-      return;
-    }
-
-    pptUpdateStatus(' · Compartilhamento indisponível.');
+    copyToClipboard(text, pptShare);
   }
 
   pptButtons.forEach((button) => {
@@ -84,7 +105,7 @@ export function initRockPaperScissorsFeature() {
 
   pptReset.addEventListener('click', pptResetGame);
   pptShare.addEventListener('click', () => {
-    pptShareResult().catch(() => pptUpdateStatus(' · Falha ao compartilhar.'));
+    pptShareResult().catch(() => pptUpdateStatus());
   });
 
   pptUpdateStatus();
