@@ -1,5 +1,15 @@
-// Módulo de temperatura: converte entre escalas C/F com validação simples.
-import { buildErrorMessage, formatFixed, parseNumericInput, setLiveRegion } from '../common/utils.js';
+import { buildErrorMessage, copyToClipboard, formatFixed, parseNumericInput, setLiveRegion } from '../common/utils.js';
+
+const CONVERSIONS = {
+  c_f: (v) => v * 1.8 + 32,
+  f_c: (v) => (v - 32) / 1.8,
+  c_k: (v) => v + 273.15,
+  k_c: (v) => v - 273.15,
+  f_k: (v) => (v - 32) / 1.8 + 273.15,
+  k_f: (v) => (v - 273.15) * 1.8 + 32,
+};
+
+const UNIT_NAMES = { c: 'Celsius', f: 'Fahrenheit', k: 'Kelvin' };
 
 export function initTemperatureFeature() {
   const tempValue = document.getElementById('temp-value');
@@ -7,6 +17,7 @@ export function initTemperatureFeature() {
   const tempTo = document.getElementById('temp-to');
   const tempBtn = document.getElementById('temp-btn');
   const tempResult = document.getElementById('temp-result');
+  const tempCopy = document.getElementById('temp-copy');
 
   if (!tempValue || !tempFrom || !tempTo || !tempBtn || !tempResult) return;
 
@@ -26,20 +37,30 @@ export function initTemperatureFeature() {
     if (from === to) {
       renderResult(
         tempResult,
-        `${formatFixed(value, 1)}° ${from.toUpperCase()} = ${formatFixed(value, 1)}° ${to.toUpperCase()}.`,
+        `${formatFixed(value, 2)}° ${UNIT_NAMES[from]} = ${formatFixed(value, 2)}° ${UNIT_NAMES[to]}.`,
       );
       return;
     }
 
-    let converted = value;
-    if (from === 'c' && to === 'f') converted = value * 1.8 + 32;
-    if (from === 'f' && to === 'c') converted = (value - 32) / 1.8;
+    const key = `${from}_${to}`;
+    const converter = CONVERSIONS[key];
+    if (!converter) {
+      renderResult(tempResult, buildErrorMessage('conversão não suportada.'));
+      return;
+    }
 
+    const converted = converter(value);
     renderResult(
       tempResult,
-      `${formatFixed(value, 1)}° ${from.toUpperCase()} = ${formatFixed(converted, 1)}° ${to.toUpperCase()}.`,
+      `${formatFixed(value, 2)}° ${UNIT_NAMES[from]} = ${formatFixed(converted, 2)}° ${UNIT_NAMES[to]}.`,
     );
   });
+
+  if (tempCopy) {
+    tempCopy.addEventListener('click', () => {
+      copyToClipboard(tempResult.textContent, tempCopy);
+    });
+  }
 }
 
 export function validateInput(value) {
