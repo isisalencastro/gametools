@@ -676,6 +676,87 @@ select {
 }
 
 /* =============================================
+   QUIZ CATEGORY GRID
+   ============================================= */
+
+.quiz-cat-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 14px;
+}
+
+.quiz-cat-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  padding: 20px 14px;
+  border: 2px solid var(--ink);
+  border-radius: 12px;
+  background: var(--cat-color, var(--white));
+  cursor: pointer;
+  font-family: inherit;
+  box-shadow: 3px 3px 0 var(--ink);
+  animation: fade-in-up 0.4s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.quiz-cat-card:hover {
+  transform: translate(-2px, -4px);
+  box-shadow: 5px 7px 0 var(--ink);
+}
+
+.quiz-cat-card:active {
+  transform: translate(1px, 1px);
+  box-shadow: 1px 1px 0 var(--ink);
+}
+
+.quiz-cat-icon {
+  font-size: 2.2rem;
+}
+
+.quiz-cat-name {
+  font-weight: 800;
+  font-size: 0.95rem;
+  color: var(--ink);
+  text-align: center;
+}
+
+.quiz-cat-count {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--muted);
+}
+
+.quiz-meta-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 4px 0;
+}
+
+.quiz-meta-tag {
+  display: inline-block;
+  font-size: 0.8rem;
+  font-weight: 700;
+  padding: 3px 10px;
+  border: 2px solid var(--ink);
+  border-radius: 999px;
+  background: var(--paper-soft);
+  color: var(--ink);
+  margin: 0;
+}
+
+.quiz-type-tag {
+  background: var(--lavender);
+}
+
+.quiz-options .quiz-bool-btn {
+  text-align: center;
+  font-size: 1.05rem;
+  padding: 14px 22px;
+}
+
+/* =============================================
    PPT ARENA
    ============================================= */
 
