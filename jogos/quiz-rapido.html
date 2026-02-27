@@ -36,20 +36,26 @@
     <main id="conteudo-principal" class="container page-main">
       <section class="section-intro">
         <h1>Quiz Rápido</h1>
-        <p>Responda 10 perguntas antes do tempo acabar em cada rodada.</p>
+        <p>Escolha uma categoria e responda 10 perguntas antes do tempo acabar!</p>
       </section>
 
       <section class="section">
-        <article class="card game-card">
+        <div id="quiz-category-select" class="quiz-cat-grid"></div>
+
+        <article id="quiz-game-area" class="card game-card" style="display:none">
           <p id="quiz-status" class="result" aria-live="polite" role="status"></p>
           <div class="quiz-timer-bar"><div id="quiz-timer-fill" class="quiz-timer-fill" style="width:100%"></div></div>
-          <p id="quiz-category" style="font-size:0.85rem;color:var(--muted);margin:4px 0"></p>
+          <div class="quiz-meta-row">
+            <p id="quiz-category" class="quiz-meta-tag"></p>
+            <p id="quiz-type" class="quiz-meta-tag quiz-type-tag"></p>
+          </div>
           <h2 id="quiz-question"></h2>
           <div id="quiz-options" class="quiz-options"></div>
           <p id="quiz-feedback" class="result" aria-live="polite" role="status"></p>
           <div class="field-row">
-            <button id="quiz-reset" class="btn btn-primary">Jogar novamente</button>
-            <button id="quiz-share" class="btn btn-secondary">Compartilhar resultado</button>
+            <button id="quiz-back" class="btn" type="button">Categorias</button>
+            <button id="quiz-reset" class="btn btn-primary" type="button">Jogar novamente</button>
+            <button id="quiz-share" class="btn btn-secondary" type="button">Compartilhar</button>
           </div>
         </article>
       </section>
