@@ -90,6 +90,8 @@ export function initFastClickFeature() {
   function clickHandle(e) {
     e.preventDefault();
 
+    if (clickTarget.classList.contains('finished')) return;
+
     if (!clickRunning) {
       clickStart();
     }
