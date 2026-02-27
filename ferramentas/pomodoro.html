@@ -28,8 +28,10 @@
         <div class="field"><label for="foco">Minutos de foco (1 a 180)</label><input id="foco" type="number" min="1" max="180" value="25" /></div>
         <div class="field"><label for="pausa">Minutos de pausa (1 a 60)</label><input id="pausa" type="number" min="1" max="60" value="5" /></div>
         <div class="field-row"><button class="btn btn-primary" id="iniciar">Iniciar</button><button class="btn btn-secondary" id="pausar" type="button">Pausar</button><button class="btn btn-secondary" id="resetar" type="button">Resetar</button><button class="btn btn-secondary" id="copiar" type="button">Copiar resultado</button></div>
+        <div class="field-row"><button class="btn btn-secondary" id="pomodoro-notif" type="button">Ativar notificações</button></div>
         <p id="timer" class="result" aria-live="polite" role="status">25:00</p>
-        <p id="resultado" class="result" aria-live="polite" role="status">Modo atual: foco. Fórmula prática: ciclos de foco + pausa para sustentar atenção.</p>
+        <p id="resultado" class="result" aria-live="polite" role="status">Modo atual: foco. Ciclos de foco + pausa para sustentar atenção.</p>
+        <p id="pomodoro-sessions" class="pomodoro-sessions" aria-live="polite">Sessões de foco concluídas: 0</p>
       </article></section>
     </main>
     <footer class="footer"><div class="container footer-content"><p>Explore: <a href="/gametools/">Home</a> · <a href="/gametools/ferramentas.html">Ferramentas</a></p></div></footer>
