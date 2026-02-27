@@ -369,6 +369,115 @@ select {
   color: var(--ink) !important;
 }
 
+.toast-msg {
+  display: inline-block;
+  margin-left: 8px;
+  padding: 4px 12px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--white);
+  background: var(--ink);
+  border-radius: 999px;
+  animation: pop-in 0.3s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.imc-bar-wrap {
+  margin-top: 10px;
+  height: 18px;
+  border: 2px solid var(--ink);
+  border-radius: 999px;
+  overflow: hidden;
+  background: linear-gradient(to right, var(--sky) 0% 25%, var(--mint) 25% 50%, var(--yellow) 50% 75%, var(--peach) 75% 100%);
+  position: relative;
+}
+
+.imc-bar-marker {
+  position: absolute;
+  top: -2px;
+  width: 4px;
+  height: 22px;
+  background: var(--ink);
+  border-radius: 2px;
+  transition: left 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.juros-table-wrap {
+  margin-top: 14px;
+  max-height: 260px;
+  overflow-y: auto;
+  border: 2px solid var(--ink);
+  border-radius: 6px;
+}
+
+.juros-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.88rem;
+}
+
+.juros-table th,
+.juros-table td {
+  padding: 6px 10px;
+  text-align: right;
+  border-bottom: 1px solid var(--paper-soft);
+}
+
+.juros-table th {
+  position: sticky;
+  top: 0;
+  background: var(--ink);
+  color: var(--white);
+  font-weight: 700;
+}
+
+.juros-table td:first-child,
+.juros-table th:first-child {
+  text-align: center;
+}
+
+.juros-table tbody tr:hover {
+  background: var(--paper-soft);
+}
+
+.pomodoro-sessions {
+  margin-top: 8px;
+  font-weight: 700;
+  font-size: 0.95rem;
+}
+
+.idade-extra {
+  margin-top: 10px;
+  font-size: 0.92rem;
+  line-height: 1.7;
+}
+
+.idade-extra strong {
+  color: var(--accent);
+}
+
+.currency-rate-info {
+  margin-top: 6px;
+  font-size: 0.85rem;
+  color: var(--muted);
+  font-style: italic;
+}
+
+.currency-loading {
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  border: 2px solid var(--muted);
+  border-top-color: var(--accent);
+  border-radius: 50%;
+  animation: spin 0.6s linear infinite;
+  vertical-align: middle;
+  margin-left: 6px;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
 .memory-grid {
   display: grid;
   grid-template-columns: repeat(4, minmax(64px, 1fr));

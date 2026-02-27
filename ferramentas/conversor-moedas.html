@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Conversor de moedas manual | IBAGameTools</title>
-    <meta name="description" content="Converta moedas com taxa manual e teste conversão de temperatura em um só lugar." />
+    <meta name="description" content="Converta moedas com cotação ao vivo (API frankfurter.app) ou taxa manual, e teste conversão de temperatura." />
     <meta name="robots" content="index,follow" />
     <link rel="canonical" href="https://isisalencastro.github.io/gametools/ferramentas/conversor-moedas.html" />
     <meta property="og:title" content="Conversor de moedas manual | IBAGameTools" />
@@ -41,26 +41,34 @@
 
       <section class="section">
         <article class="card tool-card">
-          <h2>Conversor de moedas (manual)</h2>
-          <div class="field"><label for="valor">Valor de origem</label><input id="valor" type="number" step="any" min="0" /></div>
-          <div class="field"><label for="taxa">Taxa de câmbio (1 origem = ? destino)</label><input id="taxa" type="number" step="any" min="0" /></div>
-          <div class="field"><label for="origem">Moeda origem</label><input id="origem" type="text" maxlength="10" placeholder="Ex.: BRL" /></div>
-          <div class="field"><label for="destino">Moeda destino</label><input id="destino" type="text" maxlength="10" placeholder="Ex.: USD" /></div>
+          <h2>Conversor de moedas</h2>
+          <div class="field"><label for="origem">Moeda de origem</label><select id="origem"></select></div>
+          <div class="field"><label for="destino">Moeda de destino</label><select id="destino"></select></div>
+          <div class="field-row">
+            <button class="btn btn-secondary" id="buscar-taxa" type="button">Buscar cotação ao vivo</button>
+            <button class="btn btn-secondary" id="inverter" type="button">Inverter moedas</button>
+          </div>
+          <p id="rate-info" class="currency-rate-info">Clique em "Buscar cotação" para obter a taxa mais recente.</p>
+          <div class="field"><label for="taxa">Taxa de câmbio (editável)</label><input id="taxa" type="number" step="any" min="0" placeholder="Buscada automaticamente ou insira manual" /></div>
+          <div class="field"><label for="valor">Valor a converter</label><input id="valor" type="number" step="any" min="0" placeholder="Ex.: 100" /></div>
           <div class="field-row">
             <button class="btn btn-primary" id="calcular" type="button">Converter</button>
             <button class="btn btn-secondary" id="copiar" type="button">Copiar resultado</button>
           </div>
-          <p id="resultado" class="result" aria-live="polite" role="status">Informe valor e taxa para converter.</p>
+          <p id="resultado" class="result" aria-live="polite" role="status">Selecione as moedas, busque a cotação e converta.</p>
         </article>
       </section>
 
       <section class="section">
         <article class="card tool-card">
-          <h2>Teste de conversão de temperatura</h2>
+          <h2>Conversor de temperatura</h2>
           <div class="field"><label for="temp-value">Valor</label><input id="temp-value" type="number" step="any" placeholder="Ex.: 32" /></div>
-          <div class="field"><label for="temp-from">De</label><select id="temp-from"><option value="c">Celsius</option><option value="f">Fahrenheit</option></select></div>
-          <div class="field"><label for="temp-to">Para</label><select id="temp-to"><option value="f">Fahrenheit</option><option value="c">Celsius</option></select></div>
-          <div class="field-row"><button id="temp-btn" class="btn btn-primary" type="button">Converter temperatura</button></div>
+          <div class="field"><label for="temp-from">De</label><select id="temp-from"><option value="c">Celsius</option><option value="f">Fahrenheit</option><option value="k">Kelvin</option></select></div>
+          <div class="field"><label for="temp-to">Para</label><select id="temp-to"><option value="f">Fahrenheit</option><option value="c">Celsius</option><option value="k">Kelvin</option></select></div>
+          <div class="field-row">
+            <button id="temp-btn" class="btn btn-primary" type="button">Converter temperatura</button>
+            <button id="temp-copy" class="btn btn-secondary" type="button">Copiar resultado</button>
+          </div>
           <p id="temp-result" class="result">Digite um valor para converter.</p>
         </article>
       </section>

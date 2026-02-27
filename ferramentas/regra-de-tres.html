@@ -50,10 +50,16 @@
           </div>
 
           <div id="simples-area">
+            <div class="field">
+              <label for="proporcao">Proporção</label>
+              <select id="proporcao">
+                <option value="direta">Direta: x = (B × C) / A</option>
+                <option value="inversa">Inversa: x = (A × B) / C</option>
+              </select>
+            </div>
             <div class="field"><label for="a">A</label><input id="a" type="number" step="any" /></div>
             <div class="field"><label for="b">B</label><input id="b" type="number" step="any" /></div>
             <div class="field"><label for="c">C</label><input id="c" type="number" step="any" /></div>
-            <p class="helper-text">Fórmula: <strong>x = (B × C) / A</strong></p>
           </div>
 
           <div id="composta-area" hidden>
