@@ -42,9 +42,12 @@
       <section class="section">
         <article class="card game-card">
           <p id="quiz-status" class="result" aria-live="polite" role="status"></p>
+          <div class="quiz-timer-bar"><div id="quiz-timer-fill" class="quiz-timer-fill" style="width:100%"></div></div>
+          <p id="quiz-category" style="font-size:0.85rem;color:var(--muted);margin:4px 0"></p>
           <h2 id="quiz-question"></h2>
           <div id="quiz-options" class="quiz-options"></div>
-          <p id="quiz-feedback" aria-live="polite" role="status"></p>
+          <p id="quiz-feedback" class="result" aria-live="polite" role="status"></p>
+          <p id="quiz-source" style="font-size:0.8rem;color:var(--muted);font-style:italic;margin-top:6px"></p>
           <div class="field-row">
             <button id="quiz-reset" class="btn btn-primary">Jogar novamente</button>
             <button id="quiz-share" class="btn btn-secondary">Compartilhar resultado</button>

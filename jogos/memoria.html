@@ -41,8 +41,16 @@
 
       <section class="section">
         <article class="card game-card">
-          <p id="memoria-status" class="result" aria-live="polite" role="status">Tempo: 0s · Jogadas: 0 · Melhor: --</p>
-          <div id="memoria-grid" class="memory-grid" aria-label="Tabuleiro do jogo da memória"></div>
+          <p id="memoria-status" class="result" aria-live="polite" role="status">Tempo: 0s · Jogadas: 0 · Pares: 0/6 · Melhor: --</p>
+          <div class="field memory-difficulty">
+            <label for="memoria-difficulty">Dificuldade</label>
+            <select id="memoria-difficulty">
+              <option value="6" selected>Fácil (6 pares)</option>
+              <option value="8">Médio (8 pares)</option>
+              <option value="10">Difícil (10 pares)</option>
+            </select>
+          </div>
+          <div id="memoria-grid" class="memory-grid grid-6" aria-label="Tabuleiro do jogo da memória"></div>
           <div class="field-row">
             <button id="memoria-reset" class="btn btn-primary">Jogar novamente</button>
             <button id="memoria-share" class="btn btn-secondary">Compartilhar resultado</button>

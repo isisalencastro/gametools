@@ -41,13 +41,15 @@
 
       <section class="section">
         <article class="card game-card">
-          <p id="ppt-status" class="result" aria-live="polite" role="status">Placar: Você 0 x 0 CPU · Melhor sequência: 0</p>
-          <div class="field-row">
-            <button class="btn btn-primary" data-ppt="pedra">Pedra</button>
-            <button class="btn btn-primary" data-ppt="papel">Papel</button>
-            <button class="btn btn-primary" data-ppt="tesoura">Tesoura</button>
+          <p id="ppt-status" class="result" aria-live="polite" role="status">Placar: Você 0 × 0 CPU · Empates: 0 · Sequência: 0 · Recorde: 0</p>
+          <div id="ppt-arena" class="ppt-arena" aria-live="polite"></div>
+          <p>Escolha sua jogada:</p>
+          <div class="ppt-choices">
+            <button class="btn btn-primary" data-ppt="pedra" aria-label="Pedra">✊</button>
+            <button class="btn btn-primary" data-ppt="papel" aria-label="Papel">✋</button>
+            <button class="btn btn-primary" data-ppt="tesoura" aria-label="Tesoura">✌️</button>
           </div>
-          <p id="ppt-result" aria-live="polite" role="status"></p>
+          <p id="ppt-result" class="result" aria-live="polite" role="status">Escolha sua jogada!</p>
           <div class="field-row">
             <button id="ppt-reset" class="btn btn-secondary">Jogar novamente</button>
             <button id="ppt-share" class="btn btn-secondary">Compartilhar resultado</button>

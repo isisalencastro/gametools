@@ -43,9 +43,15 @@
         <article class="card game-card">
           <div class="field-row">
             <button id="reaction-start" class="btn btn-primary" type="button">Iniciar rodada</button>
+            <button id="reaction-share" class="btn btn-secondary" type="button">Compartilhar</button>
           </div>
-          <button id="reaction-box" class="reaction-box" type="button">Clique em “Iniciar rodada”</button>
+          <button id="reaction-box" class="reaction-box state-waiting" type="button">Clique em "Iniciar rodada"</button>
           <p id="reaction-result" class="result">Seu resultado aparecerá aqui.</p>
+          <div class="game-score-row">
+            <span id="reaction-best" class="game-score-pill"><span class="pill-icon">🏆</span> Recorde: --</span>
+            <span id="reaction-avg" class="game-score-pill"><span class="pill-icon">📊</span> Média: --</span>
+          </div>
+          <p id="reaction-history" style="font-size:0.85rem;color:var(--muted);margin-top:4px"></p>
 
           <p class="context-links">
             Veja também: <a href="../jogos.html">Catálogo de Jogos</a> ·
