@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Gerador de Senhas Seguras | IBAGameTools</title>
+    <meta name="description" content="Gere senhas seguras com visualização de entropia e tempo estimado para quebra. Simples, útil e educativo." />
+    <meta name="robots" content="index,follow" />
+    <link rel="canonical" href="https://isisalencastro.github.io/gametools/ferramentas/gerador-senhas.html" />
+    <meta property="og:title" content="Gerador de Senhas Seguras | IBAGameTools" />
+    <meta property="og:description" content="Gere senhas seguras com visualização de entropia e tempo estimado para quebra. Simples, útil e educativo." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://isisalencastro.github.io/gametools/ferramentas/gerador-senhas.html" />
+    <meta property="og:image" content="https://isisalencastro.github.io/gametools/assets/social-card.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Gerador de Senhas Seguras | IBAGameTools" />
+    <meta name="twitter:description" content="Gere senhas seguras com visualização de entropia e tempo estimado para quebra. Simples, útil e educativo." />
+    <meta name="twitter:image" content="https://isisalencastro.github.io/gametools/assets/social-card.png" />
+    <link rel="icon" type="image/svg+xml" href="../assets/svgs/ibagametools_icon_right.svg" />
+    <link rel="stylesheet" href="../styles.css" />
+  </head>
+  <body>
+    <a class="skip-link" href="#conteudo-principal">Pular para conteúdo</a>
+    <header class="header">
+      <div class="container nav">
+        <a class="brand" href="../">IBAGameTools</a>
+        <button class="menu-toggle" type="button" aria-label="Abrir menu de navegação" aria-expanded="false">
+          <span class="menu-toggle-bar"></span>
+          <span class="menu-toggle-bar"></span>
+          <span class="menu-toggle-bar"></span>
+        </button>
+        <nav>
+          <a href="../">Home</a>
+          <a href="../jogos.html">Jogos</a>
+          <a href="../ferramentas.html">Ferramentas</a>
+        </nav>
+        <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Alternar tema claro e escuro">🌙 Modo escuro</button>
+      </div>
+    </header>
+
+    <main id="conteudo-principal" class="container page-main">
+      <section class="section-intro">
+        <h1>Gerador de Senhas Seguras</h1>
+        <p>Crie senhas fortes e veja em tempo real quanto tempo um atacante levaria para quebrá-la.</p>
+      </section>
+
+      <section class="section">
+        <article class="card tool-card">
+
+          <div class="pwd-display-wrap">
+            <p id="pwd-display" class="pwd-display pwd-display-empty" aria-live="polite" role="status">Clique em gerar</p>
+          </div>
+
+          <div class="field-row" style="justify-content: center;">
+            <button id="pwd-generate" class="btn btn-primary" type="button">Gerar senha</button>
+            <button id="pwd-copy" class="btn btn-secondary" type="button">Copiar</button>
+          </div>
+
+          <div class="pwd-config">
+            <div class="field">
+              <label for="pwd-length">Comprimento: <strong id="pwd-length-value">16</strong> caracteres</label>
+              <input id="pwd-length" class="pwd-slider" type="range" min="4" max="64" value="16" />
+            </div>
+
+            <div class="pwd-toggles">
+              <label class="pwd-toggle-label">
+                <input id="pwd-lower" type="checkbox" checked />
+                <span class="pwd-toggle-pill">abc</span>
+                Minúsculas
+              </label>
+              <label class="pwd-toggle-label">
+                <input id="pwd-upper" type="checkbox" checked />
+                <span class="pwd-toggle-pill">ABC</span>
+                Maiúsculas
+              </label>
+              <label class="pwd-toggle-label">
+                <input id="pwd-digits" type="checkbox" checked />
+                <span class="pwd-toggle-pill">123</span>
+                Números
+              </label>
+              <label class="pwd-toggle-label">
+                <input id="pwd-symbols" type="checkbox" checked />
+                <span class="pwd-toggle-pill">!@#</span>
+                Símbolos
+              </label>
+            </div>
+          </div>
+
+          <div class="pwd-strength-section">
+            <div class="pwd-strength-header">
+              <span id="pwd-strength-icon" class="pwd-strength-icon"></span>
+              <span id="pwd-strength-label" class="pwd-strength-label"></span>
+            </div>
+            <div class="pwd-strength-track">
+              <div id="pwd-strength-bar" class="pwd-strength-bar" style="width:0%"></div>
+            </div>
+            <p id="pwd-entropy" class="pwd-entropy-text"></p>
+            <p id="pwd-crack-time" class="pwd-crack-time" aria-live="polite"></p>
+            <p id="pwd-strength-tip" class="pwd-strength-tip"></p>
+          </div>
+
+          <details class="pwd-education">
+            <summary>Como funciona a segurança de senhas?</summary>
+            <div class="pwd-education-content">
+              <p><strong>Entropia</strong> mede a aleatoriedade da senha em bits. Mais bits = mais combinações possíveis = mais difícil de quebrar.</p>
+              <p><strong>Fórmula:</strong> Entropia = comprimento &times; log₂(tamanho do conjunto de caracteres)</p>
+              <p><strong>Tempo de quebra</strong> assume um atacante com 10 bilhões de tentativas por segundo (GPU moderna).</p>
+              <table class="pwd-ref-table">
+                <thead>
+                  <tr><th>Entropia</th><th>Nível</th><th>Exemplo de tempo</th></tr>
+                </thead>
+                <tbody>
+                  <tr><td>&lt; 28 bits</td><td>Muito fraca</td><td>Instantâneo</td></tr>
+                  <tr><td>28–36 bits</td><td>Fraca</td><td>Segundos a minutos</td></tr>
+                  <tr><td>36–60 bits</td><td>Razoável</td><td>Horas a anos</td></tr>
+                  <tr><td>60–80 bits</td><td>Forte</td><td>Milhares de anos</td></tr>
+                  <tr><td>80–128 bits</td><td>Muito forte</td><td>Milhões+ de anos</td></tr>
+                  <tr><td>&gt; 128 bits</td><td>Extrema</td><td>Trilhões+ de anos</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </details>
+
+          <p class="context-links">
+            Veja também: <a href="../ferramentas.html">Catálogo de Ferramentas</a> ·
+            <a href="../jogos/debug-challenge.html">Debug Challenge</a>
+          </p>
+        </article>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="container footer-content">
+        <p>
+          Explore: <a href="../">Home</a> · <a href="../jogos.html">Jogos</a> ·
+          <a href="../ferramentas.html">Ferramentas</a>
+        </p>
+      </div>
+    </footer>
+    <script type="module" src="../js/main.js"></script>
+  </body>
+</html>
