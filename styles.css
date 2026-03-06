@@ -795,6 +795,111 @@ select {
 }
 
 /* =============================================
+   DEBUG CHALLENGE
+   ============================================= */
+
+.debug-code-wrap {
+  margin: 14px 0;
+  border: 2px solid var(--ink);
+  border-radius: 10px;
+  background: #1e1e2e;
+  overflow-x: auto;
+  box-shadow: 3px 3px 0 var(--ink);
+}
+
+.debug-code-wrap pre {
+  margin: 0;
+  padding: 18px 20px;
+}
+
+.debug-code-wrap code {
+  font-family: 'Courier New', 'Fira Code', monospace;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: #cdd6f4;
+  white-space: pre;
+  tab-size: 2;
+}
+
+:root[data-theme='dark'] .debug-code-wrap {
+  background: #11111b;
+  border-color: #45475a;
+}
+
+:root[data-theme='dark'] .debug-code-wrap code {
+  color: #cdd6f4;
+}
+
+.debug-timer-bar {
+  margin: 8px 0;
+  height: 6px;
+  border-radius: 999px;
+  background: var(--paper-soft);
+  overflow: hidden;
+}
+
+.debug-timer-fill {
+  height: 100%;
+  background: var(--accent);
+  border-radius: 999px;
+  transition: width 1s linear;
+}
+
+.debug-timer-fill.warn {
+  background: var(--peach);
+}
+
+.debug-timer-fill.danger {
+  background: #ef4444;
+  animation: shadow-pulse 0.5s ease infinite;
+}
+
+.debug-feedback {
+  margin-top: 10px;
+  font-weight: 800;
+  font-size: 1rem;
+  padding: 8px 14px;
+  border-radius: 8px;
+  min-height: 1.5em;
+}
+
+.debug-feedback.correct {
+  background: #dcfce7;
+  color: #166534;
+  border: 2px solid #16a34a;
+}
+
+.debug-feedback.wrong {
+  background: #fef2f2;
+  color: #991b1b;
+  border: 2px solid #ef4444;
+}
+
+:root[data-theme='dark'] .debug-feedback.correct {
+  background: #14532d;
+  color: #bbf7d0;
+  border-color: #22c55e;
+}
+
+:root[data-theme='dark'] .debug-feedback.wrong {
+  background: #450a0a;
+  color: #fecaca;
+  border-color: #ef4444;
+}
+
+.debug-explanation {
+  margin-top: 8px;
+  padding: 10px 14px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--muted);
+  background: var(--paper-soft);
+  border: 2px dashed var(--ink);
+  border-radius: 8px;
+  animation: fade-in 0.3s ease both;
+}
+
+/* =============================================
    PPT ARENA
    ============================================= */
 
