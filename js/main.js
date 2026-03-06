@@ -1,5 +1,6 @@
 // Bootstrap principal: inicializa módulos por domínio conforme elementos disponíveis na página.
 import { initCatalogExperience } from './common/catalog.js';
+import { initMobileMenu } from './common/mobile-menu.js';
 import { initThemeToggle } from './common/theme.js';
 import { initFastClickFeature } from './games/fast-click.js';
 import { initGuessFeature } from './games/guess.js';
@@ -17,6 +18,7 @@ import { initRuleOfThreeFeature } from './tools/rule-of-three.js';
 import { initTemperatureFeature } from './tools/temperature.js';
 
 initThemeToggle();
+initMobileMenu();
 initReactionFeature();
 initGuessFeature();
 initRockPaperScissorsFeature();
