@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Debug Challenge | IBAGameTools</title>
+    <meta name="description" content="Encontre o bug no código! Mini jogo de depuração com desafios aleatórios, dificuldade variada e pontuação com recorde local." />
+    <meta name="robots" content="index,follow" />
+    <link rel="canonical" href="https://isisalencastro.github.io/gametools/jogos/debug-challenge.html" />
+    <meta property="og:title" content="Debug Challenge | IBAGameTools" />
+    <meta property="og:description" content="Encontre o bug no código! Mini jogo de depuração com desafios aleatórios, dificuldade variada e pontuação com recorde local." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://isisalencastro.github.io/gametools/jogos/debug-challenge.html" />
+    <meta property="og:image" content="https://isisalencastro.github.io/gametools/assets/social-card.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Debug Challenge | IBAGameTools" />
+    <meta name="twitter:description" content="Encontre o bug no código! Mini jogo de depuração com desafios aleatórios, dificuldade variada e pontuação com recorde local." />
+    <meta name="twitter:image" content="https://isisalencastro.github.io/gametools/assets/social-card.png" />
+    <link rel="icon" type="image/svg+xml" href="../assets/svgs/ibagametools_icon_right.svg" />
+    <link rel="stylesheet" href="../styles.css" />
+  </head>
+  <body>
+    <a class="skip-link" href="#conteudo-principal">Pular para conteúdo</a>
+    <header class="header">
+      <div class="container nav">
+        <a class="brand" href="../">IBAGameTools</a>
+        <button class="menu-toggle" type="button" aria-label="Abrir menu de navegação" aria-expanded="false">
+          <span class="menu-toggle-bar"></span>
+          <span class="menu-toggle-bar"></span>
+          <span class="menu-toggle-bar"></span>
+        </button>
+        <nav>
+          <a href="../">Home</a>
+          <a href="../jogos.html">Jogos</a>
+          <a href="../ferramentas.html">Ferramentas</a>
+        </nav>
+        <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Alternar tema claro e escuro">🌙 Modo escuro</button>
+      </div>
+    </header>
+
+    <main id="conteudo-principal" class="container page-main">
+      <section class="section-intro">
+        <h1>Debug Challenge</h1>
+        <p>Encontre o bug escondido no código! Escolha a dificuldade e teste seu raciocínio lógico.</p>
+      </section>
+
+      <section class="section">
+        <div id="debug-difficulty-select" class="quiz-cat-grid"></div>
+
+        <article id="debug-game-area" class="card game-card" style="display:none">
+          <p id="debug-status" class="result" aria-live="polite" role="status"></p>
+          <div class="debug-timer-bar"><div id="debug-timer-fill" class="debug-timer-fill" style="width:100%"></div></div>
+          <div class="quiz-meta-row">
+            <span id="debug-difficulty-tag" class="quiz-meta-tag"></span>
+            <span id="debug-progress" class="quiz-meta-tag quiz-type-tag"></span>
+          </div>
+          <div class="debug-code-wrap">
+            <pre><code id="debug-code"></code></pre>
+          </div>
+          <h2 id="debug-question"></h2>
+          <div id="debug-options" class="quiz-options"></div>
+          <p id="debug-feedback" class="debug-feedback" aria-live="polite" role="status"></p>
+          <p id="debug-explanation" class="debug-explanation" style="display:none" aria-live="polite"></p>
+          <div class="field-row">
+            <button id="debug-back" class="btn" type="button">Dificuldades</button>
+            <button id="debug-reset" class="btn btn-primary" type="button">Jogar novamente</button>
+            <button id="debug-share" class="btn btn-secondary" type="button">Compartilhar</button>
+          </div>
+        </article>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="container footer-content">
+        <p>
+          Explore: <a href="../">Home</a> · <a href="../jogos.html">Jogos</a> ·
+          <a href="../ferramentas.html">Ferramentas</a>
+        </p>
+      </div>
+    </footer>
+
+      <script type="module" src="../js/main.js"></script>
+  </body>
+</html>
