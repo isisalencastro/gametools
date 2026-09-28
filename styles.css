@@ -612,22 +612,7 @@ input::placeholder {
   opacity: 0.85;
 }
 
-.footer-mascot-chip {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
-  background: var(--color-brand-soft-alt);
-  border: 1px solid var(--color-border);
-}
 
-.footer-mascot {
-  width: 22px;
-  height: 22px;
-  object-fit: contain;
-}
 
 .footer-logo {
   height: 18px;
@@ -648,12 +633,7 @@ input::placeholder {
   display: inline-block;
 }
 
-/* o polvo e azul: no tema escuro o disco do mascote fica claro para ele aparecer */
-:root[data-theme='dark'] .footer-mascot-chip {
-  background: #e8f0fb;
-  border-color: #e8f0fb;
-}
-
+:root[data-theme='dark'] 
 .field,
 .field-row {
   margin: 12px 0;
