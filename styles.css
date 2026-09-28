@@ -1670,7 +1670,7 @@ body,
 .no-dia { margin: 0; font-weight: 600; }
 .no-proximo { margin: 0; font-size: 0.85rem; color: var(--color-ink-muted); }
 
-.no-area { display: flex; justify-content: center; }
+.no-area { display: flex; justify-content: flex-start; }
 
 .no-tabuleiro {
   display: grid;
@@ -1706,9 +1706,11 @@ body,
   position: absolute;
   top: 2px;
   left: 3px;
-  font-size: 0.55rem;
+  font-size: 0.8rem;
   line-height: 1;
-  color: rgba(16, 24, 40, 0.45);
+  font-weight: 600;
+  color: rgba(16, 24, 40, 0.78);
+  z-index: 1;
 }
 
 .no-casa-cheia::after {
@@ -1726,16 +1728,20 @@ body,
 .no-casa:focus-visible { outline: 3px solid var(--color-brand); outline-offset: -3px; }
 .no-casa:hover { filter: brightness(0.97); }
 
-/* tons das oito regioes: quatro azuis claros alternados com quatro neutros,
-   para regiao vizinha nunca ter o mesmo tom */
-.no-casa[data-regiao="0"] { --tom: #eef4fd; }
-.no-casa[data-regiao="1"] { --tom: #f4f5f7; }
-.no-casa[data-regiao="2"] { --tom: #dce9fa; }
-.no-casa[data-regiao="3"] { --tom: #e7e9ee; }
-.no-casa[data-regiao="4"] { --tom: #cfe0f6; }
-.no-casa[data-regiao="5"] { --tom: #d9dde5; }
-.no-casa[data-regiao="6"] { --tom: #c2d6f2; }
-.no-casa[data-regiao="7"] { --tom: #cbd1db; }
+/* seis tons, escolhidos pela vizinhanca em js/no-do-dia.js, para regiao vizinha
+   nunca repetir cor. Alterna azul claro com neutro claro: a cor nunca e a unica
+   pista, porque cada casa mostra o numero da regiao. */
+/* Tons com separacao grande de proposito: dois tons quase brancos ficaram
+   indistinguiveis na conferencia visual, mesmo com a coloracao por vizinhanca correta.
+   A regra que ficou: tom vizinho precisa diferir pelo menos 30 na distancia RGB. */
+/* Cinco tons, e a regra que vale para quem mexer: quaisquer dois precisam diferir
+   pelo menos 30 na distancia RGB. A primeira paleta tinha pares a 16 de distancia e
+   ficavam indistinguiveis na tela, mesmo com a coloracao por vizinhanca correta. */
+.no-casa[data-tom="0"] { --tom: #ffffff; }
+.no-casa[data-tom="1"] { --tom: #c3d9f4; }
+.no-casa[data-tom="2"] { --tom: #e6e8ec; }
+.no-casa[data-tom="3"] { --tom: #96bdec; }
+.no-casa[data-tom="4"] { --tom: #7fa9dc; }
 
 .no-mensagem { margin: 0; min-height: 2.6em; color: var(--color-ink-muted); }
 .no-resumo { display: flex; flex-direction: column; gap: 6px; }
@@ -1743,14 +1749,58 @@ body,
 
 :root[data-theme='dark'] .no-tabuleiro { background: #101828; }
 :root[data-theme='dark'] .no-casa::before { color: rgba(232, 240, 251, 0.5); }
-:root[data-theme='dark'] .no-casa[data-regiao="0"] { --tom: #1b2b45; }
-:root[data-theme='dark'] .no-casa[data-regiao="1"] { --tom: #232b38; }
-:root[data-theme='dark'] .no-casa[data-regiao="2"] { --tom: #22385a; }
-:root[data-theme='dark'] .no-casa[data-regiao="3"] { --tom: #2b3444; }
-:root[data-theme='dark'] .no-casa[data-regiao="4"] { --tom: #2a466f; }
-:root[data-theme='dark'] .no-casa[data-regiao="5"] { --tom: #333d4f; }
-:root[data-theme='dark'] .no-casa[data-regiao="6"] { --tom: #335284; }
-:root[data-theme='dark'] .no-casa[data-regiao="7"] { --tom: #3c475b; }
+:root[data-theme='dark'] .no-casa[data-tom="0"] { --tom: #16233a; }
+:root[data-theme='dark'] .no-casa[data-tom="1"] { --tom: #2a466f; }
+:root[data-theme='dark'] .no-casa[data-tom="2"] { --tom: #2b3444; }
+:root[data-theme='dark'] .no-casa[data-tom="3"] { --tom: #3a5f96; }
+:root[data-theme='dark'] .no-casa[data-tom="4"] { --tom: #14304f; }
+:root[data-theme='dark'] .no-casa[data-tom="1"] { --tom: #232b38; }
+:root[data-theme='dark'] .no-casa[data-tom="2"] { --tom: #22385a; }
+:root[data-theme='dark'] .no-casa[data-tom="3"] { --tom: #2b3444; }
+:root[data-theme='dark'] .no-casa[data-tom="4"] { --tom: #2a466f; }
+:root[data-theme='dark'] .no-casa[data-tom="5"] { --tom: #333d4f; }
+:root[data-theme='dark'] .no-casa[data-tom="0"] { --tom: #1b2b45; }
+:root[data-theme='dark'] .no-casa[data-tom="1"] { --tom: #232b38; }
+:root[data-theme='dark'] .no-casa[data-tom="2"] { --tom: #22385a; }
+:root[data-theme='dark'] .no-casa[data-tom="3"] { --tom: #2b3444; }
+:root[data-theme='dark'] .no-casa[data-tom="4"] { --tom: #2a466f; }
+:root[data-theme='dark'] .no-casa[data-tom="5"] { --tom: #333d4f; }
+:root[data-theme='dark'] .no-casa[data-tom="0"] { --tom: #1b2b45; }
+:root[data-theme='dark'] .no-casa[data-tom="1"] { --tom: #232b38; }
+:root[data-theme='dark'] .no-casa[data-tom="2"] { --tom: #22385a; }
+:root[data-theme='dark'] .no-casa[data-tom="3"] { --tom: #2b3444; }
+:root[data-theme='dark'] .no-casa[data-tom="4"] { --tom: #2a466f; }
+:root[data-theme='dark'] .no-casa[data-tom="5"] { --tom: #333d4f; }
+:root[data-theme='dark'] .no-casa[data-tom="0"] { --tom: #1b2b45; }
+:root[data-theme='dark'] .no-casa[data-tom="1"] { --tom: #232b38; }
+:root[data-theme='dark'] .no-casa[data-tom="2"] { --tom: #22385a; }
+:root[data-theme='dark'] .no-casa[data-tom="3"] { --tom: #2b3444; }
+:root[data-theme='dark'] .no-casa[data-tom="4"] { --tom: #2a466f; }
+:root[data-theme='dark'] .no-casa[data-tom="5"] { --tom: #333d4f; }
+:root[data-theme='dark'] .no-casa[data-tom="0"] { --tom: #1b2b45; }
+:root[data-theme='dark'] .no-casa[data-tom="1"] { --tom: #232b38; }
+:root[data-theme='dark'] .no-casa[data-tom="2"] { --tom: #22385a; }
+:root[data-theme='dark'] .no-casa[data-tom="3"] { --tom: #2b3444; }
+:root[data-theme='dark'] .no-casa[data-tom="4"] { --tom: #2a466f; }
+:root[data-theme='dark'] .no-casa[data-tom="5"] { --tom: #333d4f; }
+:root[data-theme='dark'] .no-casa[data-tom="0"] { --tom: #1b2b45; }
+:root[data-theme='dark'] .no-casa[data-tom="1"] { --tom: #232b38; }
+:root[data-theme='dark'] .no-casa[data-tom="2"] { --tom: #22385a; }
+:root[data-theme='dark'] .no-casa[data-tom="3"] { --tom: #2b3444; }
+:root[data-theme='dark'] .no-casa[data-tom="4"] { --tom: #2a466f; }
+:root[data-theme='dark'] .no-casa[data-tom="5"] { --tom: #333d4f; }
+:root[data-theme='dark'] .no-casa[data-tom="0"] { --tom: #1b2b45; }
+:root[data-theme='dark'] .no-casa[data-tom="1"] { --tom: #232b38; }
+:root[data-theme='dark'] .no-casa[data-tom="2"] { --tom: #22385a; }
+:root[data-theme='dark'] .no-casa[data-tom="3"] { --tom: #2b3444; }
+:root[data-theme='dark'] .no-casa[data-tom="4"] { --tom: #2a466f; }
+:root[data-theme='dark'] .no-casa[data-tom="5"] { --tom: #333d4f; }
+:root[data-theme='dark'] .no-casa[data-tom="0"] { --tom: #1b2b45; }
+:root[data-theme='dark'] .no-casa[data-tom="1"] { --tom: #232b38; }
+:root[data-theme='dark'] .no-casa[data-tom="2"] { --tom: #22385a; }
+:root[data-theme='dark'] .no-casa[data-tom="3"] { --tom: #2b3444; }
+:root[data-theme='dark'] .no-casa[data-tom="4"] { --tom: #2a466f; }
+:root[data-theme='dark'] .no-casa[data-tom="5"] { --tom: #333d4f; }
 :root[data-theme='dark'] .no-casa-cheia::after {
   background: #e8f0fb;
   box-shadow: 0 0 0 2px rgba(16, 24, 40, 0.75);

@@ -147,8 +147,78 @@ function contarPecas(tabuleiro) {
   return tabuleiro.flat().filter(Boolean).length;
 }
 
+/**
+ * Tons por regiao, calculados pela vizinhanca.
+ *
+ * Pintar regiao por indice nao funciona: duas regioes vizinhas caiam no mesmo tom e o
+ * tabuleiro virava mancha (apontado na conferencia visual de 28/09/2026). Aqui monto o
+ * grafo de regioes, pinto primeiro a mais vizinhada e dou a cada uma o menor tom que
+ * nenhum vizinho ja usa. Assim regiao vizinha nunca repete cor.
+ */
+function tonsPorVizinhanca() {
+  const vizinhos = Array.from({ length: 8 }, () => new Set());
+  for (let l = 0; l < 8; l += 1) {
+    for (let c = 0; c < 8; c += 1) {
+      const aqui = regiaoDe(l, c);
+      for (const [nl, nc] of [[l + 1, c], [l, c + 1]]) {
+        if (nl > 7 || nc > 7) continue;
+        const la = regiaoDe(nl, nc);
+        if (aqui !== la) {
+          vizinhos[aqui].add(la);
+          vizinhos[la].add(aqui);
+        }
+      }
+    }
+  }
+  const cores = coresDosTons();
+  const ordem = [0, 1, 2, 3, 4, 5, 6, 7].sort((a, b) => vizinhos[b].size - vizinhos[a].size);
+  const tons = new Array(8).fill(0);
+  const definido = new Array(8).fill(false);
+  for (const regiao of ordem) {
+    const usados = [...vizinhos[regiao]].filter((v) => definido[v]).map((v) => tons[v]);
+    let melhor = 0;
+    let melhorDistancia = -1;
+    for (let tom = 0; tom < cores.length; tom += 1) {
+      const distancia = usados.length
+        ? Math.min(...usados.map((outro) => distanciaCor(cores[tom], cores[outro])))
+        : 0;
+      if (distancia > melhorDistancia) {
+        melhorDistancia = distancia;
+        melhor = tom;
+      }
+    }
+    tons[regiao] = melhor;
+    definido[regiao] = true;
+  }
+  return tons;
+}
+
+/** Cores dos tons lidas do proprio CSS: paleta duplicada em dois arquivos diverge. */
+function coresDosTons() {
+  const sonda = document.createElement("span");
+  sonda.className = "no-casa";
+  sonda.style.position = "absolute";
+  sonda.style.visibility = "hidden";
+  document.body.appendChild(sonda);
+  const cores = [];
+  for (let tom = 0; tom < 5; tom += 1) {
+    sonda.dataset.tom = String(tom);
+    const bruto = getComputedStyle(sonda).backgroundColor;
+    const numeros = (bruto.match(/\d+/g) || [0, 0, 0]).map(Number);
+    cores.push(numeros.slice(0, 3));
+    if (cores[cores.length - 1].length < 3) cores[cores.length - 1] = [0, 0, 0];
+  }
+  sonda.remove();
+  return cores;
+}
+
+function distanciaCor(a, b) {
+  return Math.sqrt(a.reduce((soma, valor, i) => soma + (valor - b[i]) ** 2, 0));
+}
+
 function desenhar() {
   const alvo = document.getElementById("no-tabuleiro");
+  const tons = tonsPorVizinhanca();
   const pecas = [];
   for (let l = 0; l < 8; l += 1) {
     pecas.push([]);
@@ -160,6 +230,7 @@ function desenhar() {
       casa.dataset.coluna = String(c);
       casa.dataset.regiao = String(regiaoDe(l, c));
       casa.dataset.regiaoNumero = String(regiaoDe(l, c) + 1);
+      casa.dataset.tom = String(tons[regiaoDe(l, c)]);
       casa.setAttribute("role", "gridcell");
       casa.setAttribute("aria-rowindex", String(l + 1));
       casa.setAttribute("aria-colindex", String(c + 1));
