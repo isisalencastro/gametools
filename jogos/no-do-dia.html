@@ -3,18 +3,18 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Teste de Reação online | Jogos IBA</title>
-    <meta name="description" content="Treine seus reflexos com o jogo de reação do Jogos IBA." />
+    <title>O Nó do dia: quebra-cabeça diário | Jogos IBA</title>
+    <meta name="description" content="Um tabuleiro novo a cada dia. Coloque oito peças, uma por linha, uma por coluna e uma por região, sem nenhuma encostar na outra." />
     <meta name="robots" content="index,follow" />
-    <link rel="canonical" href="https://jogos.ibaestudio.com/jogos/reacao.html" />
-    <meta property="og:title" content="Teste de Reação online | Jogos IBA" />
-    <meta property="og:description" content="Treine seus reflexos com o jogo de reação do Jogos IBA." />
+    <link rel="canonical" href="https://jogos.ibaestudio.com/jogos/no-do-dia.html" />
+    <meta property="og:title" content="O Nó do dia: quebra-cabeça diário | Jogos IBA" />
+    <meta property="og:description" content="Um tabuleiro novo a cada dia. Oito peças, nenhuma encostando na outra." />
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://jogos.ibaestudio.com/jogos/reacao.html" />
+    <meta property="og:url" content="https://jogos.ibaestudio.com/jogos/no-do-dia.html" />
     <meta property="og:image" content="https://jogos.ibaestudio.com/assets/social-card.png" />
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Teste de Reação online | Jogos IBA" />
-    <meta name="twitter:description" content="Treine seus reflexos com o jogo de reação do Jogos IBA." />
+    <meta name="twitter:title" content="O Nó do dia: quebra-cabeça diário | Jogos IBA" />
+    <meta name="twitter:description" content="Um tabuleiro novo a cada dia. Oito peças, nenhuma encostando na outra." />
     <meta name="twitter:image" content="https://jogos.ibaestudio.com/assets/social-card.png" />
     <link rel="icon" href="../favicon.ico" sizes="any" />
     <link rel="icon" type="image/png" sizes="32x32" href="../assets/img/favicon-32.png" />
@@ -43,27 +43,45 @@
 
     <main id="conteudo-principal" class="container page-main">
       <section class="section-intro">
-        <h1>Teste de Reação</h1>
-        <p>Quando o bloco ficar verde, clique o mais rápido possível.</p>
+        <h1>O Nó do dia</h1>
+        <p>
+          Um tabuleiro novo a cada dia, igual para todo mundo. Coloque as oito peças de modo que
+          cada linha, cada coluna e cada região tenha exatamente uma, e que nenhuma peça encoste
+          em outra, nem na diagonal.
+        </p>
       </section>
 
       <section class="section">
-        <article class="card game-card">
+        <article class="card game-card no-card">
+          <div class="no-cabecalho">
+            <p class="no-dia" id="no-dia">Carregando o tabuleiro de hoje...</p>
+            <p class="no-proximo" id="no-proximo"></p>
+          </div>
+
+          <div class="no-area">
+            <div id="no-tabuleiro" class="no-tabuleiro" role="grid" aria-label="Tabuleiro de oito por oito. Use as setas para andar entre as casas e espaço ou enter para colocar e tirar uma peça."></div>
+          </div>
+
+          <p id="no-mensagem" class="no-mensagem" role="status" aria-live="polite"></p>
+
           <div class="field-row">
-            <button id="reaction-start" class="btn btn-accent" type="button">Iniciar rodada</button>
-            <button id="reaction-share" class="btn btn-secondary" type="button">Compartilhar</button>
+            <button id="no-limpar" class="btn btn-secondary" type="button">Limpar tabuleiro</button>
+            <button id="no-resposta" class="btn btn-secondary" type="button">Ver a resposta</button>
+            <button id="no-compartilhar" class="btn btn-accent" type="button" hidden>Compartilhar resultado</button>
           </div>
-          <button id="reaction-box" class="reaction-box" type="button">Clique em "Iniciar rodada"</button>
-          <p id="reaction-result" class="result">Seu resultado aparecerá aqui.</p>
-          <div class="game-score-row">
-            <span id="reaction-best" class="game-score-pill"><span class="pill-icon" aria-hidden="true"><svg viewBox="0 0 20 20" focusable="false"><path d="M6 2h8v3h2.5v1.5A3.5 3.5 0 0 1 13 10h-.4A4 4 0 0 1 11 12.6V15h2.5v3h-7v-3H9v-2.4A4 4 0 0 1 7.4 10H7a3.5 3.5 0 0 1-3.5-3.5V5H6V2Zm-1 4.5V5H4v1.5A2 2 0 0 0 5.5 8.4 5 5 0 0 1 5 6.5Zm10 0a5 5 0 0 1-.5 1.9A2 2 0 0 0 16 6.5V5h-1v1.5Z" fill="currentColor"/></svg></span> Recorde: --</span>
-            <span id="reaction-avg" class="game-score-pill"><span class="pill-icon" aria-hidden="true"><svg viewBox="0 0 20 20" focusable="false"><path d="M3 16V9h3v7H3Zm5.5 0V4h3v12h-3ZM14 16v-5h3v5h-3Z" fill="currentColor"/></svg></span> Média: --</span>
+
+          <div id="no-resumo" class="no-resumo" hidden>
+            <div class="game-score-row">
+              <span class="game-score-pill" id="no-sequencia">Sequência: 0</span>
+              <span class="game-score-pill" id="no-jogados">Jogados: 0</span>
+              <span class="game-score-pill" id="no-vitorias">Venceu: 0</span>
+            </div>
+            <p class="no-legenda" id="no-legenda"></p>
           </div>
-          <p id="reaction-history" style="font-size:0.85rem;color:var(--muted);margin-top:4px"></p>
 
           <p class="context-links">
             Veja também: <a href="../jogos.html">Catálogo de Jogos</a> ·
-            <a href="./clique-rapido.html">Clique Rápido 10s</a>
+            <a href="../">Página inicial</a>
           </p>
         </article>
       </section>
@@ -75,13 +93,12 @@
           Explore: <a href="../">Home</a> · <a href="../jogos.html">Jogos</a>
         </p>
         <div class="footer-brand">
-          <span class="footer-marca-chip">
-          </span>
           <img class="footer-logo" src="../assets/img/logo-iba-horizontal.png" alt="IBA Estúdio" height="18" />
           <img class="footer-logo footer-logo-invert" src="../assets/img/logo-iba-horizontal-branco.png" alt="" height="18" />
         </div>
       </div>
     </footer>
     <script type="module" src="../js/main.js"></script>
+    <script type="module" src="../js/no-do-dia.js"></script>
   </body>
 </html>

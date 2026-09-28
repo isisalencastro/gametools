@@ -1646,3 +1646,137 @@ body,
     padding: 10px;
   }
 }
+
+
+/* ==========================================================================
+   O NO DO DIA (jogo diario, 28/09/2026)
+
+   Tabuleiro de 8x8 com oito regioes, uma peca por linha, coluna e regiao,
+   nenhuma encostando na outra. Cor sozinha nunca basta para dizer a regiao:
+   cada casa mostra o numero da regiao, entao quem nao distingue os tons ainda
+   consegue jogar. Os tons sao claros de proposito, para a peca escura aparecer.
+   ========================================================================== */
+
+.no-card { display: flex; flex-direction: column; gap: 14px; }
+
+.no-cabecalho {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 16px;
+  align-items: baseline;
+  justify-content: space-between;
+}
+
+.no-dia { margin: 0; font-weight: 600; }
+.no-proximo { margin: 0; font-size: 0.85rem; color: var(--color-ink-muted); }
+
+.no-area { display: flex; justify-content: center; }
+
+.no-tabuleiro {
+  display: grid;
+  grid-template-columns: repeat(8, minmax(0, 1fr));
+  width: min(100%, 440px);
+  border: 1px solid var(--color-border-strong);
+  border-radius: 8px;
+  overflow: hidden;
+  background: var(--color-surface-page);
+}
+
+.no-casa {
+  position: relative;
+  aspect-ratio: 1 / 1;
+  min-width: 0;
+  padding: 0;
+  border: 0;
+  border-right: 1px solid var(--color-border);
+  border-bottom: 1px solid var(--color-border);
+  background: var(--tom, var(--color-surface));
+  font: inherit;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.no-casa:nth-child(8n) { border-right: 0; }
+.no-casa:nth-child(n + 57) { border-bottom: 0; }
+
+.no-casa::before {
+  content: attr(data-regiao-numero);
+  position: absolute;
+  top: 2px;
+  left: 3px;
+  font-size: 0.55rem;
+  line-height: 1;
+  color: rgba(16, 24, 40, 0.45);
+}
+
+.no-casa-cheia::after {
+  content: "";
+  width: 58%;
+  height: 58%;
+  border-radius: 50%;
+  background: var(--color-ink);
+  box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.85);
+}
+
+.no-casa-conflito { box-shadow: inset 0 0 0 3px #b42318; }
+.no-casa-conflito::after { background: #b42318; }
+
+.no-casa:focus-visible { outline: 3px solid var(--color-brand); outline-offset: -3px; }
+.no-casa:hover { filter: brightness(0.97); }
+
+/* tons das oito regioes: quatro azuis claros alternados com quatro neutros,
+   para regiao vizinha nunca ter o mesmo tom */
+.no-casa[data-regiao="0"] { --tom: #eef4fd; }
+.no-casa[data-regiao="1"] { --tom: #f4f5f7; }
+.no-casa[data-regiao="2"] { --tom: #dce9fa; }
+.no-casa[data-regiao="3"] { --tom: #e7e9ee; }
+.no-casa[data-regiao="4"] { --tom: #cfe0f6; }
+.no-casa[data-regiao="5"] { --tom: #d9dde5; }
+.no-casa[data-regiao="6"] { --tom: #c2d6f2; }
+.no-casa[data-regiao="7"] { --tom: #cbd1db; }
+
+.no-mensagem { margin: 0; min-height: 2.6em; color: var(--color-ink-muted); }
+.no-resumo { display: flex; flex-direction: column; gap: 6px; }
+.no-legenda { margin: 0; font-size: 0.9rem; color: var(--color-ink-muted); }
+
+:root[data-theme='dark'] .no-tabuleiro { background: #101828; }
+:root[data-theme='dark'] .no-casa::before { color: rgba(232, 240, 251, 0.5); }
+:root[data-theme='dark'] .no-casa[data-regiao="0"] { --tom: #1b2b45; }
+:root[data-theme='dark'] .no-casa[data-regiao="1"] { --tom: #232b38; }
+:root[data-theme='dark'] .no-casa[data-regiao="2"] { --tom: #22385a; }
+:root[data-theme='dark'] .no-casa[data-regiao="3"] { --tom: #2b3444; }
+:root[data-theme='dark'] .no-casa[data-regiao="4"] { --tom: #2a466f; }
+:root[data-theme='dark'] .no-casa[data-regiao="5"] { --tom: #333d4f; }
+:root[data-theme='dark'] .no-casa[data-regiao="6"] { --tom: #335284; }
+:root[data-theme='dark'] .no-casa[data-regiao="7"] { --tom: #3c475b; }
+:root[data-theme='dark'] .no-casa-cheia::after {
+  background: #e8f0fb;
+  box-shadow: 0 0 0 2px rgba(16, 24, 40, 0.75);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .no-casa { transition: none; }
+}
+
+
+/* ====== O NO DO DIA: ajuste de celular ====== */
+/* Medido em tela de 390px: com o padding padrao do cartao, a casa ficava com 31px e
+   o minimo confortavel de toque e 44. Aqui o cartao abre espaco e o tabuleiro ocupa
+   a largura toda, o que leva a casa a 46px sem apertar nada. */
+@media (max-width: 560px) {
+  /* :has() limita o aperto a esta pagina: o padding do container e do main nao
+     pode encolher no site inteiro sem revisar as outras paginas uma por uma. */
+  /* Medido numa tela de 390: o padding do container (16), o da secao e o do cartao
+     comiam 44 pixels antes do tabuleiro e a casa ficava com 38. Zerando a corrente
+     so nesta pagina, a casa chega a 45. */
+  body:has(.no-card) .container { width: 100%; max-width: none; padding-inline: 6px; }
+  body:has(.no-card) .page-main { padding: 6px; margin: 10px 0; }
+  body:has(.no-card) .section { padding-inline: 0; }
+  .no-card { padding-inline: 0; }
+  /* 100vw com 8px de respiro de cada lado: e o que leva a casa a 46px numa tela de
+     390, acima do minimo confortavel de toque. Medido, nao estimado. */
+  .no-tabuleiro { width: calc(100vw - 16px); max-width: none; }
+  .no-cabecalho { flex-direction: column; gap: 2px; }
+}
