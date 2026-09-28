@@ -1875,3 +1875,14 @@ body,
   color: var(--color-text-muted, #667085);
   font-size: 0.9rem;
 }
+
+/* Capa do jogo no cartao do catalogo: todo jogo do site tem miniatura propria,
+   com o avatar do estudio e o motivo do tabuleiro. */
+.card-capa {
+  display: block;
+  width: 100%;
+  height: auto;
+  margin: 0 0 1rem;
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+}
