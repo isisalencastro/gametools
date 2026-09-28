@@ -160,7 +160,7 @@ function tonsPorVizinhanca() {
   for (let l = 0; l < 8; l += 1) {
     for (let c = 0; c < 8; c += 1) {
       const aqui = regiaoDe(l, c);
-      for (const [nl, nc] of [[l + 1, c], [l, c + 1]]) {
+      for (const [nl, nc] of [[l + 1, c], [l, c + 1], [l + 1, c + 1], [l + 1, c - 1]]) {
         if (nl > 7 || nc > 7) continue;
         const la = regiaoDe(nl, nc);
         if (aqui !== la) {
