@@ -642,9 +642,9 @@ export function initDebugChallengeFeature() {
   async function shareResult() {
     const total = challenges.length;
     const diffLabel = selectedDifficulty === 'todas' ? 'Todas' : DIFFICULTY_LABELS[selectedDifficulty]?.text || selectedDifficulty;
-    const text = `No Debug Challenge (${diffLabel}) acertei ${score}/${total} bugs no GameTools! 🐛`;
+    const text = `No Debug Challenge (${diffLabel}) acertei ${score}/${total} bugs nos Jogos IBA!`;
     if (navigator.share) {
-      await navigator.share({ title: 'Debug Challenge - GameTools', text });
+      await navigator.share({ title: 'Debug Challenge | Jogos IBA', text });
       return;
     }
     copyToClipboard(text, shareBtn);

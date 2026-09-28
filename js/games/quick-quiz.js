@@ -432,9 +432,9 @@ export function initQuickQuizFeature() {
   async function quizShareResult() {
     const total = questions.length;
     const catLabel = selectedCategory === 'todas' ? 'Todas as Categorias' : getCategoryName(selectedCategory);
-    const text = `No Quiz Rápido (${catLabel}) fiz ${quizScore}/${total} no GameTools!`;
+    const text = `No Quiz Rápido (${catLabel}) fiz ${quizScore}/${total} nos Jogos IBA!`;
     if (navigator.share) {
-      await navigator.share({ title: 'Quiz Rápido - GameTools', text });
+      await navigator.share({ title: 'Quiz Rápido | Jogos IBA', text });
       return;
     }
     copyToClipboard(text, quizShare);

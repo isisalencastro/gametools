@@ -168,9 +168,9 @@ export function initMemoryFeature() {
   }
 
   async function memoriaShareResult() {
-    const text = `No Jogo da Memória (${pairCount} pares) fiz ${memoriaMoves} jogadas em ${memoriaTime}s no GameTools!`;
+    const text = `No Jogo da Memória (${pairCount} pares) fiz ${memoriaMoves} jogadas em ${memoriaTime}s nos Jogos IBA!`;
     if (navigator.share) {
-      await navigator.share({ title: 'Jogo da Memória - GameTools', text });
+      await navigator.share({ title: 'Jogo da Memória | Jogos IBA', text });
       return;
     }
     copyToClipboard(text, memoriaShare);
