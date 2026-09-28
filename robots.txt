@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://isisalencastro.github.io/gametools/sitemap.xml
+Sitemap: https://jogos.ibaestudio.com/sitemap.xml
