@@ -22,17 +22,17 @@ Use este checklist sempre que criar ou alterar uma página pública.
 ### Exemplo mínimo (head)
 
 ```html
-<title>Jogo da Velha online | IBAGameTools</title>
+<title>Jogo da Velha online | Jogos IBA</title>
 <meta name="description" content="Jogue jogo da velha contra a CPU, com placar e partidas rápidas direto no navegador.">
 <link rel="canonical" href="https://isisalencastro.github.io/gametools/jogos/jogo-da-velha.html">
-<meta property="og:title" content="Jogo da Velha online | IBAGameTools">
+<meta property="og:title" content="Jogo da Velha online | Jogos IBA">
 <meta property="og:description" content="Marque três casas em linha antes da CPU.">
 <meta property="og:url" content="https://isisalencastro.github.io/gametools/jogos/jogo-da-velha.html">
 <meta property="og:image" content="https://isisalencastro.github.io/gametools/assets/social-card.png">
 <meta name="twitter:card" content="summary_large_image">
 ```
 
-### Observações para o projeto IBAGameTools
+### Observações para o projeto Jogos IBA
 
 - A faixa de 140-160 caracteres em `description` é uma referência; em páginas específicas, pode variar para manter
   clareza do conteúdo.

@@ -1,11 +1,11 @@
-# IBAGameTools
+# Jogos IBA
 
 Plataforma web de mini jogos, construída em HTML, CSS e JavaScript puro, com foco em simplicidade, performance e
 deploy estático.
 
 ## Visão do produto
 
-O **IBAGameTools** é um catálogo de jogos curtos, para sessões de 1 a 5 minutos: teste de reação, memória,
+O **Jogos IBA** é um catálogo de jogos curtos, para sessões de 1 a 5 minutos: teste de reação, memória,
 pedra-papel-tesoura, quiz, clique rápido e desafio de depuração.
 
 O produto é somente jogos. O histórico do que saiu do escopo fica no `CHANGELOG.md`.

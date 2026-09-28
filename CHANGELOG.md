@@ -4,6 +4,8 @@ Todas as mudanças relevantes deste projeto serão documentadas aqui.
 
 O formato segue a ideia de *Keep a Changelog* e versionamento semântico como referência.
 
+- Nome de vitrine do produto alterado de "IBAGameTools" para "Jogos IBA", a pedido da Isis (28/09/2026). Identificadores tecnicos preservados: nome do pacote, chaves de armazenamento local, URL do repositorio, URL do GitHub Pages e nome do arquivo do favicon.
+
 ## [Unreleased]
 
 ### Removed

@@ -1,6 +1,6 @@
 # Contributing Guide
 
-Obrigado por contribuir com o IBAGameTools! Este guia define o fluxo mínimo para manter o projeto consistente e fácil de revisar.
+Obrigado por contribuir com o Jogos IBA! Este guia define o fluxo mínimo para manter o projeto consistente e fácil de revisar.
 
 ## Fluxo de branch
 
