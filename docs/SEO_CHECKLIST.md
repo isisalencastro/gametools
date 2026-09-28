@@ -22,21 +22,25 @@ Use este checklist sempre que criar ou alterar uma página pública.
 ### Exemplo mínimo (head)
 
 ```html
-<title>Calculadora de Desconto | IBAGameTools</title>
-<meta name="description" content="Calcule rapidamente preço final após desconto percentual com resultado instantâneo.">
-<link rel="canonical" href="https://isisalencastro.github.io/gametools/ferramentas/desconto.html">
-<meta property="og:title" content="Calculadora de Desconto | IBAGameTools">
-<meta property="og:description" content="Descubra o valor final com desconto em segundos.">
-<meta property="og:url" content="https://isisalencastro.github.io/gametools/ferramentas/desconto.html">
+<title>Jogo da Velha online | IBAGameTools</title>
+<meta name="description" content="Jogue jogo da velha contra a CPU, com placar e partidas rápidas direto no navegador.">
+<link rel="canonical" href="https://isisalencastro.github.io/gametools/jogos/jogo-da-velha.html">
+<meta property="og:title" content="Jogo da Velha online | IBAGameTools">
+<meta property="og:description" content="Marque três casas em linha antes da CPU.">
+<meta property="og:url" content="https://isisalencastro.github.io/gametools/jogos/jogo-da-velha.html">
 <meta property="og:image" content="https://isisalencastro.github.io/gametools/assets/social-card.png">
 <meta name="twitter:card" content="summary_large_image">
 ```
 
 ### Observações para o projeto IBAGameTools
 
-- A faixa de 140-160 caracteres em `description` é uma referência; em páginas específicas, pode variar para manter clareza do conteúdo.
-- `og:image` e `twitter:image` atualmente apontam para `assets/social-card.png`, que **ainda não existe** no repositório. As páginas já declaram essa URL nas metatags. Ao criar a imagem, mantenha as dimensões recomendadas de 1200x630px.
-- Enquanto a imagem social não for criada, ferramentas de preview (Facebook Debugger, Twitter Card Validator) exibirão fallback sem imagem.
+- A faixa de 140-160 caracteres em `description` é uma referência; em páginas específicas, pode variar para manter
+  clareza do conteúdo.
+- `og:image` e `twitter:image` atualmente apontam para `assets/social-card.png`, que **ainda não existe** no
+  repositório. As páginas já declaram essa URL nas metatags. Ao criar a imagem, mantenha as dimensões recomendadas
+  de 1200x630px.
+- Enquanto a imagem social não for criada, os validadores de preview (Facebook Debugger, Twitter Card Validator)
+  exibirão fallback sem imagem.
 
 ## 2) Canonical e URL
 
@@ -57,7 +61,7 @@ Use este checklist sempre que criar ou alterar uma página pública.
 
 ```xml
 <url>
-  <loc>https://isisalencastro.github.io/gametools/ferramentas/desconto.html</loc>
+  <loc>https://isisalencastro.github.io/gametools/jogos/jogo-da-velha.html</loc>
   <changefreq>weekly</changefreq>
   <priority>0.8</priority>
 </url>
@@ -68,17 +72,18 @@ Use este checklist sempre que criar ou alterar uma página pública.
 Para reduzir thin content, garantir:
 
 - [ ] 1 heading principal (`h1`) claro.
-- [ ] 1 parágrafo introdutório explicando utilidade.
+- [ ] 1 parágrafo introdutório explicando como se joga.
 - [ ] Instruções de uso (passo a passo curto).
 - [ ] Seção de resultado/feedback.
 - [ ] FAQ com 2+ perguntas objetivas.
-- [ ] CTA interno para outra página relacionada.
+- [ ] Link de contexto para outra página relacionada.
 
 ## 5) Qualidade semântica e UX
 
 - [ ] Hierarquia de headings coerente (`h1` -> `h2` -> `h3`).
-- [ ] Labels em formulários e textos compreensíveis.
+- [ ] Labels e textos compreensíveis.
 - [ ] Tempo de carregamento aceitável (sem assets desnecessários).
+- [ ] Contraste medido: 4.5:1 em texto pequeno, 3:1 em texto grande e elemento gráfico.
 - [ ] Conteúdo legível em mobile sem zoom horizontal.
 
 ## 6) Validação final (exemplo prático)

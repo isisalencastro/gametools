@@ -1,5 +1,5 @@
 import { copyToClipboard } from '../common/utils.js';
-import { fireConfetti } from '../tools/confetti.js';
+import { fireConfetti } from '../common/confetti.js';
 
 const CATEGORIES = [
   { id: 'todas', name: 'Todas as Categorias', icon: '🎲', color: 'var(--accent)' },

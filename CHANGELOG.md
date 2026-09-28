@@ -6,6 +6,22 @@ O formato segue a ideia de *Keep a Changelog* e versionamento semântico como re
 
 ## [Unreleased]
 
+### Removed
+
+- Ferramentas utilitárias removidas do produto: `ferramentas.html`, a pasta `ferramentas/` (7 páginas) e a pasta
+  `js/tools/` (9 módulos). O produto passa a ser somente jogos.
+- Links de "Ferramentas" retirados do menu e do rodapé de todas as páginas, junto com a seção de destaques da home
+  e as entradas correspondentes em `sitemap.xml`, `README.md`, `CONTRIBUTING.md` e `docs/`.
+
+### Changed
+
+- Módulo `js/tools/confetti.js` movido para `js/common/confetti.js`, porque 5 jogos dependem dele.
+- Nova identidade visual da IBA em `styles.css`: fundo branco, superfícies claras, borda fina de 1px, sombra
+  discreta, azul `#185CB6` e laranja `#FFBD59` restrito à ação. Sai o amarelo `#f3d63a` e o contorno preto.
+- Fontes Archivo (títulos) e Inter (corpo) servidas localmente em `assets/fonts/`, com `font-display: swap`.
+- Tema escuro mantido como opção do visitante, reprojetado com os matizes da IBA. O padrão continua claro.
+- Marca discreta no rodapé: mascote Nó e logo da IBA, em `assets/img/`.
+
 ### Fixed
 
 - Corrigido nome do projeto na documentação: "GameTools" substituído por "IBAGameTools" em todos os documentos.

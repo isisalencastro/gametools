@@ -1,5 +1,5 @@
 import { copyToClipboard } from '../common/utils.js';
-import { fireConfettiSides } from '../tools/confetti.js';
+import { fireConfettiSides } from '../common/confetti.js';
 
 const EMOJI_POOLS = {
   6: ['🐱', '🐶', '🦊', '🐼', '🐸', '🐵'],
