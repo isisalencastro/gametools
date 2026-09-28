@@ -1,0 +1,20 @@
+{
+  "rewrites": [
+    {
+      "source": "/jogos/no-do-dia",
+      "destination": "/jogos/no-do-dia.html"
+    },
+    {
+      "source": "/jogos/no-do-dia/",
+      "destination": "/jogos/no-do-dia.html"
+    },
+    {
+      "source": "/jogos",
+      "destination": "/jogos.html"
+    },
+    {
+      "source": "/jogos/",
+      "destination": "/jogos.html"
+    }
+  ]
+}

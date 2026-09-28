@@ -1830,3 +1830,20 @@ body,
   .no-tabuleiro { width: calc(100vw - 16px); max-width: none; }
   .no-cabecalho { flex-direction: column; gap: 2px; }
 }
+
+/* Caixa do resultado: ultimo recurso do compartilhar, quando o navegador embutido
+   bloqueia a area de transferencia e a folha do sistema. */
+.no-caixa-rotulo { display: block; margin-top: 0.75rem; font-size: 0.85rem; color: var(--ink-suave, #4A5568); }
+.no-caixa-texto {
+  width: 100%;
+  margin-top: 0.35rem;
+  padding: 0.6rem;
+  border: 1px solid var(--borda, #D0D5DD);
+  border-radius: 8px;
+  font-family: inherit;
+  font-size: 0.9rem;
+  line-height: 1.35;
+  color: var(--ink, #101828);
+  background: var(--superficie, #F7F9FC);
+  resize: vertical;
+}

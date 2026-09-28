@@ -1,7 +1,22 @@
 const THEME_KEY = 'gametools:theme';
 
 function getSavedTheme() {
-  return localStorage.getItem(THEME_KEY) || 'light';
+  try {
+    return localStorage.getItem(THEME_KEY) || 'light';
+  } catch {
+    // Navegador embutido (WhatsApp, Instagram) bloqueia o armazenamento. Sem esta
+    // protecao a excecao sobe e derruba a inicializacao inteira da pagina: menu do
+    // celular, catalogo e jogo param junto, sem nada aparecer na tela.
+    return 'light';
+  }
+}
+
+function saveTheme(theme) {
+  try {
+    localStorage.setItem(THEME_KEY, theme);
+  } catch {
+    // Sem armazenamento o tema vale so nesta visita. Nao e motivo para quebrar a pagina.
+  }
 }
 
 function applyTheme(theme) {
@@ -25,7 +40,7 @@ export function initThemeToggle() {
     const next = current === 'dark' ? 'light' : 'dark';
 
     applyTheme(next);
-    localStorage.setItem(THEME_KEY, next);
+    saveTheme(next);
     setButtonText(button, next);
   });
 }

@@ -32,6 +32,18 @@ const estado = {
   eventoIniciado: false,
 };
 
+/** Testa se o navegador deixa guardar. O navegador embutido do WhatsApp e do Instagram nao deixa. */
+function memoriaDisponivel() {
+  try {
+    const sonda = CHAVE_ESTADO + ":sonda";
+    localStorage.setItem(sonda, "1");
+    localStorage.removeItem(sonda);
+    return true;
+  } catch {
+    return false;
+  }
+}
+
 function lerEstado() {
   try {
     const bruto = localStorage.getItem(CHAVE_ESTADO);
@@ -319,9 +331,10 @@ function mostrarResumo(segundos) {
   document.getElementById("no-sequencia").textContent = `Sequência: ${guardado.sequencia || 0}`;
   document.getElementById("no-jogados").textContent = `Jogados: ${guardado.jogados || 0}`;
   document.getElementById("no-vitorias").textContent = `Venceu: ${guardado.vitorias || 0}`;
-  document.getElementById("no-legenda").textContent = segundos
-    ? `Você desatou o nó em ${segundos} segundo(s).`
-    : "";
+  const legenda = segundos ? `Você desatou o nó em ${segundos} segundo(s).` : "";
+  document.getElementById("no-legenda").textContent = memoriaDisponivel()
+    ? legenda
+    : `${legenda} Este navegador não deixa o jogo guardar a sequência; para a sequência valer, abra no navegador do celular.`;
 }
 
 function alternarPeca(linha, coluna) {
@@ -371,18 +384,39 @@ function montarCompartilhamento() {
     "",
     ...linhas,
     "",
-    "jogos.ibaestudio.com",
+    "https://jogos.ibaestudio.com/jogos/no-do-dia.html",
   ].join("\n");
 }
 
 async function compartilhar() {
   const texto = montarCompartilhamento();
   const botao = document.getElementById("no-compartilhar");
+  // 1. No celular o melhor caminho e a folha de compartilhar do proprio sistema.
+  if (navigator.share) {
+    try {
+      await navigator.share({ title: "O Nó do dia", text: texto });
+      botao.textContent = "Compartilhado";
+      return;
+    } catch (erro) {
+      if (erro && erro.name === "AbortError") return; // a pessoa desistiu, nao e defeito
+    }
+  }
+  // 2. Copiar para a area de transferencia.
   try {
     await navigator.clipboard.writeText(texto);
     botao.textContent = "Copiado";
+    return;
   } catch {
-    botao.textContent = "Selecione e copie o resultado";
+    // 3. Ultimo recurso, e o que faltava: por o texto na tela, ja selecionado.
+    //    Dizer "selecione e copie" sem nada para selecionar e beco sem saida, e e o que
+    //    acontece no navegador embutido do WhatsApp e do Instagram, onde as duas vias
+    //    de cima estao bloqueadas.
+    const caixa = document.getElementById("no-resultado-caixa");
+    caixa.hidden = false;
+    caixa.value = texto;
+    caixa.focus();
+    caixa.select();
+    botao.textContent = "Toque em copiar";
   }
   document.getElementById("no-legenda").textContent = texto.split("\n").slice(0, 2).join(" · ");
   setTimeout(() => { botao.textContent = "Compartilhar resultado"; }, 2500);
