@@ -107,9 +107,9 @@ export function initReactionFeature() {
       const avg = attempts.length > 0
         ? Math.round(attempts.reduce((a, b) => a + b, 0) / attempts.length)
         : 0;
-      const text = `Teste de Reação no GameTools: melhor ${bestEver}ms, média ${avg}ms em ${attempts.length} tentativas!`;
+      const text = `Teste de Reação nos Jogos IBA: melhor ${bestEver}ms, média ${avg}ms em ${attempts.length} tentativas!`;
       if (navigator.share) {
-        navigator.share({ title: 'Teste de Reação - GameTools', text }).catch(() => {});
+        navigator.share({ title: 'Teste de Reação | Jogos IBA', text }).catch(() => {});
         return;
       }
       copyToClipboard(text, reactionShare);

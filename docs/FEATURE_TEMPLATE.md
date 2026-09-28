@@ -1,28 +1,28 @@
-# Feature Template (Jogos e Ferramentas)
+# Template de Novo Jogo
 
-Use este template ao criar uma nova página de jogo ou ferramenta para manter consistência de UX, SEO e manutenção.
+Use este template ao criar uma nova página de jogo para manter consistência de UX, SEO e manutenção.
 
 ---
 
-## 1) Informações da feature
+## 1) Informações do jogo
 
-- **Tipo**: `jogo` | `ferramenta`
-- **Nome da feature**:
+- **Nome do jogo**:
 - **Slug** (kebab-case):
-- **Página HTML**: `jogos/<slug>.html` ou `ferramentas/<slug>.html`
-- **Módulo JS**: `js/games/<slug>.js` ou `js/tools/<slug>.js`
+- **Página HTML**: `jogos/<slug>.html`
+- **Módulo JS**: `js/games/<slug>.js`
+- **Categoria** (reflexo | estrategia | conhecimento | logica):
 - **Objetivo em 1 frase**:
 - **Público-alvo principal**:
 
 ### Exemplo preenchido
 
-- **Tipo**: `ferramenta`
-- **Nome da feature**: Calculadora de Desconto
-- **Slug**: `desconto`
-- **Página HTML**: `ferramentas/desconto.html`
-- **Módulo JS**: `js/tools/desconto.js`
-- **Objetivo em 1 frase**: Permitir cálculo rápido de valor final após desconto percentual.
-- **Público-alvo principal**: usuários que fazem comparações de preço.
+- **Nome do jogo**: Jogo da Velha
+- **Slug**: `jogo-da-velha`
+- **Página HTML**: `jogos/jogo-da-velha.html`
+- **Módulo JS**: `js/games/jogo-da-velha.js`
+- **Categoria**: `estrategia`
+- **Objetivo em 1 frase**: Permitir uma partida rápida de jogo da velha contra a CPU.
+- **Público-alvo principal**: quem quer uma pausa curta de raciocínio.
 
 ---
 
@@ -33,29 +33,28 @@ Checklist:
 - [ ] `<title>` específico (até ~60 caracteres).
 - [ ] `meta name="description"` com proposta de valor.
 - [ ] `link rel="canonical"` com URL absoluta da página.
-- [ ] `<main id="conteudo">` com heading claro (`<h1>`).
-- [ ] Formulário com labels explícitas e validação amigável.
-- [ ] Bloco de resultado com `aria-live="polite"`.
+- [ ] `<main id="conteudo-principal">` com heading claro (`<h1>`).
+- [ ] Bloco de instruções curtas (como jogar).
+- [ ] Área de resultado com `aria-live="polite"`.
+- [ ] Link de contexto para outro jogo ou para o catálogo.
 - [ ] FAQ curta (2 a 4 perguntas) para contexto de SEO.
 
 ### Esqueleto sugerido (HTML)
 
 ```html
-<main id="conteudo" class="container">
-  <h1>Calculadora de Desconto</h1>
-  <p>Informe preço e percentual para calcular o valor final.</p>
+<main id="conteudo-principal" class="container page-main">
+  <section class="section-intro">
+    <h1>Jogo da Velha</h1>
+    <p>Marque três casas em linha antes da CPU.</p>
+  </section>
 
-  <form id="desconto-form">
-    <label for="preco">Preço original</label>
-    <input id="preco" type="number" min="0" step="0.01" required>
-
-    <label for="percentual">Desconto (%)</label>
-    <input id="percentual" type="number" min="0" max="100" step="0.01" required>
-
-    <button type="submit">Calcular</button>
-  </form>
-
-  <section id="resultado" role="status" aria-live="polite"></section>
+  <section class="section">
+    <article class="card game-card">
+      <button id="jdv-iniciar" class="btn btn-primary" type="button">Iniciar partida</button>
+      <div id="jdv-tabuleiro" class="grid three-columns" role="group" aria-label="Tabuleiro"></div>
+      <p id="jdv-resultado" class="result" role="status" aria-live="polite">Seu resultado aparecerá aqui.</p>
+    </article>
+  </section>
 </main>
 ```
 
@@ -65,33 +64,28 @@ Checklist:
 
 Checklist:
 
-- [ ] JS em arquivo separado (`js/games/<slug>.js` ou `js/tools/<slug>.js`).
-- [ ] Validar entradas antes do cálculo.
+- [ ] JS em arquivo separado (`js/games/<slug>.js`).
+- [ ] Guard check dos elementos de DOM no início da função (`if (!el) return;`).
+- [ ] Validar entradas antes de calcular qualquer coisa.
 - [ ] Tratar estados inválidos com mensagem clara.
 - [ ] Atualizar resultado com texto compreensível.
 
 ### Exemplo rápido (JS)
 
 ```js
-const form = document.querySelector('#desconto-form');
-const resultado = document.querySelector('#resultado');
+import { setLiveRegion } from '../common/utils.js';
 
-form.addEventListener('submit', (event) => {
-  event.preventDefault();
+export function initJogoDaVelhaFeature() {
+  const botao = document.getElementById('jdv-iniciar');
+  const resultado = document.getElementById('jdv-resultado');
+  if (!botao || !resultado) return;
 
-  const preco = Number(document.querySelector('#preco').value);
-  const percentual = Number(document.querySelector('#percentual').value);
+  setLiveRegion(resultado);
 
-  if (preco <= 0 || percentual < 0 || percentual > 100) {
-    resultado.textContent = 'Preencha valores válidos para continuar.';
-    return;
-  }
-
-  const valorDesconto = preco * (percentual / 100);
-  const valorFinal = preco - valorDesconto;
-
-  resultado.textContent = `Valor final: R$ ${valorFinal.toFixed(2)}`;
-});
+  botao.addEventListener('click', () => {
+    resultado.textContent = 'Partida iniciada.';
+  });
+}
 ```
 
 ---
@@ -100,27 +94,22 @@ form.addEventListener('submit', (event) => {
 
 Checklist:
 
-- [ ] Adicionar link no catálogo (`jogos.html` ou `ferramentas.html`).
+- [ ] Adicionar card no catálogo (`jogos.html`), com `data-catalog-item`, `data-tags` e `data-title`.
+- [ ] Importar e chamar `init*Feature()` em `js/main.js`.
 - [ ] Revisar navegação entre páginas.
 - [ ] Incluir URL no `sitemap.xml`.
 - [ ] Confirmar regra no `robots.txt` (sitemap correto).
-
-### Exemplo prático de integração
-
-1. Criar `ferramentas/desconto.html`.
-2. Criar `js/tools/desconto.js` exportando `initDescontoFeature()`.
-3. Importar e chamar `initDescontoFeature()` em `js/main.js`.
-4. Inserir card/link em `ferramentas.html`.
-5. Adicionar `<url><loc>https://isisalencastro.github.io/gametools/ferramentas/desconto.html</loc></url>` em `sitemap.xml`.
 
 ---
 
 ## 5) Critérios de aceite
 
-- [ ] Cálculo/regra funciona em desktop e mobile.
+- [ ] Regra do jogo funciona em desktop e mobile.
 - [ ] Página acessível por teclado.
 - [ ] Foco visível em campos e botões.
+- [ ] Contraste mínimo de 4.5:1 em texto pequeno e 3:1 em texto grande e elemento gráfico.
 - [ ] Mensagens de erro e sucesso claras.
+- [ ] Zero erro no console do navegador.
 - [ ] `npm run lint` sem erros.
 
 ---
@@ -129,14 +118,14 @@ Checklist:
 
 ```md
 ### O que foi feito
-- Adicionada a ferramenta "Calculadora de Desconto".
-- Criada página `ferramentas/desconto.html`.
-- Implementada lógica em `js/tools/desconto.js`.
-- Atualizado `ferramentas.html` e `sitemap.xml`.
+- Adicionado o jogo "Jogo da Velha".
+- Criada página `jogos/jogo-da-velha.html`.
+- Implementada a lógica em `js/games/jogo-da-velha.js`.
+- Atualizados `jogos.html`, `js/main.js` e `sitemap.xml`.
 
 ### Como validar
-1. Acesse `/ferramentas/desconto.html`.
-2. Informe `100` e `15`.
-3. Confira resultado `R$ 85,00`.
+1. Acesse `jogos/jogo-da-velha.html`.
+2. Inicie uma partida e faça três jogadas.
+3. Confira o resultado na área de status.
 4. Rode `npm run lint`.
 ```

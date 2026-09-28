@@ -9,7 +9,7 @@ function applyTheme(theme) {
 }
 
 function setButtonText(button, theme) {
-  button.textContent = theme === 'dark' ? '☀️ Modo claro' : '🌙 Modo escuro';
+  button.textContent = theme === 'dark' ? 'Modo claro' : 'Modo escuro';
 }
 
 export function initThemeToggle() {

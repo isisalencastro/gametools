@@ -1,5 +1,5 @@
 import { copyToClipboard } from '../common/utils.js';
-import { fireConfetti } from '../tools/confetti.js';
+import { fireConfetti } from '../common/confetti.js';
 
 const EMOJIS = { pedra: '✊', papel: '✋', tesoura: '✌️' };
 const CHOICES = ['pedra', 'papel', 'tesoura'];
@@ -91,9 +91,9 @@ export function initRockPaperScissorsFeature() {
 
   async function pptShareResult() {
     const winRate = pptRounds > 0 ? ((pptPlayer / pptRounds) * 100).toFixed(0) : 0;
-    const text = `No Pedra-Papel-Tesoura: ${pptPlayer}×${pptCpu} (${winRate}% vitórias, sequência máx ${pptBestStreak}) no GameTools!`;
+    const text = `No Pedra-Papel-Tesoura: ${pptPlayer}×${pptCpu} (${winRate}% vitórias, sequência máx ${pptBestStreak}) nos Jogos IBA!`;
     if (navigator.share) {
-      await navigator.share({ title: 'Pedra-Papel-Tesoura - GameTools', text });
+      await navigator.share({ title: 'Pedra-Papel-Tesoura | Jogos IBA', text });
       return;
     }
     copyToClipboard(text, pptShare);

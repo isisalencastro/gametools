@@ -1,6 +1,6 @@
 # Contributing Guide
 
-Obrigado por contribuir com o IBAGameTools! Este guia define o fluxo mínimo para manter o projeto consistente e fácil de revisar.
+Obrigado por contribuir com o Jogos IBA! Este guia define o fluxo mínimo para manter o projeto consistente e fácil de revisar.
 
 ## Fluxo de branch
 
@@ -14,7 +14,7 @@ Padrão recomendado:
 ### Exemplo prático
 
 ```bash
-git checkout -b feature/calculadora-desconto
+git checkout -b feature/jogo-da-velha
 ```
 
 ## Padrão de commit
@@ -37,7 +37,7 @@ tipo(escopo-opcional): resumo curto no imperativo
 
 - `docs(readme): ampliar visão de produto e roadmap`
 - `feat(jogos): adicionar modo difícil ao quiz rápido`
-- `fix(imc): corrigir arredondamento em entradas decimais`
+- `fix(quiz-rapido): corrigir contagem de acertos ao final da rodada`
 
 ## Fluxo de validação (lint)
 
@@ -58,7 +58,7 @@ npm run lint:html   # Validação estrutural de index.html
 | `lint:css` | Verifica chaves balanceadas e presença do bloco `:root` em `styles.css` | Apenas `styles.css` |
 | `lint:html` | Verifica presença de `<!DOCTYPE html>`, `<html`, `<head>` e `<body>` em `index.html` | Apenas `index.html` |
 
-> **Nota**: os scripts de lint atuais são validações estruturais básicas. `lint:css` não usa Stylelint e `lint:html` não cobre páginas em `jogos/` ou `ferramentas/` automaticamente. Novas páginas HTML não entram nessa validação sem alteração manual do script.
+> **Nota**: os scripts de lint atuais são validações estruturais básicas. `lint:css` não usa Stylelint e `lint:html` não cobre as páginas em `jogos/` automaticamente. Novas páginas HTML não entram nessa validação sem alteração manual do script.
 
 ## Checklist de Pull Request
 
@@ -70,7 +70,7 @@ Antes de abrir PR, confirme:
 - [ ] Links internos da feature foram atualizados (catálogo + navegação).
 - [ ] SEO básico revisado (title, description, canonical, Open Graph).
 - [ ] `sitemap.xml` atualizado ao adicionar nova página pública.
-- [ ] Toda URL pública listada em `jogos.html` ou `ferramentas.html` também aparece no `sitemap.xml`.
+- [ ] Toda URL pública listada em `jogos.html` também aparece no `sitemap.xml`.
 - [ ] URL declarada no `sitemap.xml` é idêntica ao `canonical` da página correspondente (sem variações de caminho).
 - [ ] Mudanças relevantes documentadas no `CHANGELOG.md`.
 
@@ -88,20 +88,20 @@ Antes de abrir PR, confirme:
 ```bash
 git checkout main
 git pull origin main
-git checkout -b feature/calculadora-desconto
+git checkout -b feature/jogo-da-velha
 # editar arquivos
 npm run lint
 git add .
-git commit -m "feat(ferramentas): adicionar calculadora de desconto"
+git commit -m "feat(jogos): adicionar jogo da velha"
 git push -u origin feature/calculadora-desconto
 ```
 
 ### Passos ao adicionar uma nova feature
 
-1. Criar página HTML em `jogos/<slug>.html` ou `ferramentas/<slug>.html`.
-2. Criar módulo JS em `js/games/<slug>.js` ou `js/tools/<slug>.js` exportando `init*Feature()`.
+1. Criar página HTML em `jogos/<slug>.html`.
+2. Criar módulo JS em `js/games/<slug>.js` exportando `init*Feature()`.
 3. Importar e chamar a função de inicialização em `js/main.js`.
-4. Adicionar card/link no catálogo (`jogos.html` ou `ferramentas.html`).
+4. Adicionar card/link no catálogo (`jogos.html`).
 5. Adicionar URL no `sitemap.xml`.
 6. Validar metatags com `docs/SEO_CHECKLIST.md`.
 7. Rodar `npm run lint`.
@@ -116,7 +116,7 @@ git push -u origin feature/calculadora-desconto
 
 - **"Preciso atualizar o changelog para mudança de docs?"**
   - Sim, quando a mudança melhora onboarding, fluxo de contribuição ou governança.
-- **"Preciso criar JS separado para toda ferramenta?"**
+- **"Preciso criar JS separado para todo jogo?"**
   - Preferencialmente sim, para manter isolamento e facilitar manutenção.
 - **"Onde registro o módulo JS da nova feature?"**
   - Importe e chame a função `init*Feature()` em `js/main.js`. O módulo faz guard check de DOM automaticamente.

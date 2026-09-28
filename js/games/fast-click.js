@@ -1,5 +1,5 @@
 import { copyToClipboard } from '../common/utils.js';
-import { fireConfetti } from '../tools/confetti.js';
+import { fireConfetti } from '../common/confetti.js';
 
 function vibrate(ms) {
   try {
@@ -117,9 +117,9 @@ export function initFastClickFeature() {
   }
 
   async function clickShareResult() {
-    const text = `No Clique Rápido 10s fiz ${clickCount} cliques (${(clickCount / clickDuration).toFixed(1)} CPS) no GameTools!`;
+    const text = `No Clique Rápido 10s fiz ${clickCount} cliques (${(clickCount / clickDuration).toFixed(1)} CPS) nos Jogos IBA!`;
     if (navigator.share) {
-      await navigator.share({ title: 'Clique Rápido 10s - GameTools', text });
+      await navigator.share({ title: 'Clique Rápido 10s | Jogos IBA', text });
       return;
     }
     copyToClipboard(text, clickShare);

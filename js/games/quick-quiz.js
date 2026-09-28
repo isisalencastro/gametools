@@ -1,5 +1,5 @@
 import { copyToClipboard } from '../common/utils.js';
-import { fireConfetti } from '../tools/confetti.js';
+import { fireConfetti } from '../common/confetti.js';
 
 const CATEGORIES = [
   { id: 'todas', name: 'Todas as Categorias', icon: '🎲', color: 'var(--accent)' },
@@ -432,9 +432,9 @@ export function initQuickQuizFeature() {
   async function quizShareResult() {
     const total = questions.length;
     const catLabel = selectedCategory === 'todas' ? 'Todas as Categorias' : getCategoryName(selectedCategory);
-    const text = `No Quiz Rápido (${catLabel}) fiz ${quizScore}/${total} no GameTools!`;
+    const text = `No Quiz Rápido (${catLabel}) fiz ${quizScore}/${total} nos Jogos IBA!`;
     if (navigator.share) {
-      await navigator.share({ title: 'Quiz Rápido - GameTools', text });
+      await navigator.share({ title: 'Quiz Rápido | Jogos IBA', text });
       return;
     }
     copyToClipboard(text, quizShare);
