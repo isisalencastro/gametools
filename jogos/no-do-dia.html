@@ -59,7 +59,9 @@
           </div>
 
           <div class="no-area">
-            <div id="no-tabuleiro" class="no-tabuleiro" role="grid" aria-label="Tabuleiro de oito por oito. Use as setas para andar entre as casas e espaço ou enter para colocar e tirar uma peça."></div>
+            <div id="no-tabuleiro" class="no-tabuleiro" role="grid" aria-label="Tabuleiro de oito por oito. Use as setas para andar entre as casas e espaço ou enter para colocar e tirar uma peça.">
+              <p class="no-carregando">Carregando o tabuleiro de hoje...</p>
+            </div>
           </div>
 
           <p id="no-mensagem" class="no-mensagem" role="status" aria-live="polite"></p>
@@ -104,5 +106,11 @@
     </footer>
     <script type="module" src="../js/main.js"></script>
     <script type="module" src="../js/no-do-dia.js"></script>
-  </body>
+    <noscript>
+    <p style="max-width:40rem;margin:1rem auto;padding:1rem;border:1px solid #D0D5DD;border-radius:8px">
+      Este jogo precisa de JavaScript ligado para montar o tabuleiro. Ligue o JavaScript neste
+      navegador, ou abra o endereço em outro navegador, e recarregue a página.
+    </p>
+  </noscript>
+</body>
 </html>

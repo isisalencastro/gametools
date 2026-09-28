@@ -1675,6 +1675,13 @@ body,
 .no-tabuleiro {
   display: grid;
   grid-template-columns: repeat(8, minmax(0, 1fr));
+  /* Linhas explicitas e altura minima: se qualquer coisa zerar a largura, o tabuleiro
+     colapsa para uma linha de 1 pixel e a pessoa nao tem o que tocar, sem erro na tela.
+     Foi o que a Isis viu em 28/09/2026. Altura do quadrado vem do container, nao da casa. */
+  grid-template-rows: repeat(8, 1fr);
+  aspect-ratio: 1 / 1;
+  min-height: 260px;
+  max-height: 440px;
   width: min(100%, 440px);
   border: 1px solid var(--color-border-strong);
   border-radius: 8px;
@@ -1684,8 +1691,8 @@ body,
 
 .no-casa {
   position: relative;
-  aspect-ratio: 1 / 1;
   min-width: 0;
+  min-height: 0;
   padding: 0;
   border: 0;
   border-right: 1px solid var(--color-border);
@@ -1859,4 +1866,12 @@ body,
   color: var(--ink, #101828);
   background: var(--superficie, #F7F9FC);
   resize: vertical;
+}
+
+.no-carregando {
+  grid-column: 1 / -1;
+  margin: 0;
+  padding: 1rem;
+  color: var(--color-text-muted, #667085);
+  font-size: 0.9rem;
 }

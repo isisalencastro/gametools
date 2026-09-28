@@ -206,6 +206,9 @@ function tonsPorVizinhanca() {
 }
 
 /** Cores dos tons lidas do proprio CSS: paleta duplicada em dois arquivos diverge. */
+/** Ultimo recurso: se nem a leitura da paleta funcionar, estes sao os cinco tons do CSS. */
+const PALETA_RESERVA = [[255, 255, 255], [195, 217, 244], [230, 232, 236], [150, 189, 236], [127, 169, 220]];
+
 function coresDosTons() {
   const sonda = document.createElement("span");
   sonda.className = "no-casa";
@@ -224,12 +227,24 @@ function coresDosTons() {
   return cores;
 }
 
+/** Mostra na tela o que falhou. Pagina que falha em silencio custa horas de adivinhacao. */
+function avisarFalha(etapa, erro) {
+  const alvo = document.getElementById("no-mensagem");
+  if (alvo) {
+    alvo.textContent = `O tabuleiro de hoje não abriu (falhou em ${etapa}). ` +
+      `Anote esta mensagem e avise: ${(erro && erro.message) || erro}`;
+  }
+  console.error("no-do-dia:", etapa, erro);
+}
+
 function distanciaCor(a, b) {
   return Math.sqrt(a.reduce((soma, valor, i) => soma + (valor - b[i]) ** 2, 0));
 }
 
 function desenhar() {
   const alvo = document.getElementById("no-tabuleiro");
+  const aviso = alvo.querySelector(".no-carregando");
+  if (aviso) aviso.remove();
   const tons = tonsPorVizinhanca();
   const pecas = [];
   for (let l = 0; l < 8; l += 1) {
@@ -449,9 +464,22 @@ async function iniciar() {
     return;
   }
   estado.dados = dados;
-  estado.dia = acharDiaDeHoje(dados);
-  estado.tabuleiro = montarTabuleiro(estado.dia);
-  desenhar();
+  try {
+    estado.dia = acharDiaDeHoje(dados);
+    if (!estado.dia) throw new Error("o dia de hoje nao esta no arquivo de tabuleiros");
+  } catch (erro) {
+    avisarFalha("achar o dia de hoje", erro);
+    return;
+  }
+  try {
+    estado.tabuleiro = montarTabuleiro(estado.dia);
+    desenhar();
+  } catch (erro) {
+    avisarFalha("desenhar o tabuleiro", erro);
+    // O return e obrigatorio: sem ele o resto do fluxo roda e repinta a mensagem padrao
+    // por cima do aviso, e a pessoa ve uma tela muda e bonita, que foi o report de 28/09/2026.
+    return;
+  }
   pintar();
   document.getElementById("no-dia").textContent =
     `Tabuleiro nº ${estado.dia.n}, de ${new Date(`${estado.dia.data}T12:00:00`).toLocaleDateString("pt-BR")}.`;
