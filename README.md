@@ -52,12 +52,7 @@ A arquitetura atual segue o padrão **multi-page app (MPA) estática**:
 
 | Jogo | Página | Módulo JS |
 | --- | --- | --- |
-| Teste de Reação | `jogos/reacao.html` | `js/games/reaction.js` |
-| Jogo da Memória | `jogos/memoria.html` | `js/games/memory.js` |
-| Pedra-Papel-Tesoura | `jogos/pedra-papel-tesoura.html` | `js/games/rock-paper-scissors.js` |
-| Quiz Rápido | `jogos/quiz-rapido.html` | `js/games/quick-quiz.js` |
-| Clique Rápido 10s | `jogos/clique-rapido.html` | `js/games/fast-click.js` |
-| Debug Challenge | `jogos/debug-challenge.html` | `js/games/debug-challenge.js` |
+| O Nó do dia | `jogos/no-do-dia.html` | `js/no-do-dia.js` |
 
 ### Módulos JS sem página HTML (pendente de publicação)
 
@@ -144,12 +139,7 @@ Este projeto adota **links relativos** como estratégia única de navegação in
 ├── CONTRIBUTING.md             # Guia de contribuição
 ├── CHANGELOG.md                # Histórico de versões
 ├── jogos/
-│   ├── reacao.html
-│   ├── memoria.html
-│   ├── pedra-papel-tesoura.html
-│   ├── quiz-rapido.html
-│   ├── clique-rapido.html
-│   └── debug-challenge.html
+│   └── no-do-dia.html
 ├── js/
 │   ├── main.js                 # Bootstrap: importa e inicializa todos os módulos
 │   ├── common/

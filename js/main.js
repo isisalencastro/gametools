@@ -2,21 +2,11 @@
 import { initCatalogExperience } from './common/catalog.js';
 import { initMobileMenu } from './common/mobile-menu.js';
 import { initThemeToggle } from './common/theme.js';
-import { initFastClickFeature } from './games/fast-click.js';
-import { initGuessFeature } from './games/guess.js';
-import { initMemoryFeature } from './games/memory.js';
-import { initQuickQuizFeature } from './games/quick-quiz.js';
-import { initReactionFeature } from './games/reaction.js';
-import { initRockPaperScissorsFeature } from './games/rock-paper-scissors.js';
-import { initDebugChallengeFeature } from './games/debug-challenge.js';
-
 initThemeToggle();
 initMobileMenu();
-initReactionFeature();
-initGuessFeature();
-initRockPaperScissorsFeature();
-initFastClickFeature();
-initQuickQuizFeature();
-initDebugChallengeFeature();
-initMemoryFeature();
 initCatalogExperience();
+
+// Licao de 28/09/2026, e ela custou caro: ao apagar um jogo, apague tambem o import dele.
+// Import de arquivo inexistente derruba o modulo INTEIRO, e com ele o tema, o menu do
+// celular e o filtro do catalogo, em todas as paginas. Nao aparece na tela: a pagina
+// segue bonita e os botoes simplesmente nao respondem.
