@@ -1696,6 +1696,19 @@ body,
   display: flex;
   align-items: center;
   justify-content: center;
+  /* `touch-action: manipulation` e o que impede o celular de segurar o primeiro toque
+     esperando um segundo (o gesto de zoom). Sem ela o toque parece nao responder, que
+     foi exatamente o report da Isis em 28/09/2026. Todo outro controle do site ja tinha
+     esta linha; a casa do tabuleiro era a unica sem. */
+  touch-action: manipulation;
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Retorno visual no toque: sem ele, quem toca e nao ve nada achar que quebrou. */
+.no-casa:active {
+  filter: brightness(0.93);
 }
 
 .no-casa:nth-child(8n) { border-right: 0; }
