@@ -76,11 +76,23 @@ function registrarEvento(evento, extra = {}) {
   return registro;
 }
 
+/** Data no fuso do Brasil (-03), que e o dia do jogo.
+ *
+ * Nao vale usar o relogio do aparelho: aparelho em UTC passa a meia-noite de Londres e
+ * recebe o tabuleiro de amanha enquanto o Brasil ainda joga o de hoje. O dia do jogo tem
+ * de virar a meia-noite de Porto Alegre, igual para todo mundo. Regra da casa: data da
+ * IBA sempre em -03.
+ */
 function dataLocalIso(quando = new Date()) {
-  const ano = quando.getFullYear();
-  const mes = String(quando.getMonth() + 1).padStart(2, "0");
-  const dia = String(quando.getDate()).padStart(2, "0");
-  return `${ano}-${mes}-${dia}`;
+  try {
+    return new Intl.DateTimeFormat("en-CA", { timeZone: "America/Sao_Paulo" }).format(quando);
+  } catch {
+    // Navegador sem suporte a fuso por nome: cai no fuso do aparelho.
+    const ano = quando.getFullYear();
+    const mes = String(quando.getMonth() + 1).padStart(2, "0");
+    const dia = String(quando.getDate()).padStart(2, "0");
+    return `${ano}-${mes}-${dia}`;
+  }
 }
 
 function diferencaEmDias(inicioIso, fimIso) {
@@ -300,7 +312,7 @@ function pintar() {
   if (estado.venceu) {
     mensagem.textContent = "Tabuleiro resolvido. O nó de hoje está desatado.";
   } else if (estado.conflitos.size > 0) {
-    mensagem.textContent = `Há ${estado.conflitos.size} peça(s) em conflito. Marquei as casas: uma peça por linha, por coluna e por região, e nenhuma encostando em outra.`;
+    mensagem.textContent = `Há ${estado.conflitos.size} ${estado.conflitos.size === 1 ? "peça" : "peças"} em conflito. Marquei as casas: uma peça por linha, por coluna e por região, e nenhuma encostando em outra.`;
   } else if (total === 0) {
     mensagem.textContent = "Comece por uma região pequena e vá eliminando as casas impossíveis.";
   } else {
