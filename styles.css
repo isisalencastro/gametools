@@ -1933,8 +1933,8 @@ body,
 }
 .no-festa-boneca {
   display: block;
-  width: 115px;
-  height: 162px;
+  width: 84px;
+  height: 120px;
   image-rendering: pixelated;
 }
 .no-festa-check { width: 48px; height: 48px; flex: 0 0 auto; }
