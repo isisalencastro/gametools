@@ -1913,11 +1913,11 @@ body,
 }
 .no-festa-boneca {
   display: block;
-  width: auto;
-  height: auto;
+  width: 230px;
+  height: 324px;
   image-rendering: pixelated;
 }
-.no-festa-check { width: 56px; height: 56px; flex: 0 0 auto; }
+.no-festa-check { width: 72px; height: 72px; flex: 0 0 auto; }
 .no-festa-circulo {
   fill: none;
   fill: var(--color-brand, #185cb6);
