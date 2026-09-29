@@ -33,7 +33,7 @@ export function initCatalogExperience() {
       if (show) visible += 1;
     });
 
-    if (count) count.textContent = `${visible} resultado(s) exibido(s).`;
+    if (count) count.textContent = `${visible} ${visible === 1 ? "resultado exibido" : "resultados exibidos"}.`;
     if (empty) empty.style.display = visible === 0 ? 'block' : 'none';
   }
 
