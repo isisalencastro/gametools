@@ -9,6 +9,14 @@
       "destination": "/jogos/no-do-dia.html"
     },
     {
+      "source": "/jogos/conta-do-dia",
+      "destination": "/jogos/conta-do-dia.html"
+    },
+    {
+      "source": "/jogos/conta-do-dia/",
+      "destination": "/jogos/conta-do-dia.html"
+    },
+    {
       "source": "/jogos",
       "destination": "/jogos.html"
     },
