@@ -156,6 +156,34 @@ function minutosAteProximaVirada() {
   return Math.max(0, 24 * 60 - passados);
 }
 
+/**
+ * Instante da meia-noite de Sao Paulo de uma data ISO, sem carimbar -03:00 no codigo.
+ * O deslocamento e' medido no proprio instante alvo, entao a funcao continua certa se a regra
+ * de fuso do Brasil mudar de novo.
+ */
+function meiaNoiteSaoPaulo(iso) {
+  const chute = new Date(`${iso}T00:00:00Z`);
+  const partes = new Intl.DateTimeFormat("en-CA", {
+    timeZone: "America/Sao_Paulo", hour12: false,
+    year: "numeric", month: "2-digit", day: "2-digit",
+    hour: "2-digit", minute: "2-digit", second: "2-digit",
+  }).formatToParts(chute).reduce((acc, parte) => {
+    acc[parte.type] = parte.value;
+    return acc;
+  }, {});
+  const comoUtc = Date.UTC(
+    Number(partes.year), Number(partes.month) - 1, Number(partes.day),
+    Number(partes.hour) % 24, Number(partes.minute), Number(partes.second),
+  );
+  const deslocamento = comoUtc - chute.getTime();
+  return new Date(chute.getTime() - deslocamento);
+}
+
+/** Quanto falta para a estreia, quando o dia de hoje ainda e' anterior ao inicio do arquivo. */
+function minutosAteInicio() {
+  return Math.max(0, Math.round((meiaNoiteSaoPaulo(estado.dados.inicio) - new Date()) / 60000));
+}
+
 /* ------------------------------------------------------------------ tela */
 
 function avisarFalha(etapa, erro) {
@@ -453,10 +481,20 @@ async function compartilhar() {
 function mostrarProximo() {
   const alvo = document.getElementById("conta-proximo");
   if (!alvo) return;
+  // Antes do inicio do arquivo, a conta na tela e' a de estreia: a contagem aponta para ela e nao
+  // para a meia-noite de hoje, senao a tela promete conta nova que ainda nao existe no arquivo.
+  const emEstreia = diferencaEmDias(estado.dados.inicio, dataLocalIso()) < 0;
+  let jaRecarregou = false;
   const atualizar = () => {
-    const minutos = minutosAteProximaVirada();
+    const minutos = emEstreia ? minutosAteInicio() : minutosAteProximaVirada();
+    if (minutos <= 0 && !jaRecarregou) {
+      jaRecarregou = true;
+      location.reload();
+      return;
+    }
     const horas = Math.floor(minutos / 60);
-    alvo.textContent = `Conta nova em ${horas}h ${String(minutos % 60).padStart(2, "0")}min, ` +
+    const etiqueta = emEstreia ? "Primeira conta em" : "Conta nova em";
+    alvo.textContent = `${etiqueta} ${horas}h ${String(minutos % 60).padStart(2, "0")}min, ` +
       "à meia-noite de Brasília.";
   };
   atualizar();
