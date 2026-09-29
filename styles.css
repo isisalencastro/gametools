@@ -1900,7 +1900,10 @@ body,
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 1rem;
+  /* rolagem propria e area segura: em tela pequena o cartao nao pode ser cortado pela borda */
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  padding: calc(1rem + env(safe-area-inset-top)) 1rem calc(1rem + env(safe-area-inset-bottom));
 }
 .no-festa[hidden] { display: none; }
 
@@ -1913,6 +1916,9 @@ body,
 /* o cartao: pequeno de proposito, so o suficiente para a comemoracao */
 .no-festa-cartao {
   position: relative;
+  /* margin auto centraliza sem cortar o topo quando o conteudo e maior que a tela */
+  margin: auto;
+  max-width: 100%;
   width: min(300px, 100%);
   padding: 1.1rem 1rem 0.9rem;
   text-align: center;
@@ -1933,7 +1939,7 @@ body,
 }
 .no-festa-boneca {
   display: block;
-  width: 84px;
+  width: 93px;
   height: 120px;
   image-rendering: pixelated;
 }
