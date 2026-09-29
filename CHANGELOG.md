@@ -24,8 +24,12 @@ O formato segue a ideia de *Keep a Changelog* e versionamento semântico como re
 
 ### Changed
 
-- `jogos.html` e `index.html` passam a listar os dois jogos diarios, com previsao visual do
-  teclado no cartao do jogo novo (sem imagem de capa ainda). `sitemap.xml` ganhou a URL nova.
+- Capa da Conta do dia desenhada e publicada: `assets/img/capa-conta-do-dia.png` (1200x675,
+  para o compartilhamento) e `assets/img/capa-conta-do-dia-800.png` (800x450, para o cartao do
+  catalogo e para o destaque da home). O desenho em CSS que fazia esse papel foi removido, e a
+  pagina do jogo deixou de apontar a imagem de compartilhamento para a capa generica do site.
+- `jogos.html` e `index.html` passam a listar os dois jogos diarios, cada um com imagem de capa.
+  `sitemap.xml` ganhou a URL nova.
 - `README.md` e o texto de SEO do catalogo passam a falar de dois jogos diarios.
 
 ### Removed
