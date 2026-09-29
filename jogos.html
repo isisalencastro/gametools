@@ -21,7 +21,10 @@
     <link rel="icon" type="image/png" sizes="192x192" href="assets/img/favicon-192.png" />
     <link rel="apple-touch-icon" sizes="180x180" href="assets/img/apple-touch-icon.png" />
     <link rel="manifest" href="site.webmanifest" />
-    <link rel="stylesheet" href="styles.css" />
+    <!-- O carimbo do styles.css sobe junto com qualquer mudanca no CSS: a Vercel serve CSS com
+         max-age de 4 horas (medido: public, max-age=14400, must-revalidate), entao sem carimbo novo
+         quem ja visitou o site continua vendo o cartao na versao antiga. -->
+    <link rel="stylesheet" href="styles.css?v=20260929e" />
   </head>
   <body>
     <a class="skip-link" href="#conteudo-principal">Pular para conteúdo</a>
