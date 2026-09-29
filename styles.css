@@ -448,6 +448,68 @@ nav a:hover {
   color: var(--color-ink-muted);
 }
 
+/* =============================================
+   CARTAO DE JOGO (home, em "Destaques de jogos", e pagina de catalogo)
+   Cada jogo e UM elemento so: o cartao inteiro e o link, com a capa no topo e o corpo
+   (titulo, resumo, botao) embaixo. Antes a capa era irma solta dentro do grid, o que
+   partia cada jogo em duas caixas de alturas diferentes e deixava a imagem no ar quando
+   o filtro do catalogo escondia o cartao.
+   ============================================= */
+
+.card-jogo {
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  overflow: hidden;
+  color: inherit;
+  text-decoration: none;
+}
+
+.card-jogo .card-capa {
+  margin: 0;
+  border-radius: 0;
+}
+
+.card-jogo-corpo {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  gap: 10px;
+  padding: 18px;
+}
+
+.card-jogo-corpo h2,
+.card-jogo-corpo h3,
+.card-jogo-corpo p {
+  margin: 0;
+}
+
+/* O botao desce para o rodape do cartao, para dois cartoes lado a lado ficarem alinhados. */
+.card-jogo-corpo .card-actions {
+  margin-top: auto;
+  padding-top: 6px;
+}
+
+/* Botao do cartao ocupa a largura do cartao e tem no minimo 44 px de altura, que e o alvo
+   confortavel para o dedo num cartao que ja e inteiro clicavel. */
+.card-jogo-corpo .btn {
+  justify-content: center;
+  width: 100%;
+  min-height: 44px;
+}
+
+/* Foco visivel de verdade: o cartao inteiro e um alvo unico de teclado (WCAG 2.4.7 e 2.4.11). */
+.card-jogo:focus-visible {
+  outline: 3px solid var(--color-brand);
+  outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .card-jogo:hover {
+    transform: none;
+  }
+}
+
 .kpi-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));

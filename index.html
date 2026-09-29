@@ -58,21 +58,28 @@
 
       <section class="section">
         <h2>Destaques de jogos</h2>
-          <div class="grid three-columns">
+        <!-- Cada jogo e UM elemento so: a capa, o titulo, o resumo e o botao vivem dentro do
+             mesmo cartao, e o cartao inteiro e o link. Antes a capa era um irmao solto no grid,
+             o que partia cada jogo em duas caixas de alturas diferentes. -->
+        <div class="grid two-columns">
+          <a class="card card-jogo" href="./jogos/conta-do-dia.html">
             <img class="card-capa" src="./assets/img/capa-conta-do-dia-800.png" width="800" height="450" alt="" loading="lazy" decoding="async" />
-            <article class="card">
+            <div class="card-jogo-corpo">
               <h3>A Conta do dia</h3>
               <p>Um número novo a cada dia. Chegue nele com uma conta sua, dentro do limite de caracteres, em até seis tentativas.</p>
-              <a class="btn btn-accent" href="./jogos/conta-do-dia.html">Jogar a de hoje</a>
-            </article>
+              <span class="btn btn-accent">Jogar a de hoje</span>
+            </div>
+          </a>
 
+          <a class="card card-jogo" href="./jogos/no-do-dia.html">
             <img class="card-capa" src="./assets/img/capa-no-do-dia-800.png" width="800" height="450" alt="" loading="lazy" decoding="async" />
-          <article class="card">
+            <div class="card-jogo-corpo">
               <h3>O Nó do dia</h3>
               <p>Oito peças, uma por linha, uma por coluna e uma por região, sem nenhuma encostar na outra. Um tabuleiro novo a cada dia.</p>
-              <a class="btn btn-accent" href="./jogos/no-do-dia.html">Jogar o de hoje</a>
-            </article>
-          </div>
+              <span class="btn btn-accent">Jogar o de hoje</span>
+            </div>
+          </a>
+        </div>
       </section>
 
       <p class="context-links">
