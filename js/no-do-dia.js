@@ -346,10 +346,38 @@ function verificarVitoria() {
 
   registrarEvento("partida_concluida", { segundos });
   mostrarResumo(segundos);
+  celebrar();
   document.getElementById("no-compartilhar").hidden = false;
   // repinta depois de marcar a vitoria: a mensagem da tela tem de refletir o
   // estado final, e nao o texto de quando o tabuleiro ainda estava sendo montado
   pintar();
+}
+
+/** Comemoracao de vitoria: boneca, check e onda nas pecas.
+ *
+ * Fica toda em CSS: aqui so se liga a classe e se marca o atraso de cada peca, para a onda
+ * seguir a ordem de leitura. Quem pediu menos movimento no sistema nao ve animacao nenhuma,
+ * porque o proprio CSS desliga (regra da casa).
+ */
+function celebrar() {
+  const tabuleiro = document.getElementById("no-tabuleiro");
+  const pecas = tabuleiro ? tabuleiro.querySelectorAll(".no-casa-cheia") : [];
+  pecas.forEach((casa, i) => {
+    casa.style.setProperty("--atraso", `${i * 90}ms`);
+    casa.classList.add("no-onda");
+  });
+
+  const festa = document.getElementById("no-festa");
+  if (festa) {
+    festa.hidden = false;
+    festa.classList.add("no-festa-ativa");
+  }
+
+  const mensagem = document.getElementById("no-mensagem");
+  if (mensagem) mensagem.classList.add("no-mensagem-vitoria");
+
+  const resumo = document.getElementById("no-resumo");
+  if (resumo) resumo.classList.add("no-resumo-entrando");
 }
 
 function mostrarResumo(segundos) {
@@ -358,7 +386,7 @@ function mostrarResumo(segundos) {
   document.getElementById("no-sequencia").textContent = `Sequência: ${guardado.sequencia || 0}`;
   document.getElementById("no-jogados").textContent = `Jogados: ${guardado.jogados || 0}`;
   document.getElementById("no-vitorias").textContent = `Venceu: ${guardado.vitorias || 0}`;
-  const legenda = segundos ? `Você desatou o nó em ${segundos} segundo(s).` : "";
+  const legenda = segundos ? `Você desatou o nó em ${segundos} ${segundos === 1 ? "segundo" : "segundos"}.` : "";
   document.getElementById("no-legenda").textContent = memoriaDisponivel()
     ? legenda
     : `${legenda} Este navegador não deixa o jogo guardar a sequência; para a sequência valer, abra no navegador do celular.`;
@@ -407,7 +435,7 @@ function montarCompartilhamento() {
   const sequencia = guardado.sequencia || 1;
   return [
     `O Nó do dia #${estado.dia.n}`,
-    `${sequencia} dia(s) de sequência`,
+    `${sequencia} ${sequencia === 1 ? "dia" : "dias"} de sequência`,
     "",
     ...linhas,
     "",

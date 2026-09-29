@@ -1885,3 +1885,104 @@ body,
   margin: 0 0 1rem;
   border-radius: 8px;
 }
+
+
+/* ===========================================================
+   Comemoracao de vitoria do No do dia.
+   Regras: nada de emoji (o check e SVG), azul da marca no check, e TUDO desligado
+   quando o sistema pede menos movimento (prefers-reduced-motion), porque animacao
+   que nao pode ser desligada atrapalha quem tem sensibilidade a movimento.
+   =========================================================== */
+.no-festa {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 1rem;
+  margin: 0.35rem 0 0.5rem;
+}
+.no-festa[hidden] { display: none; }
+
+/* palco claro atras da boneca: a blusa dela e branca e sumiria no fundo branco */
+.no-festa-palco {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.7rem 1rem;
+  border-radius: 999px;
+  background: var(--color-surface-subtle, #f2f6fc);
+}
+.no-festa-boneca {
+  display: block;
+  width: auto;
+  height: auto;
+  image-rendering: pixelated;
+}
+.no-festa-check { width: 56px; height: 56px; flex: 0 0 auto; }
+.no-festa-circulo {
+  fill: none;
+  fill: var(--color-brand, #185cb6);
+  stroke: none;
+}
+.no-festa-traco {
+  fill: none;
+  stroke: #ffffff;
+  stroke-width: 6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* a boneca entra subindo, o circulo aparece e o traco do check se desenha */
+.no-festa-ativa .no-festa-boneca { animation: no-boneca-entra 420ms ease-out both; }
+.no-festa-ativa .no-festa-circulo {
+  stroke-dasharray: 158;
+  stroke-dashoffset: 158;
+  animation: no-traco-desenha 380ms ease-out 260ms forwards;
+}
+.no-festa-ativa .no-festa-traco {
+  stroke-dasharray: 40;
+  stroke-dashoffset: 40;
+  animation: no-traco-desenha 300ms ease-out 560ms forwards;
+}
+
+@keyframes no-boneca-entra {
+  from { opacity: 0; transform: translateY(10px) scale(0.96); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+@keyframes no-traco-desenha {
+  to { stroke-dashoffset: 0; }
+}
+
+/* as oito pecas pulsam em onda, na ordem de leitura: e o "desatei o no" */
+.no-casa-cheia.no-onda { animation: no-peca-onda 420ms ease-out var(--atraso, 0ms) both; }
+@keyframes no-peca-onda {
+  0%   { transform: scale(1); }
+  45%  { transform: scale(0.86); }
+  100% { transform: scale(1); }
+}
+.no-casa-cheia.no-onda::after { animation: no-peca-brilho 420ms ease-out var(--atraso, 0ms) both; }
+@keyframes no-peca-brilho {
+  0%   { box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.85); }
+  45%  { box-shadow: 0 0 0 8px rgba(24, 92, 182, 0.28); }
+  100% { box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.85); }
+}
+
+/* a mensagem e o resumo entram com um leve deslocamento */
+.no-mensagem-vitoria { animation: no-texto-sobe 380ms ease-out both; }
+.no-resumo-entrando { animation: no-texto-sobe 380ms ease-out 120ms both; }
+@keyframes no-texto-sobe {
+  from { opacity: 0; transform: translateY(6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* quem pediu menos movimento recebe o estado final, sem animacao nenhuma */
+@media (prefers-reduced-motion: reduce) {
+  .no-festa-ativa .no-festa-boneca,
+  .no-festa-ativa .no-festa-circulo,
+  .no-festa-ativa .no-festa-traco,
+  .no-casa-cheia.no-onda,
+  .no-casa-cheia.no-onda::after,
+  .no-mensagem-vitoria,
+  .no-resumo-entrando { animation: none; }
+  .no-festa-ativa .no-festa-circulo,
+  .no-festa-ativa .no-festa-traco { stroke-dashoffset: 0; }
+}
