@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>A Conta do dia: quebra-cabeça diário de contas | Jogos IBA</title>
+    <meta name="description" content="Um alvo novo a cada dia. Escreva qualquer conta que chegue no número do dia, dentro do limite de caracteres, em até seis tentativas." />
+    <meta name="robots" content="index,follow" />
+    <link rel="canonical" href="https://jogos.ibaestudio.com/jogos/conta-do-dia.html" />
+    <meta property="og:title" content="A Conta do dia: quebra-cabeça diário de contas | Jogos IBA" />
+    <meta property="og:description" content="Um alvo novo a cada dia. Chegue no número do dia com uma conta sua, em até seis tentativas." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://jogos.ibaestudio.com/jogos/conta-do-dia.html" />
+    <meta property="og:image" content="https://jogos.ibaestudio.com/assets/social-card.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="A Conta do dia: quebra-cabeça diário de contas | Jogos IBA" />
+    <meta name="twitter:description" content="Um alvo novo a cada dia. Chegue no número do dia com uma conta sua, em até seis tentativas." />
+    <meta name="twitter:image" content="https://jogos.ibaestudio.com/assets/social-card.png" />
+    <link rel="icon" href="../favicon.ico" sizes="any" />
+    <link rel="icon" type="image/png" sizes="32x32" href="../assets/img/favicon-32.png" />
+    <link rel="icon" type="image/png" sizes="192x192" href="../assets/img/favicon-192.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="../assets/img/apple-touch-icon.png" />
+    <link rel="manifest" href="../site.webmanifest" />
+    <link rel="stylesheet" href="../styles.css?v=20260930" />
+  </head>
+  <body>
+    <a class="skip-link" href="#conteudo-principal">Pular para conteúdo</a>
+    <header class="header">
+      <div class="container nav">
+        <a class="brand" href="../">Jogos IBA</a>
+        <button class="menu-toggle" type="button" aria-label="Abrir menu de navegação" aria-expanded="false">
+          <span class="menu-toggle-bar"></span>
+          <span class="menu-toggle-bar"></span>
+          <span class="menu-toggle-bar"></span>
+        </button>
+        <nav>
+          <a href="../">Home</a>
+          <a href="../jogos.html">Jogos</a>
+        </nav>
+        <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Alternar tema claro e escuro">Modo escuro</button>
+      </div>
+    </header>
+
+    <main id="conteudo-principal" class="container page-main">
+      <section class="section-intro">
+        <h1>A Conta do dia</h1>
+        <p>
+          Um alvo novo a cada dia, igual para todo mundo. Escreva uma conta que chegue nesse
+          número usando o número de caracteres avisado, em até seis tentativas. Vale mais de um
+          caminho: qualquer conta que feche a conta vale.
+        </p>
+      </section>
+
+      <section class="section">
+        <article class="card game-card conta-card">
+          <div class="conta-cabecalho">
+            <p class="conta-dia" id="conta-dia">Carregando a conta de hoje...</p>
+            <p class="conta-proximo" id="conta-proximo"></p>
+          </div>
+
+          <div class="conta-alvo-caixa">
+            <p class="conta-alvo-rotulo">Chegue em</p>
+            <p class="conta-alvo" id="conta-alvo">...</p>
+            <p class="conta-teto-rotulo">usando no máximo <span id="conta-teto">carregando</span></p>
+          </div>
+
+          <p class="conta-regras" id="conta-regras">Carregando a regra de hoje...</p>
+
+          <div class="conta-display">
+            <label class="conta-rotulo" for="conta-entrada">Sua conta</label>
+            <input id="conta-entrada" class="conta-entrada" type="text" inputmode="none"
+                   autocomplete="off" autocapitalize="off" spellcheck="false"
+                   aria-describedby="conta-regras" placeholder="toque nas teclas" />
+            <span class="conta-contador" id="conta-contador">0 de 0</span>
+          </div>
+
+          <div class="conta-teclado" role="group" aria-label="Teclado da conta">
+            <button class="conta-tecla" type="button" data-conta-tecla="1">1</button>
+            <button class="conta-tecla" type="button" data-conta-tecla="2">2</button>
+            <button class="conta-tecla" type="button" data-conta-tecla="3">3</button>
+            <button class="conta-tecla conta-tecla-sinal" type="button" data-conta-tecla="+">+</button>
+            <button class="conta-tecla" type="button" data-conta-tecla="4">4</button>
+            <button class="conta-tecla" type="button" data-conta-tecla="5">5</button>
+            <button class="conta-tecla" type="button" data-conta-tecla="6">6</button>
+            <button class="conta-tecla conta-tecla-sinal" type="button" data-conta-tecla="-">-</button>
+            <button class="conta-tecla" type="button" data-conta-tecla="7">7</button>
+            <button class="conta-tecla" type="button" data-conta-tecla="8">8</button>
+            <button class="conta-tecla" type="button" data-conta-tecla="9">9</button>
+            <button class="conta-tecla conta-tecla-sinal" type="button" data-conta-tecla="*">×</button>
+            <button class="conta-tecla" type="button" data-conta-tecla="0">0</button>
+            <button class="conta-tecla conta-tecla-sinal" type="button" data-conta-tecla="/">÷</button>
+            <button class="conta-tecla conta-tecla-apagar" type="button" data-conta-tecla="apagar">Apagar</button>
+            <button class="conta-tecla conta-tecla-enviar" type="button" id="conta-enviar" data-conta-tecla="enviar">Enviar</button>
+          </div>
+
+          <p id="conta-mensagem" class="conta-mensagem" role="status" aria-live="polite"></p>
+
+          <ol id="conta-tentativas" class="conta-tentativas" aria-label="Tentativas de hoje" hidden></ol>
+
+          <div class="field-row">
+            <button id="conta-limpar" class="btn btn-secondary" type="button">Limpar tentativas</button>
+            <button id="conta-resposta" class="btn btn-secondary" type="button">Ver uma resposta</button>
+            <button id="conta-compartilhar" class="btn btn-accent" type="button" hidden>Compartilhar resultado</button>
+
+            <label class="conta-caixa-rotulo" for="conta-resultado-caixa">Seu resultado</label>
+            <textarea id="conta-resultado-caixa" class="conta-caixa-texto" rows="9" readonly hidden></textarea>
+          </div>
+
+          <div id="conta-resumo" class="conta-resumo" hidden>
+            <div class="game-score-row">
+              <span class="game-score-pill" id="conta-sequencia">Sequência: 0</span>
+              <span class="game-score-pill" id="conta-jogados">Jogadas: 0</span>
+              <span class="game-score-pill" id="conta-vitorias">Venceu: 0</span>
+            </div>
+            <p class="conta-legenda" id="conta-legenda"></p>
+          </div>
+
+          <p class="context-links">
+            Veja também: <a href="../jogos.html">Catálogo de Jogos</a> ·
+            <a href="./no-do-dia.html">O Nó do dia</a> ·
+            <a href="../">Página inicial</a>
+          </p>
+        </article>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="container footer-content">
+        <p>
+          Explore: <a href="../">Home</a> · <a href="../jogos.html">Jogos</a>
+        </p>
+        <div class="footer-brand">
+          <img class="footer-logo" src="../assets/img/logo-iba-horizontal.png" alt="IBA Estúdio" height="18" />
+          <img class="footer-logo footer-logo-invert" src="../assets/img/logo-iba-horizontal-branco.png" alt="" height="18" />
+        </div>
+      </div>
+    </footer>
+    <script type="module" src="../js/main.js"></script>
+    <script type="module" src="../js/conta-do-dia.js?v=20260930"></script>
+    <noscript>
+    <p style="max-width:40rem;margin:1rem auto;padding:1rem;border:1px solid #D0D5DD;border-radius:8px">
+      Este jogo precisa de JavaScript ligado para carregar a conta do dia. Ligue o JavaScript neste
+      navegador, ou abra o endereço em outro navegador, e recarregue a página.
+    </p>
+    </noscript>
+
+<!--
+  A comemoracao usa o mesmo componente do No do dia (classes .no-festa). O nome vem do primeiro
+  jogo que usou, e reaproveitar e melhor do que copiar sessenta linhas de CSS para o segundo,
+  porque copia de componente diverge na primeira correcao.
+-->
+<div id="conta-festa" class="no-festa" hidden role="status" aria-live="polite">
+  <div class="no-festa-fundo" data-fechar="1"></div>
+  <div class="no-festa-cartao" role="document">
+    <div class="no-festa-arte">
+      <img class="no-festa-boneca" src="../assets/img/boneca-comemorando.png"
+           alt="" width="93" height="120" decoding="async" />
+      <svg class="no-festa-check" viewBox="0 0 56 56" role="img" aria-label="Desafio concluído">
+        <circle class="no-festa-circulo" cx="28" cy="28" r="25" />
+        <path class="no-festa-traco" d="M16 29 L24 37 L40 19" />
+      </svg>
+    </div>
+    <p class="no-festa-titulo">A conta de hoje está fechada.</p>
+    <p class="no-festa-tempo" id="conta-festa-tempo"></p>
+    <button type="button" class="no-festa-fechar" id="conta-festa-fechar">Fechar</button>
+  </div>
+</div>
+  </body>
+</html>

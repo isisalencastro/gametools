@@ -5,8 +5,8 @@ deploy estático.
 
 ## Visão do produto
 
-O **Jogos IBA** é um catálogo de jogos curtos, para sessões de 1 a 5 minutos: teste de reação, memória,
-pedra-papel-tesoura, quiz, clique rápido e desafio de depuração.
+O **Jogos IBA** é um catálogo de jogos curtos, para sessões de 1 a 5 minutos, com dois jogos diários
+publicados: O Nó do dia e A Conta do dia.
 
 O produto é somente jogos. O histórico do que saiu do escopo fica no `CHANGELOG.md`.
 
@@ -48,11 +48,19 @@ A arquitetura atual segue o padrão **multi-page app (MPA) estática**:
 
 ## Funcionalidades disponíveis
 
-### Jogos (6 páginas publicadas)
+### Jogos publicados
 
-| Jogo | Página | Módulo JS |
-| --- | --- | --- |
-| O Nó do dia | `jogos/no-do-dia.html` | `js/no-do-dia.js` |
+| Jogo | Página | Módulo JS | Dados |
+| --- | --- | --- | --- |
+| O Nó do dia | `jogos/no-do-dia.html` | `js/no-do-dia.js` | `assets/data/no-do-dia.json` |
+| A Conta do dia | `jogos/conta-do-dia.html` | `js/conta-do-dia.js` | `assets/data/conta-do-dia.json` |
+
+Os dois são diários e seguem as mesmas regras de casa: o dia é o dia do Brasil (`America/Sao_Paulo`),
+o jogo valida **regra** e não gabarito guardado (qualquer solução válida vence), a chave de
+armazenamento é própria de cada jogo (`iba:no-do-dia:v1` e `iba:conta-do-dia:v1`) e a sequência zera
+quando a pessoa pede a resposta.
+
+A regra da conta, que precisa ser a mesma no gerador e no navegador, mora em `js/common/conta-regra.js`.
 
 ### Módulos JS sem página HTML (pendente de publicação)
 
@@ -139,12 +147,16 @@ Este projeto adota **links relativos** como estratégia única de navegação in
 ├── CONTRIBUTING.md             # Guia de contribuição
 ├── CHANGELOG.md                # Histórico de versões
 ├── jogos/
-│   └── no-do-dia.html
+│   ├── no-do-dia.html
+│   └── conta-do-dia.html
 ├── js/
 │   ├── main.js                 # Bootstrap: importa e inicializa todos os módulos
+│   ├── no-do-dia.js            # O Nó do dia
+│   ├── conta-do-dia.js         # A Conta do dia
 │   ├── common/
 │   │   ├── catalog.js          # Filtros e busca do catálogo
 │   │   ├── confetti.js         # Confete dos jogos (carrega canvas-confetti sob demanda)
+│   │   ├── conta-regra.js      # Regra da conta, compartilhada com o gerador em Python
 │   │   ├── mobile-menu.js      # Menu hambúrguer no mobile
 │   │   ├── theme.js            # Alternância de tema claro/escuro
 │   │   └── utils.js            # Helpers compartilhados (parsing, formatação, a11y)
@@ -246,6 +258,25 @@ npm run lint:js    # ESLint para arquivos em js/**/*.js
 npm run lint:css   # Validação estrutural do styles.css (chaves balanceadas e bloco :root)
 npm run lint:html  # Validação estrutural do index.html (DOCTYPE, html, head, body)
 ```
+
+### A Conta do dia: gerador e conferência
+
+O arquivo do ano (`assets/data/conta-do-dia.json`) é gerado por força bruta, e a mesma regra existe
+em Python (no gerador) e em JavaScript (no navegador). As duas são conferidas por execução:
+
+```bash
+# gera o arquivo do ano (400 dias), medindo a dificuldade de cada faixa antes
+python3 scripts/gerar_conta_do_dia.py gerar 400 2026-10-01
+
+# escreve o corpus com o valor que o Python calculou para cada conta
+python3 scripts/gerar_conta_do_dia.py corpus scripts/corpus-conta.json
+
+# confere o corpus contra a regra do navegador e relê o arquivo do ano em outra linguagem
+node scripts/conferir_conta_do_dia.mjs
+```
+
+O teto de caracteres de cada dia é o **menor** tamanho de conta que chega naquele alvo, então
+"no máximo N caracteres" tem exatamente o mesmo conjunto de respostas que "exatamente N".
 
 ### Detalhes dos scripts de lint
 

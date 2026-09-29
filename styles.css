@@ -2036,3 +2036,240 @@ body,
   .no-festa-ativa .no-festa-circulo,
   .no-festa-ativa .no-festa-traco { stroke-dashoffset: 0; }
 }
+
+/* =============================================
+   A CONTA DO DIA (segundo jogo diario)
+   ============================================= */
+
+.conta-card { display: flex; flex-direction: column; gap: 14px; }
+.conta-card .field-row { flex-wrap: wrap; }
+
+.conta-cabecalho {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.conta-dia { margin: 0; font-weight: 600; }
+.conta-proximo { margin: 0; font-size: 0.85rem; color: var(--color-ink-muted); }
+
+.conta-alvo-caixa {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  padding: 16px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background: var(--color-brand-soft);
+}
+
+.conta-alvo-rotulo {
+  margin: 0;
+  font-size: 0.8rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-ink-muted);
+}
+
+.conta-alvo {
+  margin: 0;
+  font-family: 'Archivo', 'Inter', system-ui, sans-serif;
+  font-size: clamp(2.4rem, 10vw, 3.4rem);
+  font-weight: 700;
+  line-height: 1.05;
+  color: var(--color-brand-dark);
+  font-variant-numeric: tabular-nums;
+}
+
+.conta-teto-rotulo { margin: 0; font-size: 0.95rem; color: var(--color-ink-muted); }
+#conta-teto { font-weight: 600; color: var(--color-ink); }
+
+.conta-regras { margin: 0; font-size: 0.9rem; color: var(--color-ink-muted); }
+
+.conta-display { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; }
+.conta-rotulo { font-weight: 600; font-size: 0.9rem; }
+
+.conta-entrada {
+  flex: 1 1 9rem;
+  min-width: 9rem;
+  padding: 10px 12px;
+  font-family: ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, monospace;
+  font-size: 1.35rem;
+  letter-spacing: 0.08em;
+  text-align: center;
+  color: var(--color-ink);
+  background: var(--color-surface-page);
+  border: 1px solid var(--color-border-strong);
+  border-radius: var(--radius-md);
+  /* o mesmo cuidado do tabuleiro do No: sem isto o celular segura o primeiro toque */
+  touch-action: manipulation;
+}
+
+.conta-entrada:focus-visible { outline: 3px solid var(--color-brand); outline-offset: 2px; }
+
+.conta-contador { font-size: 0.85rem; font-weight: 600; color: var(--color-ink-muted); }
+.conta-contador-cheio { color: var(--color-brand-dark); }
+
+/* Teclado proprio: alvo de 48px de altura, acima do minimo de 24px do WCAG 2.2 e do 44px do AAA */
+.conta-teclado {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(3.5rem, 1fr));
+  gap: 8px;
+  max-width: 32rem;
+}
+
+.conta-tecla {
+  min-height: 48px;
+  padding: 6px 4px;
+  font-family: inherit;
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: var(--color-ink);
+  background: var(--color-surface-page);
+  border: 1px solid var(--color-border-strong);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.conta-tecla:hover { background: var(--color-surface-alt); }
+.conta-tecla:active { transform: translateY(1px); }
+.conta-tecla:focus-visible { outline: 3px solid var(--color-brand); outline-offset: 2px; }
+
+.conta-tecla-sinal {
+  font-size: 1.35rem;
+  color: var(--color-brand-dark);
+  background: var(--color-brand-soft-alt);
+  border-color: var(--color-brand);
+}
+
+.conta-tecla-apagar,
+.conta-tecla-enviar { font-size: 0.95rem; }
+
+.conta-tecla-enviar {
+  color: var(--color-on-brand);
+  background: var(--color-brand);
+  border-color: var(--color-brand);
+}
+
+.conta-tecla-enviar:hover { background: var(--color-brand-dark); }
+.conta-tecla-enviar:disabled { opacity: 0.55; cursor: not-allowed; }
+
+.conta-mensagem { margin: 0; min-height: 2.6em; color: var(--color-ink-muted); }
+
+.conta-tentativas {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* Cada tentativa diz em texto o que aconteceu, com o simbolo junto: nada aqui depende so de cor. */
+.conta-tentativa {
+  padding: 8px 10px;
+  font-family: ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, monospace;
+  font-size: 0.95rem;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  background: var(--color-surface);
+  color: var(--color-ink);
+}
+
+.conta-tentativa-certa {
+  border-color: var(--color-success-border);
+  background: var(--color-success-soft);
+  color: var(--color-success-ink);
+}
+
+.conta-tentativa-errada {
+  border-color: var(--color-danger-bar);
+  background: var(--color-danger-soft);
+  color: var(--color-danger-ink);
+}
+
+.conta-resumo { display: flex; flex-direction: column; gap: 6px; }
+.conta-legenda { margin: 0; font-size: 0.9rem; color: var(--color-ink-muted); }
+
+.conta-caixa-rotulo { display: block; width: 100%; font-size: 0.85rem; color: var(--color-ink-muted); }
+
+.conta-caixa-texto {
+  width: 100%;
+  margin-top: 0.35rem;
+  padding: 0.6rem;
+  font-family: inherit;
+  font-size: 0.9rem;
+  line-height: 1.35;
+  color: var(--color-ink);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  resize: vertical;
+}
+
+@media (max-width: 480px) {
+  .conta-teclado { grid-template-columns: repeat(4, minmax(3rem, 1fr)); }
+}
+
+/* Previsao do cartao do catalogo: desenhada em CSS, no lugar de uma capa que ainda nao existe.
+   Sem numero nenhum na tela, de proposito: numero do dia no catalogo estragaria o dia de quem
+   ainda nao jogou. */
+.conta-previa {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  aspect-ratio: 16 / 9;
+  padding: 1rem;
+  border: 1px solid var(--color-border);
+  background: var(--color-brand-soft);
+}
+
+.conta-previa-rotulo {
+  margin: 0;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--color-brand-dark);
+}
+
+.conta-previa-tela {
+  margin: 0;
+  width: 3.4rem;
+  height: 3.4rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Archivo', 'Inter', system-ui, sans-serif;
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--color-brand-dark);
+  background: var(--color-surface-page);
+  border: 1px solid var(--color-border-strong);
+  border-radius: var(--radius-md);
+}
+
+.conta-previa-teclas {
+  display: grid;
+  grid-template-columns: repeat(4, 1.5rem);
+  gap: 4px;
+}
+
+.conta-previa-teclas span {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 1.5rem;
+  font-family: ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, monospace;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--color-ink-muted);
+  background: var(--color-surface-page);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+}

@@ -8,6 +8,26 @@ O formato segue a ideia de *Keep a Changelog* e versionamento semântico como re
 
 ## [Unreleased]
 
+### Added
+
+- **A Conta do dia**, o segundo jogo diario do catalogo: pagina `jogos/conta-do-dia.html`, modulo
+  `js/conta-do-dia.js`, regra compartilhada em `js/common/conta-regra.js`, dados em
+  `assets/data/conta-do-dia.json` (400 dias, de 01/10/2026 a 04/11/2027, 35 KB).
+  O jogo publica alvo e teto de caracteres por dia, valida qualquer conta que chegue no alvo e
+  aceita mais de uma resposta, como o No do dia.
+- `scripts/gerar_conta_do_dia.py`: gerador com medicao de dificuldade por forca bruta. O teto de
+  cada dia e o MENOR tamanho de conta que chega naquele alvo, entao "no maximo N caracteres" tem
+  o mesmo conjunto de respostas que "exatamente N".
+- `scripts/conferir_conta_do_dia.mjs` e `scripts/corpus-conta.json`: teste de paridade entre a
+  regra do Python e a do navegador (12.852 contas conferidas) mais a releitura do arquivo do ano
+  em outra linguagem, incluindo a checagem de que nenhum alvo tem resposta mais curta que o teto.
+
+### Changed
+
+- `jogos.html` e `index.html` passam a listar os dois jogos diarios, com previsao visual do
+  teclado no cartao do jogo novo (sem imagem de capa ainda). `sitemap.xml` ganhou a URL nova.
+- `README.md` e o texto de SEO do catalogo passam a falar de dois jogos diarios.
+
 ### Removed
 
 - Ferramentas utilitárias removidas do produto: `ferramentas.html`, a pasta `ferramentas/` (7 páginas) e a pasta
