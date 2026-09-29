@@ -1888,41 +1888,57 @@ body,
 
 
 /* ===========================================================
-   Comemoracao de vitoria do No do dia.
-   Regras: nada de emoji (o check e SVG), azul da marca no check, e TUDO desligado
-   quando o sistema pede menos movimento (prefers-reduced-motion), porque animacao
-   que nao pode ser desligada atrapalha quem tem sensibilidade a movimento.
+   Comemoracao de vitoria do No do dia: pop-up pequeno, por cima da pagina.
+   Regras: nada de emoji (o check e SVG), azul da marca, e TUDO desligado quando o sistema
+   pede menos movimento (prefers-reduced-motion). Animacao que nao pode ser desligada
+   atrapalha quem tem sensibilidade a movimento.
    =========================================================== */
 .no-festa {
+  position: fixed;
+  inset: 0;
+  z-index: 60;
   display: flex;
   align-items: center;
-  justify-content: flex-start;
-  gap: 1rem;
-  margin: 0.35rem 0 0.5rem;
+  justify-content: center;
+  padding: 1rem;
 }
 .no-festa[hidden] { display: none; }
 
-/* palco claro atras da boneca: a blusa dela e branca e sumiria no fundo branco */
-.no-festa-palco {
-  display: inline-flex;
+.no-festa-fundo {
+  position: absolute;
+  inset: 0;
+  background: rgba(16, 24, 40, 0.32);
+}
+
+/* o cartao: pequeno de proposito, so o suficiente para a comemoracao */
+.no-festa-cartao {
+  position: relative;
+  width: min(300px, 100%);
+  padding: 1.1rem 1rem 0.9rem;
+  text-align: center;
+  background: #ffffff;
+  border: 1px solid var(--color-border);
+  border-radius: 12px;
+  box-shadow: 0 12px 32px rgba(16, 24, 40, 0.18);
+}
+.no-festa-arte {
+  display: flex;
   align-items: center;
   justify-content: center;
-  padding: 0.7rem 1rem;
-  border-radius: 999px;
+  gap: 0.7rem;
+  margin-bottom: 0.8rem;
+  padding: 0.5rem 0.7rem;
+  border-radius: 10px;
   background: var(--color-surface-subtle, #f2f6fc);
 }
 .no-festa-boneca {
   display: block;
-  width: 230px;
-  height: 324px;
+  width: 115px;
+  height: 162px;
   image-rendering: pixelated;
 }
-.no-festa-check { width: 72px; height: 72px; flex: 0 0 auto; }
-.no-festa-circulo {
-  fill: none;
-  fill: var(--color-brand, #185cb6);
-  stroke: none;
-}
+.no-festa-check { width: 48px; height: 48px; flex: 0 0 auto; }
+.no-festa-circulo { fill: var(--color-brand, #185cb6); stroke: none; }
 .no-festa-traco {
   fill: none;
   stroke: #ffffff;
@@ -1930,22 +1946,53 @@ body,
   stroke-linecap: round;
   stroke-linejoin: round;
 }
+.no-festa-titulo {
+  margin: 0;
+  font-family: var(--fonte-titulo, inherit);
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--color-ink);
+}
+.no-festa-tempo {
+  margin: 0.25rem 0 0;
+  font-size: 0.875rem;
+  color: var(--color-ink-muted);
+}
+.no-festa-tempo:empty { display: none; }
+.no-festa-fechar {
+  margin-top: 0.8rem;
+  padding: 0.4rem 0.9rem;
+  font: inherit;
+  font-size: 0.875rem;
+  color: var(--color-ink);
+  background: #ffffff;
+  border: 1px solid #c9d3e0;
+  border-radius: 8px;
+  cursor: pointer;
+  touch-action: manipulation;
+}
+.no-festa-fechar:hover { background: var(--color-surface-subtle, #f2f6fc); border-color: var(--color-brand, #185cb6); }
 
-/* a boneca entra subindo, o circulo aparece e o traco do check se desenha */
-.no-festa-ativa .no-festa-boneca { animation: no-boneca-entra 420ms ease-out both; }
+/* a entrada: o cartao sobe de leve, a boneca aparece e o check se desenha */
+.no-festa-ativa .no-festa-cartao { animation: no-cartao-entra 260ms ease-out both; }
+.no-festa-ativa .no-festa-boneca { animation: no-boneca-entra 320ms ease-out both; }
 .no-festa-ativa .no-festa-circulo {
   stroke-dasharray: 158;
   stroke-dashoffset: 158;
-  animation: no-traco-desenha 380ms ease-out 260ms forwards;
+  animation: no-traco-desenha 340ms ease-out 200ms forwards;
 }
 .no-festa-ativa .no-festa-traco {
   stroke-dasharray: 40;
   stroke-dashoffset: 40;
-  animation: no-traco-desenha 300ms ease-out 560ms forwards;
+  animation: no-traco-desenha 300ms ease-out 480ms forwards;
 }
 
+@keyframes no-cartao-entra {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
 @keyframes no-boneca-entra {
-  from { opacity: 0; transform: translateY(10px) scale(0.96); }
+  from { opacity: 0; transform: translateY(6px) scale(0.96); }
   to   { opacity: 1; transform: translateY(0) scale(1); }
 }
 @keyframes no-traco-desenha {
@@ -1966,23 +2013,20 @@ body,
   100% { box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.85); }
 }
 
-/* a mensagem e o resumo entram com um leve deslocamento */
 .no-mensagem-vitoria { animation: no-texto-sobe 380ms ease-out both; }
-.no-resumo-entrando { animation: no-texto-sobe 380ms ease-out 120ms both; }
 @keyframes no-texto-sobe {
   from { opacity: 0; transform: translateY(6px); }
   to   { opacity: 1; transform: translateY(0); }
 }
 
-/* quem pediu menos movimento recebe o estado final, sem animacao nenhuma */
 @media (prefers-reduced-motion: reduce) {
+  .no-festa-ativa .no-festa-cartao,
   .no-festa-ativa .no-festa-boneca,
   .no-festa-ativa .no-festa-circulo,
   .no-festa-ativa .no-festa-traco,
   .no-casa-cheia.no-onda,
   .no-casa-cheia.no-onda::after,
-  .no-mensagem-vitoria,
-  .no-resumo-entrando { animation: none; }
+  .no-mensagem-vitoria { animation: none; }
   .no-festa-ativa .no-festa-circulo,
   .no-festa-ativa .no-festa-traco { stroke-dashoffset: 0; }
 }

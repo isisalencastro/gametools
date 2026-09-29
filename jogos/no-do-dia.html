@@ -21,7 +21,7 @@
     <link rel="icon" type="image/png" sizes="192x192" href="../assets/img/favicon-192.png" />
     <link rel="apple-touch-icon" sizes="180x180" href="../assets/img/apple-touch-icon.png" />
     <link rel="manifest" href="../site.webmanifest" />
-    <link rel="stylesheet" href="../styles.css?v=20260929a" />
+    <link rel="stylesheet" href="../styles.css?v=20260929b" />
   </head>
   <body>
     <a class="skip-link" href="#conteudo-principal">Pular para conteúdo</a>
@@ -67,37 +67,6 @@
 
           <p id="no-mensagem" class="no-mensagem" role="status" aria-live="polite"></p>
 
-
-
-          <div id="no-festa" class="no-festa" hidden aria-hidden="true">
-
-
-            <span class="no-festa-palco">
-
-
-              <img class="no-festa-boneca" src="../assets/img/boneca-comemorando.png"
-
-
-                   alt="" width="230" height="324" decoding="async" />
-
-
-            </span>
-
-
-            <svg class="no-festa-check" viewBox="0 0 56 56" role="img" aria-label="Desafio concluído">
-
-
-              <circle class="no-festa-circulo" cx="28" cy="28" r="25" />
-
-
-              <path class="no-festa-traco" d="M16 29 L24 37 L40 19" />
-
-
-            </svg>
-
-
-          </div>
-
           <div class="field-row">
             <button id="no-limpar" class="btn btn-secondary" type="button">Limpar tabuleiro</button>
             <button id="no-resposta" class="btn btn-secondary" type="button">Ver a resposta</button>
@@ -137,12 +106,29 @@
       </div>
     </footer>
     <script type="module" src="../js/main.js"></script>
-    <script type="module" src="../js/no-do-dia.js?v=20260929a"></script>
+    <script type="module" src="../js/no-do-dia.js?v=20260929b"></script>
     <noscript>
     <p style="max-width:40rem;margin:1rem auto;padding:1rem;border:1px solid #D0D5DD;border-radius:8px">
       Este jogo precisa de JavaScript ligado para montar o tabuleiro. Ligue o JavaScript neste
       navegador, ou abra o endereço em outro navegador, e recarregue a página.
     </p>
   </noscript>
+
+<div id="no-festa" class="no-festa" hidden role="status" aria-live="polite">
+  <div class="no-festa-fundo" data-fechar="1"></div>
+  <div class="no-festa-cartao" role="document">
+    <div class="no-festa-arte">
+      <img class="no-festa-boneca" src="../assets/img/boneca-comemorando.png"
+           alt="" width="115" height="162" decoding="async" />
+      <svg class="no-festa-check" viewBox="0 0 56 56" role="img" aria-label="Desafio concluído">
+        <circle class="no-festa-circulo" cx="28" cy="28" r="25" />
+        <path class="no-festa-traco" d="M16 29 L24 37 L40 19" />
+      </svg>
+    </div>
+    <p class="no-festa-titulo">O nó de hoje está desatado.</p>
+    <p class="no-festa-tempo" id="no-festa-tempo"></p>
+    <button type="button" class="no-festa-fechar" id="no-festa-fechar">Fechar</button>
+  </div>
+</div>
 </body>
 </html>

@@ -346,20 +346,48 @@ function verificarVitoria() {
 
   registrarEvento("partida_concluida", { segundos });
   mostrarResumo(segundos);
-  celebrar();
+  celebrar(segundos);
   document.getElementById("no-compartilhar").hidden = false;
   // repinta depois de marcar a vitoria: a mensagem da tela tem de refletir o
   // estado final, e nao o texto de quando o tabuleiro ainda estava sendo montado
   pintar();
 }
 
-/** Comemoracao de vitoria: boneca, check e onda nas pecas.
+/** Comemoracao de vitoria: pop-up pequeno por cima da pagina.
  *
- * Fica toda em CSS: aqui so se liga a classe e se marca o atraso de cada peca, para a onda
- * seguir a ordem de leitura. Quem pediu menos movimento no sistema nao ve animacao nenhuma,
- * porque o proprio CSS desliga (regra da casa).
+ * Fecha sozinho, e tambem no clique do fundo, no botao e na tecla Esc. A parte animada fica no CSS:
+ * aqui so se liga a classe, se marca o atraso de cada peca (a onda segue a ordem de leitura) e se
+ * agenda o fechamento. Quem pediu menos movimento no sistema nao ve animacao nenhuma.
  */
-function celebrar() {
+const SEGUNDOS_DO_POPUP = 4;
+
+function esconderComemoracao() {
+  const festa = document.getElementById("no-festa");
+  if (!festa || festa.hidden) return;
+  festa.hidden = true;
+  festa.classList.remove("no-festa-ativa");
+  if (esconderComemoracao.prazo) {
+    clearTimeout(esconderComemoracao.prazo);
+    esconderComemoracao.prazo = null;
+  }
+  document.removeEventListener("keydown", escaparComemoracao);
+}
+
+function escaparComemoracao(evento) {
+  if (evento.key === "Escape") esconderComemoracao();
+}
+
+function celebrar(segundos) {
+  const festa = document.getElementById("no-festa");
+  if (!festa) return;
+
+  const tempo = document.getElementById("no-festa-tempo");
+  if (tempo) {
+    tempo.textContent = segundos
+      ? `Você resolveu em ${segundos} ${segundos === 1 ? "segundo" : "segundos"}.`
+      : "";
+  }
+
   const tabuleiro = document.getElementById("no-tabuleiro");
   const pecas = tabuleiro ? tabuleiro.querySelectorAll(".no-casa-cheia") : [];
   pecas.forEach((casa, i) => {
@@ -367,17 +395,23 @@ function celebrar() {
     casa.classList.add("no-onda");
   });
 
-  const festa = document.getElementById("no-festa");
-  if (festa) {
-    festa.hidden = false;
-    festa.classList.add("no-festa-ativa");
+  festa.hidden = false;
+  festa.classList.add("no-festa-ativa");
+
+  const fechar = document.getElementById("no-festa-fechar");
+  if (fechar && !fechar.dataset.ligado) {
+    fechar.dataset.ligado = "1";
+    fechar.addEventListener("click", esconderComemoracao);
+    const fundo = festa.querySelector(".no-festa-fundo");
+    if (fundo) fundo.addEventListener("click", esconderComemoracao);
+    document.addEventListener("keydown", escaparComemoracao);
   }
+
+  if (esconderComemoracao.prazo) clearTimeout(esconderComemoracao.prazo);
+  esconderComemoracao.prazo = setTimeout(esconderComemoracao, SEGUNDOS_DO_POPUP * 1000);
 
   const mensagem = document.getElementById("no-mensagem");
   if (mensagem) mensagem.classList.add("no-mensagem-vitoria");
-
-  const resumo = document.getElementById("no-resumo");
-  if (resumo) resumo.classList.add("no-resumo-entrando");
 }
 
 function mostrarResumo(segundos) {
