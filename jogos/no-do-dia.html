@@ -21,7 +21,12 @@
     <link rel="icon" type="image/png" sizes="192x192" href="../assets/img/favicon-192.png" />
     <link rel="apple-touch-icon" sizes="180x180" href="../assets/img/apple-touch-icon.png" />
     <link rel="manifest" href="../site.webmanifest" />
-    <link rel="stylesheet" href="../styles.css?v=20260929e" />
+    <!-- Aplica o tema salvo antes da primeira pintura: sem isto quem escolheu o escuro
+         via a pagina clara piscar a cada navegacao, ate o main.js carregar. -->
+    <script>
+      try { if (localStorage.getItem('gametools:theme') === 'dark') document.documentElement.setAttribute('data-theme', 'dark'); } catch (e) { /* armazenamento bloqueado: fica o claro */ }
+    </script>
+    <link rel="stylesheet" href="../styles.css?v=20261001a" />
   </head>
   <body>
     <a class="skip-link" href="#conteudo-principal">Pular para conteúdo</a>
