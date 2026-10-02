@@ -24,6 +24,26 @@ O formato segue a ideia de *Keep a Changelog* e versionamento semântico como re
 
 ### Changed
 
+- Revisao de UX/UI e movimento (01/10/2026):
+  - Uma superficie por vez: a pagina deixou de ser caixa dentro de caixa dentro de caixa.
+    So o hero, os cartoes e o jogo tem borda; o rodape virou uma linha simples.
+  - Corrigido: o atributo `hidden` perdia para `display` do CSS, e o "Compartilhar resultado",
+    o rotulo "Seu resultado" e o placar apareciam antes de a pessoa jogar.
+  - Corrigido: rolagem lateral no O No do dia em celular, causada pelo rotulo solto.
+  - Corrigido: `.field`/`.field-row` so recebiam estilo no tema escuro (seletor quebrado).
+  - Catalogo: o select de categorias (que oferecia Reflexo, Estrategia e Conhecimento, todas
+    sem jogo) virou botoes de filtro com contagem; categoria vazia nao aparece. Busca com
+    rotulo para leitor de tela e botao "Mostrar todos" quando nada bate.
+  - Home: o hero tinha tres botoes e um laranja a mais que a regra de dois por tela; agora
+    sao dois atalhos (azul e contorno), e o laranja fica so nos cartoes de "Jogos de hoje".
+  - Movimento: uma curva e tres duracoes em tokens (`--ease-out`, `--dur-1..3`). Sai o
+    cabecalho caindo, o selo quicando e a cascata de ate 0,65 s; entra uma entrada curta do
+    conteudo, capa que aproxima e seta que anda no hover do cartao, botao que afunda no toque,
+    peca que surge no tabuleiro, tentativa nova que entra e a errada que treme.
+    Tudo desliga com `prefers-reduced-motion`.
+  - Tema escuro aplicado antes da primeira pintura, sem piscar claro a cada pagina.
+  - `styles.css` perdeu cerca de 700 linhas de estilo de jogos removidos (reacao, memoria,
+    quiz, debug, pedra-papel-tesoura, clique rapido) e 40 linhas repetidas de tons do tabuleiro.
 - Capa da Conta do dia desenhada e publicada: `assets/img/capa-conta-do-dia.png` (1200x675,
   para o compartilhamento) e `assets/img/capa-conta-do-dia-800.png` (800x450, para o cartao do
   catalogo e para o destaque da home). O desenho em CSS que fazia esse papel foi removido, e a

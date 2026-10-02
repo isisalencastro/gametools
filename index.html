@@ -25,7 +25,12 @@
     <!-- O carimbo do styles.css sobe junto com qualquer mudanca no CSS: a Vercel serve CSS com
          max-age de 4 horas (medido: public, max-age=14400, must-revalidate), entao sem carimbo novo
          quem ja visitou o site continua vendo o cartao na versao antiga. -->
-    <link rel="stylesheet" href="styles.css?v=20260929e" />
+    <!-- Aplica o tema salvo antes da primeira pintura: sem isto quem escolheu o escuro
+         via a pagina clara piscar a cada navegacao, ate o main.js carregar. -->
+    <script>
+      try { if (localStorage.getItem('gametools:theme') === 'dark') document.documentElement.setAttribute('data-theme', 'dark'); } catch (e) { /* armazenamento bloqueado: fica o claro */ }
+    </script>
+    <link rel="stylesheet" href="styles.css?v=20261001a" />
   </head>
   <body>
     <a class="skip-link" href="#conteudo-principal">Pular para conteúdo</a>
@@ -50,17 +55,19 @@
         <span class="badge">Jogos rápidos, direto no navegador</span>
         <h1>Um jogo novo todo dia</h1>
         <p>
-          Escolha um jogo, bata seu recorde e volte quando quiser. Sem cadastro e sem instalar nada.
+          Dois desafios curtos, iguais para todo mundo, que mudam à meia-noite de Brasília.
+          Sem cadastro e sem instalar nada.
         </p>
+        <!-- Laranja fica so nos dois cartoes logo abaixo (regra: no maximo dois por tela).
+             Aqui o atalho e azul, para quem ja sabe o que quer jogar. -->
         <div class="hero-actions">
-          <a class="btn btn-accent" href="./jogos.html">Quero jogar agora</a>
-          <a class="btn btn-secondary" href="./jogos/conta-do-dia.html">Fechar a conta de hoje</a>
+          <a class="btn btn-primary" href="./jogos/conta-do-dia.html">Fechar a conta de hoje</a>
           <a class="btn btn-secondary" href="./jogos/no-do-dia.html">Desatar o nó de hoje</a>
         </div>
       </section>
 
       <section class="section">
-        <h2>Destaques de jogos</h2>
+        <h2>Jogos de hoje</h2>
         <!-- Cada jogo e UM elemento so: a capa, o titulo, o resumo e o botao vivem dentro do
              mesmo cartao, e o cartao inteiro e o link. Antes a capa era um irmao solto no grid,
              o que partia cada jogo em duas caixas de alturas diferentes. -->

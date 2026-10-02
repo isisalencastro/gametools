@@ -24,7 +24,12 @@
     <!-- O carimbo do styles.css sobe junto com qualquer mudanca no CSS: a Vercel serve CSS com
          max-age de 4 horas (medido: public, max-age=14400, must-revalidate), entao sem carimbo novo
          quem ja visitou o site continua vendo o cartao na versao antiga. -->
-    <link rel="stylesheet" href="styles.css?v=20260929e" />
+    <!-- Aplica o tema salvo antes da primeira pintura: sem isto quem escolheu o escuro
+         via a pagina clara piscar a cada navegacao, ate o main.js carregar. -->
+    <script>
+      try { if (localStorage.getItem('gametools:theme') === 'dark') document.documentElement.setAttribute('data-theme', 'dark'); } catch (e) { /* armazenamento bloqueado: fica o claro */ }
+    </script>
+    <link rel="stylesheet" href="styles.css?v=20261001a" />
   </head>
   <body>
     <a class="skip-link" href="#conteudo-principal">Pular para conteúdo</a>
@@ -47,20 +52,18 @@
     <main id="conteudo-principal" class="container page-main" data-catalog-root>
       <section class="section-intro">
         <h1>Catálogo de mini jogos</h1>
-        <p>Use os filtros abaixo para encontrar rapidamente o jogo ideal para sua sessão.</p>
+        <p>Dois jogos diários, iguais para todo mundo e com um desafio novo à meia-noite de Brasília. Cada partida leva de 1 a 5 minutos.</p>
       </section>
 
       <section class="section">
-        <div class="catalog-toolbar" aria-label="Filtros do catálogo de jogos">
-          <input id="catalog-search" type="search" placeholder="Buscar por nome ou objetivo..." />
-          <select id="catalog-filter">
-            <option value="all">Todas as categorias</option>
-            <option value="reflexo">Reflexo</option>
-            <option value="estrategia">Estratégia</option>
-            <option value="conhecimento">Conhecimento</option>
-            <option value="logica">Lógica</option>
-          </select>
-          <button id="catalog-clear" class="btn" type="button">Limpar filtros</button>
+        <div class="catalog-toolbar" role="search" aria-label="Filtros do catálogo de jogos">
+          <label class="visually-hidden" for="catalog-search">Buscar jogo</label>
+          <input id="catalog-search" type="search" placeholder="Buscar por nome ou objetivo" autocomplete="off" />
+          <div class="chips" role="group" aria-label="Categoria">
+            <button class="chip" type="button" data-catalog-chip="all" aria-pressed="true">Todos <span class="chip-total"></span></button>
+            <button class="chip" type="button" data-catalog-chip="numeros" aria-pressed="false">Números <span class="chip-total"></span></button>
+            <button class="chip" type="button" data-catalog-chip="tabuleiro" aria-pressed="false">Tabuleiro <span class="chip-total"></span></button>
+          </div>
         </div>
         <p id="catalog-count" class="catalog-count" aria-live="polite"></p>
 
@@ -90,7 +93,7 @@
           </a>
 
         </div>
-        <p id="catalog-empty" class="no-results">Nenhum jogo encontrado com este filtro. Tente outro termo.</p>
+        <p id="catalog-empty" class="no-results">Nenhum jogo com esse nome ou nessa categoria.<button id="catalog-reset" type="button">Mostrar todos</button></p>
       </section>
 
     </main>
