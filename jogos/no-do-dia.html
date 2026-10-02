@@ -26,7 +26,7 @@
     <script>
       try { if (localStorage.getItem('gametools:theme') === 'dark') document.documentElement.setAttribute('data-theme', 'dark'); } catch (e) { /* armazenamento bloqueado: fica o claro */ }
     </script>
-    <link rel="stylesheet" href="../styles.css?v=20261001a" />
+    <link rel="stylesheet" href="../styles.css?v=20261002b" />
   </head>
   <body>
     <a class="skip-link" href="#conteudo-principal">Pular para conteúdo</a>
@@ -48,6 +48,11 @@
 
     <main id="conteudo-principal" class="container page-main">
       <section class="section-intro">
+        <nav class="trilha" aria-label="Você está em">
+          <a href="../jogos.html">Jogos</a>
+          <span aria-hidden="true">/</span>
+          <span aria-current="page">O Nó do dia</span>
+        </nav>
         <h1>O Nó do dia</h1>
         <p>
           Um tabuleiro novo a cada dia, igual para todo mundo. Coloque as oito peças de modo que
@@ -56,7 +61,8 @@
         </p>
       </section>
 
-      <section class="section">
+      <div class="jogo-layout">
+      <section class="jogo-principal" aria-label="O Nó do dia">
         <article class="card game-card no-card">
           <div class="no-cabecalho">
             <p class="no-dia" id="no-dia">Carregando o tabuleiro de hoje...</p>
@@ -91,13 +97,30 @@
             <p class="no-legenda" id="no-legenda"></p>
           </div>
 
-          <p class="context-links">
-            Veja também: <a href="../jogos.html">Catálogo de Jogos</a> ·
-            <a href="./conta-do-dia.html">A Conta do dia</a> ·
-            <a href="../">Página inicial</a>
-          </p>
         </article>
       </section>
+
+      <aside class="jogo-lateral" aria-label="Ajuda e outros jogos">
+        <section class="lateral-bloco" data-revelar>
+          <h2>Como jogar</h2>
+          <ol class="lateral-regras">
+            <li>Toque numa casa para pôr uma peça; toque de novo para tirar.</li>
+            <li>Uma peça por linha, uma por coluna e uma por região numerada.</li>
+            <li>Nenhuma peça encosta em outra, nem na diagonal.</li>
+            <li>No teclado: setas andam entre as casas, espaço ou enter põe e tira.</li>
+          </ol>
+        </section>
+
+        <a class="lateral-outro" href="./conta-do-dia.html" data-revelar>
+          <img src="../assets/img/capa-conta-do-dia-800.png?v=20261002" width="800" height="450" alt="" loading="lazy" decoding="async" />
+          <span class="lateral-outro-texto">
+            <span class="lateral-outro-rotulo">O outro jogo de hoje</span>
+            <strong>A Conta do dia</strong>
+            <span>Um número novo a cada dia. Chegue nele com uma conta sua.</span>
+          </span>
+        </a>
+      </aside>
+      </div>
     </main>
 
     <footer class="footer">
@@ -124,7 +147,7 @@
   <div class="no-festa-fundo" data-fechar="1"></div>
   <div class="no-festa-cartao" role="document">
     <div class="no-festa-arte">
-      <img class="no-festa-boneca" src="../assets/img/boneca-comemorando.png"
+      <img class="no-festa-boneca" src="../assets/img/boneca-comemorando.png?v=20261002"
            alt="" width="93" height="120" decoding="async" />
       <svg class="no-festa-check" viewBox="0 0 56 56" role="img" aria-label="Desafio concluído">
         <circle class="no-festa-circulo" cx="28" cy="28" r="25" />

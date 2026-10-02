@@ -11,13 +11,13 @@
     <meta property="og:description" content="Um alvo novo a cada dia. Chegue no número do dia com uma conta sua, em até seis tentativas." />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://jogos.ibaestudio.com/jogos/conta-do-dia.html" />
-    <meta property="og:image" content="https://jogos.ibaestudio.com/assets/img/capa-conta-do-dia.png" />
+    <meta property="og:image" content="https://jogos.ibaestudio.com/assets/img/capa-conta-do-dia.png?v=20261002" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="675" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="A Conta do dia: quebra-cabeça diário de contas | Jogos IBA" />
     <meta name="twitter:description" content="Um alvo novo a cada dia. Chegue no número do dia com uma conta sua, em até seis tentativas." />
-    <meta name="twitter:image" content="https://jogos.ibaestudio.com/assets/img/capa-conta-do-dia.png" />
+    <meta name="twitter:image" content="https://jogos.ibaestudio.com/assets/img/capa-conta-do-dia.png?v=20261002" />
     <link rel="icon" href="../favicon.ico" sizes="any" />
     <link rel="icon" type="image/png" sizes="32x32" href="../assets/img/favicon-32.png" />
     <link rel="icon" type="image/png" sizes="192x192" href="../assets/img/favicon-192.png" />
@@ -28,7 +28,7 @@
     <script>
       try { if (localStorage.getItem('gametools:theme') === 'dark') document.documentElement.setAttribute('data-theme', 'dark'); } catch (e) { /* armazenamento bloqueado: fica o claro */ }
     </script>
-    <link rel="stylesheet" href="../styles.css?v=20261001a" />
+    <link rel="stylesheet" href="../styles.css?v=20261002b" />
   </head>
   <body>
     <a class="skip-link" href="#conteudo-principal">Pular para conteúdo</a>
@@ -50,6 +50,11 @@
 
     <main id="conteudo-principal" class="container page-main">
       <section class="section-intro">
+        <nav class="trilha" aria-label="Você está em">
+          <a href="../jogos.html">Jogos</a>
+          <span aria-hidden="true">/</span>
+          <span aria-current="page">A Conta do dia</span>
+        </nav>
         <h1>A Conta do dia</h1>
         <p>
           Um alvo novo a cada dia, igual para todo mundo. Escreva uma conta que chegue nesse
@@ -58,7 +63,8 @@
         </p>
       </section>
 
-      <section class="section">
+      <div class="jogo-layout">
+      <section class="jogo-principal" aria-label="A Conta do dia">
         <article class="card game-card conta-card">
           <div class="conta-cabecalho">
             <p class="conta-dia" id="conta-dia">Carregando a conta de hoje...</p>
@@ -122,13 +128,30 @@
             <p class="conta-legenda" id="conta-legenda"></p>
           </div>
 
-          <p class="context-links">
-            Veja também: <a href="../jogos.html">Catálogo de Jogos</a> ·
-            <a href="./no-do-dia.html">O Nó do dia</a> ·
-            <a href="../">Página inicial</a>
-          </p>
         </article>
       </section>
+
+      <aside class="jogo-lateral" aria-label="Ajuda e outros jogos">
+        <section class="lateral-bloco" data-revelar>
+          <h2>Como jogar</h2>
+          <ol class="lateral-regras">
+            <li>Use os números de 0 a 9 e as operações + − × ÷. Não há parênteses.</li>
+            <li>A conta precisa caber no limite de caracteres do dia.</li>
+            <li>A divisão só vale quando dá número inteiro.</li>
+            <li>Você tem seis tentativas. Qualquer conta que chegue no alvo vence.</li>
+          </ol>
+        </section>
+
+        <a class="lateral-outro" href="./no-do-dia.html" data-revelar>
+          <img src="../assets/img/capa-no-do-dia-800.png" width="800" height="450" alt="" loading="lazy" decoding="async" />
+          <span class="lateral-outro-texto">
+            <span class="lateral-outro-rotulo">O outro jogo de hoje</span>
+            <strong>O Nó do dia</strong>
+            <span>Oito peças num tabuleiro 8 por 8, uma por linha, coluna e região.</span>
+          </span>
+        </a>
+      </aside>
+      </div>
     </main>
 
     <footer class="footer">
@@ -160,7 +183,7 @@
   <div class="no-festa-fundo" data-fechar="1"></div>
   <div class="no-festa-cartao" role="document">
     <div class="no-festa-arte">
-      <img class="no-festa-boneca" src="../assets/img/boneca-comemorando.png"
+      <img class="no-festa-boneca" src="../assets/img/boneca-comemorando.png?v=20261002"
            alt="" width="93" height="120" decoding="async" />
       <svg class="no-festa-check" viewBox="0 0 56 56" role="img" aria-label="Desafio concluído">
         <circle class="no-festa-circulo" cx="28" cy="28" r="25" />

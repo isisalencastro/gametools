@@ -384,6 +384,10 @@ nav a[aria-current='page'] {
    ============================================= */
 
 .hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1.25fr) minmax(280px, 1fr);
+  align-items: center;
+  gap: 32px;
   padding: 40px 36px;
   margin-bottom: 40px;
   border: 1px solid var(--color-border);
@@ -978,7 +982,7 @@ select:focus {
 }
 
 /* Os blocos do conteudo entram em sequencia curta: titulo, depois o resto. */
-.page-main > * {
+.page-main > *:not([data-revelar]) {
   animation: surgir 420ms var(--ease-out) both;
 }
 
@@ -1335,7 +1339,7 @@ select:focus {
   display: block;
   width: 93px;
   height: 120px;
-  image-rendering: pixelated;
+  object-fit: contain;
 }
 .no-festa-check { width: 48px; height: 48px; flex: 0 0 auto; }
 .no-festa-circulo { fill: var(--color-brand, #185cb6); stroke: none; }
@@ -1666,4 +1670,511 @@ select:focus {
 @media (max-width: 480px) {
   .conta-tecla-apagar,
   .conta-tecla-enviar { font-size: 0.85rem; }
+}
+
+/* ==========================================================================
+   REESTRUTURA COM MOVIMENTO (02/10/2026)
+   Home com painel "Hoje", secao "Como funciona", paginas de jogo em duas colunas
+   e transicao entre paginas. Mesmas regras de pele: fundo branco, borda de 1px,
+   laranja so em acao, sem gradiente, sem emoji.
+   ========================================================================== */
+
+/* ---------- transicao entre paginas (View Transitions entre documentos) ----------
+   Onde o navegador sabe fazer, trocar de pagina vira um cross-fade curto com o conteudo
+   subindo 8px; o cabecalho fica parado porque tem nome proprio na transicao. Onde nao
+   sabe, a navegacao e a de sempre. */
+@view-transition {
+  navigation: auto;
+}
+
+.header {
+  view-transition-name: cabecalho;
+}
+
+::view-transition-old(root) {
+  animation: 160ms ease both vt-sair;
+}
+
+::view-transition-new(root) {
+  animation: 280ms var(--ease-out) both vt-entrar;
+}
+
+@keyframes vt-sair {
+  to { opacity: 0; }
+}
+
+@keyframes vt-entrar {
+  from { opacity: 0; transform: translateY(8px); }
+}
+
+/* ---------- cabecalho que ganha sombra ao sair do topo ---------- */
+.nav {
+  transition: box-shadow var(--dur-3) var(--ease-out), border-color var(--dur-3) var(--ease-out);
+}
+
+.header-rolado .nav {
+  box-shadow: var(--shadow-raised);
+}
+
+/* ---------- revelar ao rolar (js/common/motion.js) ----------
+   O estado escondido so existe com html.js-motion, que o script poe: sem JS, ou com
+   menos movimento pedido, tudo aparece de saida. */
+.js-motion [data-revelar] {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 560ms var(--ease-out), transform 560ms var(--ease-out);
+}
+
+.js-motion [data-revelar].revelado {
+  opacity: 1;
+  transform: none;
+}
+
+/* ---------- painel "Hoje" (home) ---------- */
+.hoje {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding: 20px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  background: var(--color-surface-page);
+  box-shadow: var(--shadow-soft);
+  animation: surgir 520ms 160ms var(--ease-out) both;
+}
+
+.hoje-topo {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.hoje-rotulo {
+  margin: 0;
+  font-family: 'Archivo', 'Inter', sans-serif;
+  font-size: 1.1rem;
+  font-weight: 800;
+}
+
+.hoje-data {
+  margin: 0;
+  font-size: 0.875rem;
+  color: var(--color-ink-soft);
+}
+
+.hoje-data::first-letter {
+  text-transform: uppercase;
+}
+
+.hoje-lista {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.hoje-lista li {
+  animation: surgir 420ms var(--ease-out) both;
+}
+
+.hoje-lista li:nth-child(1) { animation-delay: 280ms; }
+.hoje-lista li:nth-child(2) { animation-delay: 340ms; }
+
+.hoje-jogo {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 12px 10px 10px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  color: inherit;
+  text-decoration: none;
+  touch-action: manipulation;
+  transition: border-color var(--dur-2) var(--ease-out),
+              background-color var(--dur-2) var(--ease-out),
+              transform var(--dur-1) var(--ease-out);
+}
+
+.hoje-jogo:active {
+  transform: scale(0.985);
+}
+
+.hoje-jogo:focus-visible {
+  outline: 3px solid var(--color-brand);
+  outline-offset: 2px;
+}
+
+.hoje-nome {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  line-height: 1.3;
+}
+
+.hoje-nome strong {
+  font-size: 0.975rem;
+}
+
+.hoje-sequencia {
+  font-size: 0.8rem;
+  color: var(--color-ink-soft);
+}
+
+.hoje-sequencia:empty {
+  display: none;
+}
+
+/* icones desenhados em CSS: nada de imagem nem emoji */
+.hoje-icone {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-md);
+  background: var(--color-brand-soft-alt);
+  color: var(--color-brand-dark);
+  font-family: 'Archivo', 'Inter', sans-serif;
+  font-weight: 800;
+}
+
+.hoje-icone-conta {
+  grid-template-columns: repeat(3, auto);
+  gap: 1px;
+  font-size: 0.85rem;
+}
+
+.hoje-icone-conta span {
+  transition: transform var(--dur-3) var(--ease-out);
+}
+
+.hoje-icone-no {
+  grid-template-columns: repeat(2, 10px);
+  grid-template-rows: repeat(2, 10px);
+  gap: 6px;
+}
+
+.hoje-icone-no i {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: currentColor;
+  transition: transform var(--dur-3) var(--ease-out);
+}
+
+/* duas pecas na diagonal, como pede a regra do No; as outras duas so aparecem no hover */
+.hoje-icone-no i:nth-child(2),
+.hoje-icone-no i:nth-child(3) {
+  transform: scale(0.35);
+  opacity: 0.45;
+}
+
+@media (hover: hover) {
+  .hoje-jogo:hover {
+    border-color: var(--color-border-strong);
+    background: var(--color-surface);
+  }
+
+  .hoje-jogo:hover .hoje-icone-conta span:nth-child(1) { transform: translateY(-2px); }
+  .hoje-jogo:hover .hoje-icone-conta span:nth-child(2) { transform: rotate(90deg); }
+  .hoje-jogo:hover .hoje-icone-conta span:nth-child(3) { transform: translateY(2px); }
+
+  .hoje-jogo:hover .hoje-icone-no i:nth-child(1) { transform: scale(0.35); }
+  .hoje-jogo:hover .hoje-icone-no i:nth-child(4) { transform: scale(0.35); }
+  .hoje-jogo:hover .hoje-icone-no i:nth-child(2),
+  .hoje-jogo:hover .hoje-icone-no i:nth-child(3) { transform: none; opacity: 1; }
+}
+
+/* selo de situacao: o texto diz tudo, a cor so reforca */
+.hoje-selo {
+  padding: 4px 10px;
+  border: 1px solid var(--color-border);
+  border-radius: 999px;
+  background: var(--color-surface);
+  color: var(--color-ink-muted);
+  font-size: 0.8rem;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.hoje-selo[data-estado='novo'] {
+  border-color: var(--color-brand-soft-alt);
+  background: var(--color-brand-soft-alt);
+  color: var(--color-brand-dark);
+}
+
+.hoje-selo[data-estado='feito'] {
+  border-color: var(--color-success-border);
+  background: var(--color-success-soft);
+  color: var(--color-success-ink);
+}
+
+.hoje-selo[data-estado='andamento'] {
+  border-color: var(--color-border-strong);
+  background: var(--color-surface-page);
+  color: var(--color-ink);
+}
+
+.hoje-virada {
+  margin: 0;
+  padding-top: 12px;
+  border-top: 1px solid var(--color-border);
+  font-size: 0.875rem;
+  color: var(--color-ink-muted);
+}
+
+.hoje-relogio {
+  font-family: ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, monospace;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  color: var(--color-ink);
+}
+
+/* ---------- como funciona ---------- */
+.como {
+  margin-top: 56px;
+}
+
+.como-passos {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 20px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  counter-reset: none;
+}
+
+.como-passos li {
+  padding-top: 16px;
+  border-top: 2px solid var(--color-border);
+  transition: border-color 600ms var(--ease-out);
+}
+
+.como-passos h3 {
+  margin: 8px 0 6px;
+  font-size: 1.1rem;
+}
+
+.como-passos p {
+  margin: 0;
+  color: var(--color-ink-muted);
+}
+
+.como-numero {
+  font-family: 'Archivo', 'Inter', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  color: var(--color-brand);
+}
+
+/* ao revelar, cada passo entra em sequencia e a linha de cima ganha a cor da marca */
+.js-motion .como[data-revelar] {
+  transform: none;
+}
+
+.js-motion .como .como-passos li {
+  opacity: 0;
+  transform: translateY(12px);
+  transition: opacity 520ms var(--ease-out), transform 520ms var(--ease-out), border-color 600ms var(--ease-out);
+}
+
+.js-motion .como.revelado .como-passos li {
+  opacity: 1;
+  transform: none;
+  border-top-color: var(--color-brand);
+}
+
+.js-motion .como.revelado .como-passos li:nth-child(2) { transition-delay: 90ms; }
+.js-motion .como.revelado .como-passos li:nth-child(3) { transition-delay: 180ms; }
+
+/* ---------- trilha (paginas de jogo) ---------- */
+nav.trilha {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 6px;
+  margin: 0 0 8px;
+  font-size: 0.875rem;
+  color: var(--color-ink-soft);
+}
+
+nav.trilha a {
+  padding: 0;
+  color: var(--color-brand);
+  font-weight: 600;
+  background: none;
+  text-decoration: underline;
+  text-decoration-color: transparent;
+  text-underline-offset: 3px;
+}
+
+nav.trilha a:hover {
+  background: none;
+  color: var(--color-brand-dark);
+  text-decoration-color: currentColor;
+}
+
+/* ---------- pagina de jogo em duas colunas ---------- */
+.jogo-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 300px;
+  align-items: start;
+  gap: 24px;
+}
+
+.jogo-principal {
+  min-width: 0;
+}
+
+.jogo-lateral {
+  position: sticky;
+  top: 92px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.lateral-bloco {
+  padding: 18px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  background: var(--color-surface);
+}
+
+.lateral-bloco h2 {
+  margin: 0 0 10px;
+  font-size: 1.05rem;
+}
+
+.lateral-regras {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin: 0;
+  padding-left: 1.2rem;
+  font-size: 0.9rem;
+  color: var(--color-ink-muted);
+}
+
+.lateral-regras li::marker {
+  font-weight: 700;
+  color: var(--color-brand);
+}
+
+.lateral-outro {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  background: var(--color-surface-page);
+  color: inherit;
+  text-decoration: none;
+  transition: border-color var(--dur-2) var(--ease-out), box-shadow var(--dur-3) var(--ease-out),
+              opacity 560ms var(--ease-out), transform 560ms var(--ease-out);
+}
+
+.lateral-outro img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-bottom: 1px solid var(--color-border);
+  transition: transform 600ms var(--ease-out);
+}
+
+.lateral-outro-texto {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 14px 16px 16px;
+  font-size: 0.9rem;
+  color: var(--color-ink-muted);
+}
+
+.lateral-outro-texto strong {
+  font-size: 1.05rem;
+  color: var(--color-ink);
+}
+
+.lateral-outro-rotulo {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--color-brand);
+}
+
+.lateral-outro:focus-visible {
+  outline: 3px solid var(--color-brand);
+  outline-offset: 3px;
+}
+
+@media (hover: hover) {
+  .lateral-outro:hover {
+    border-color: var(--color-border-strong);
+    box-shadow: var(--shadow-raised);
+  }
+
+  .lateral-outro:hover img {
+    transform: scale(1.03);
+  }
+}
+
+/* ---------- responsivo da reestrutura ---------- */
+@media (max-width: 900px) {
+  .hero {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .jogo-layout {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .jogo-lateral {
+    position: static;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr));
+  }
+}
+
+@media (max-width: 760px) {
+  .como-passos {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .hoje {
+    padding: 16px;
+  }
+
+  .hoje-jogo {
+    grid-template-columns: auto minmax(0, 1fr);
+  }
+
+  .hoje-selo {
+    grid-column: 2;
+    justify-self: start;
+  }
+}
+
+@media (max-width: 560px) {
+  body:has(.no-card) .jogo-lateral { padding-inline: 4px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-old(root),
+  ::view-transition-new(root) {
+    animation: none;
+  }
+
+  .js-motion [data-revelar],
+  .js-motion .como .como-passos li {
+    opacity: 1;
+    transform: none;
+  }
 }

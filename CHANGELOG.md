@@ -24,6 +24,22 @@ O formato segue a ideia de *Keep a Changelog* e versionamento semântico como re
 
 ### Changed
 
+- Reestrutura do design com movimento (02/10/2026):
+  - Home: o hero ganhou o painel "Hoje", com a situacao de cada jogo neste navegador
+    (novo, tentativas usadas, resolvido, encerrado), a sequencia viva e um relogio ate a
+    meia-noite de Brasilia (`js/common/hoje.js`, so leitura do que os jogos ja guardam).
+    Nova secao "Como funciona", revelada ao rolar.
+  - Paginas de jogo em duas colunas no computador: o jogo e uma lateral com "Como jogar" e o
+    outro jogo do dia. Trilha "Jogos / nome do jogo" acima do titulo. No celular a lateral
+    desce para baixo do jogo.
+  - Movimento: transicao entre paginas (View Transitions entre documentos, com o cabecalho
+    parado), troca de tema em cross-fade, cabecalho que ganha sombra ao sair do topo e
+    blocos revelados ao rolar (`js/common/motion.js`). Sem JS ou com menos movimento
+    pedido, tudo aparece de saida e nada anima.
+- Avatar da Conta do dia refeito (02/10/2026): a capa usava uma copia reduzida e borrada da
+  boneca, cortada na borda do painel. O painel foi alargado e recebeu a mesma arte nitida da capa
+  do No do dia, sem reamostrar. A boneca da janela de vitoria (usada pelos dois jogos) passou a
+  sair da mesma arte, em 2x e com fundo transparente, e deixou de usar `image-rendering: pixelated`.
 - Revisao de UX/UI e movimento (01/10/2026):
   - Uma superficie por vez: a pagina deixou de ser caixa dentro de caixa dentro de caixa.
     So o hero, os cartoes e o jogo tem borda; o rodape virou uma linha simples.

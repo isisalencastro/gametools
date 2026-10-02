@@ -2,9 +2,13 @@
 import { initCatalogExperience } from './common/catalog.js';
 import { initMobileMenu } from './common/mobile-menu.js';
 import { initThemeToggle } from './common/theme.js';
+import { initMotion } from './common/motion.js';
+import { initPainelHoje } from './common/hoje.js';
 initThemeToggle();
 initMobileMenu();
 initCatalogExperience();
+initMotion();
+initPainelHoje();
 
 // Licao de 28/09/2026, e ela custou caro: ao apagar um jogo, apague tambem o import dele.
 // Import de arquivo inexistente derruba o modulo INTEIRO, e com ele o tema, o menu do
