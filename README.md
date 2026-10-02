@@ -157,7 +157,9 @@ Este projeto adota **links relativos** como estratégia única de navegação in
 │   │   ├── catalog.js          # Filtros e busca do catálogo
 │   │   ├── confetti.js         # Confete dos jogos (carrega canvas-confetti sob demanda)
 │   │   ├── conta-regra.js      # Regra da conta, compartilhada com o gerador em Python
+│   │   ├── hoje.js             # Painel "Hoje" da home (situação de cada jogo e relógio)
 │   │   ├── mobile-menu.js      # Menu hambúrguer no mobile
+│   │   ├── motion.js           # Revelar ao rolar e cabeçalho com sombra ao rolar
 │   │   ├── theme.js            # Alternância de tema claro/escuro
 │   │   └── utils.js            # Helpers compartilhados (parsing, formatação, a11y)
 │   └── games/

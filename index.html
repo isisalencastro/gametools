@@ -30,7 +30,7 @@
     <script>
       try { if (localStorage.getItem('gametools:theme') === 'dark') document.documentElement.setAttribute('data-theme', 'dark'); } catch (e) { /* armazenamento bloqueado: fica o claro */ }
     </script>
-    <link rel="stylesheet" href="styles.css?v=20261002a" />
+    <link rel="stylesheet" href="styles.css?v=20261002b" />
   </head>
   <body>
     <a class="skip-link" href="#conteudo-principal">Pular para conteúdo</a>
@@ -52,18 +52,60 @@
 
     <main id="conteudo-principal" class="container page-main">
       <section class="hero">
-        <span class="badge">Jogos rápidos, direto no navegador</span>
-        <h1>Um jogo novo todo dia</h1>
-        <p>
-          Dois desafios curtos, iguais para todo mundo, que mudam à meia-noite de Brasília.
-          Sem cadastro e sem instalar nada.
-        </p>
-        <!-- Laranja fica so nos dois cartoes logo abaixo (regra: no maximo dois por tela).
-             Aqui o atalho e azul, para quem ja sabe o que quer jogar. -->
-        <div class="hero-actions">
-          <a class="btn btn-primary" href="./jogos/conta-do-dia.html">Fechar a conta de hoje</a>
-          <a class="btn btn-secondary" href="./jogos/no-do-dia.html">Desatar o nó de hoje</a>
+        <div class="hero-texto">
+          <span class="badge">Jogos rápidos, direto no navegador</span>
+          <h1>Um jogo novo todo dia</h1>
+          <p>
+            Dois desafios curtos, iguais para todo mundo, que mudam à meia-noite de Brasília.
+            Sem cadastro e sem instalar nada.
+          </p>
+          <!-- Laranja fica so nos dois cartoes logo abaixo (regra: no maximo dois por tela).
+               Aqui o atalho e azul, para quem ja sabe o que quer jogar. -->
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="./jogos/conta-do-dia.html">Fechar a conta de hoje</a>
+            <a class="btn btn-secondary" href="./jogos/no-do-dia.html">Desatar o nó de hoje</a>
+          </div>
         </div>
+
+        <!-- Painel "Hoje": le o que cada jogo guardou neste navegador (js/common/hoje.js).
+             Sem JS ele continua util: mostra os dois jogos com "Novo hoje". -->
+        <aside class="hoje" data-hoje-root aria-label="Seus jogos de hoje">
+          <div class="hoje-topo">
+            <p class="hoje-rotulo">Hoje</p>
+            <p class="hoje-data" data-hoje-data></p>
+          </div>
+
+          <ul class="hoje-lista">
+            <li>
+              <a class="hoje-jogo" href="./jogos/conta-do-dia.html" data-hoje-jogo="conta">
+                <span class="hoje-icone hoje-icone-conta" aria-hidden="true">
+                  <span>7</span><span>+</span><span>=</span>
+                </span>
+                <span class="hoje-nome">
+                  <strong>A Conta do dia</strong>
+                  <span class="hoje-sequencia" data-hoje-sequencia></span>
+                </span>
+                <span class="hoje-selo" data-hoje-situacao data-estado="novo">Novo hoje</span>
+              </a>
+            </li>
+            <li>
+              <a class="hoje-jogo" href="./jogos/no-do-dia.html" data-hoje-jogo="no">
+                <span class="hoje-icone hoje-icone-no" aria-hidden="true">
+                  <i></i><i></i><i></i><i></i>
+                </span>
+                <span class="hoje-nome">
+                  <strong>O Nó do dia</strong>
+                  <span class="hoje-sequencia" data-hoje-sequencia></span>
+                </span>
+                <span class="hoje-selo" data-hoje-situacao data-estado="novo">Novo hoje</span>
+              </a>
+            </li>
+          </ul>
+
+          <p class="hoje-virada">
+            Novos desafios em <span class="hoje-relogio" data-hoje-relogio>--:--:--</span>
+          </p>
+        </aside>
       </section>
 
       <section class="section">
@@ -92,9 +134,26 @@
         </div>
       </section>
 
-      <p class="context-links">
-        Ver o catálogo completo: <a href="./jogos.html">Jogos</a>
-      </p>
+      <section class="section como" data-revelar aria-labelledby="como-titulo">
+        <h2 id="como-titulo">Como funciona</h2>
+        <ol class="como-passos">
+          <li>
+            <span class="como-numero" aria-hidden="true">01</span>
+            <h3>Um desafio por dia</h3>
+            <p>À meia-noite de Brasília sai uma conta e um tabuleiro novos, os mesmos para todo mundo.</p>
+          </li>
+          <li>
+            <span class="como-numero" aria-hidden="true">02</span>
+            <h3>Vale qualquer caminho</h3>
+            <p>O jogo confere a regra, não um gabarito. Se a sua solução respeita a regra, ela vence.</p>
+          </li>
+          <li>
+            <span class="como-numero" aria-hidden="true">03</span>
+            <h3>Compartilhe sem contar</h3>
+            <p>O resultado sai em texto curto, sem entregar a resposta para quem ainda vai jogar.</p>
+          </li>
+        </ol>
+      </section>
     </main>
 
     <footer class="footer">

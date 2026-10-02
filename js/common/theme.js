@@ -39,8 +39,19 @@ export function initThemeToggle() {
     const current = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'light';
     const next = current === 'dark' ? 'light' : 'dark';
 
-    applyTheme(next);
+    const trocar = () => {
+      applyTheme(next);
+      setButtonText(button, next);
+    };
     saveTheme(next);
-    setButtonText(button, next);
+
+    // Troca de tema em cross-fade de pagina inteira onde o navegador sabe fazer (View
+    // Transitions). Onde nao sabe, ou com menos movimento pedido, a troca e direta.
+    const reduzir = window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
+    if (document.startViewTransition && !reduzir) {
+      document.startViewTransition(trocar);
+    } else {
+      trocar();
+    }
   });
 }
