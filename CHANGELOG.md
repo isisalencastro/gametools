@@ -24,6 +24,10 @@ O formato segue a ideia de *Keep a Changelog* e versionamento semântico como re
 
 ### Changed
 
+- Avatar da Conta do dia refeito (02/10/2026): a capa usava uma copia reduzida e borrada da
+  boneca, cortada na borda do painel. O painel foi alargado e recebeu a mesma arte nitida da capa
+  do No do dia, sem reamostrar. A boneca da janela de vitoria (usada pelos dois jogos) passou a
+  sair da mesma arte, em 2x e com fundo transparente, e deixou de usar `image-rendering: pixelated`.
 - Revisao de UX/UI e movimento (01/10/2026):
   - Uma superficie por vez: a pagina deixou de ser caixa dentro de caixa dentro de caixa.
     So o hero, os cartoes e o jogo tem borda; o rodape virou uma linha simples.
