@@ -89,3 +89,17 @@ conteudo/carrosseis/<tema>/
 - Sem travessão (—), sem "não é X, é Y", sem cacoetes ("isso muda tudo", "no fim das contas"), sem jargão (ecossistema, mindset), sem emoji no corpo (só o 🐙 da assinatura)
 - Texto aprovado não muda no visual
 - Depois de pronto, registrar o post no Notion (REDES SOCIAIS > Instagram) e no Obsidian, quando houver acesso
+
+## Imagem unica (post de texto, sem carrossel)
+
+Pedido de "textao + imagem": gere um deck de 1 slide pelo mesmo modelo, escolhendo o layout pelo conteudo
+(`texto` para uma tese com 3 setas, `passos` para lista numerada). Antes de renderizar, apague o contador da
+tarja no HTML: `<span class="num">...</span>`. Sem isso a imagem sai marcada "01/01" e denuncia deck de um slide.
+O medidor de margem funciona igual, so rodar em cima da pasta do tema.
+
+## Pacote de entrega para agendamento manual
+
+Quando a Isis vai agendar sozinha, entregar zip com uma pasta por post: `post-para-colar.txt` (texto com
+hashtags mais o primeiro comentario, que e onde ficam link e convite), a arte (`arte-1080x1350.png`,
+`carrossel-<tema>.pdf` ou `slides-1080x1350/`) e um `LEIA-ME.txt` com data sugerida e formato. `zip` nao esta
+instalado no servidor: montar com `zipfile` do Python.

@@ -1,0 +1,51 @@
+import os, sys
+sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', '_modelo'))
+from iba_carrossel import *
+
+# Versao LinkedIn. Tema: o que preparar antes do pico de volume da operacao.
+slides = [
+    capa('capa.jpg', 'Quando o volume dobra, a', 'resposta é o que trava', 'O que preparar antes da próxima data forte da operação',
+         fundo='branco', foto_css='width:1200px;height:1800px;left:-60px;top:-430px'),
+    texto('branco', 'Em data de pico, a *mesma pergunta* chega várias vezes.',
+          'Preço, prazo, disponibilidade, forma de pagamento. Cada repetição que passa por uma pessoa custa o tempo inteiro de uma resposta, e a fila cresce onde o dinheiro entra.',
+          'O que isso mexe:', ['A fila de atendimento no dia mais forte', 'A resposta que sai atrasada', 'O pedido que se perde no meio do movimento'], tam_titulo=80),
+    numero('azul', 'De onde vem essa informação?',
+           'Estudo Black Friday Talks, da Stefanini Marketing, divulgado em 18 de setembro de 2026:',
+           '18,3 milhões', 'de pedidos projetados na semana da data, 10,8% mais que em 2025.',
+           'O faturamento projetado é de R$ 14,5 bilhões.',
+           'E o ticket médio recua 2,2%, de R$ 808,50 para cerca de **R$ 791**.',
+           'Nada de achismo. *Só número.*'),
+    foto_xis('branco', 'O que *ficou velho* no preparo do pico?', 'balcao.jpg',
+             ['"Dá pra improvisar na véspera"', '"O desconto resolve"', '"O time dá conta no dia"',
+              '"Responder no dia seguinte ainda é resposta"'],
+             'No pico, cada uma dessas ideias custa venda.', foco='50% 40%'),
+    stats('branco', 'A conta do *dia de pico*.',
+          [('R$ 14,5 bi', 'de faturamento projetado na semana, 8,4% mais que em 2025 (Black Friday Talks, setembro de 2026).'),
+           ('2,2%', 'de queda projetada no ticket médio: mais gente comprando, cada uma levando menos.')],
+          'Fonte: estudo Black Friday Talks (Stefanini Marketing), divulgado em 18/09/2026; via TrendsCE.'),
+    conversa('azul', 'No pico, *a resposta é o anúncio*.', 'Cliente',
+             [('in', 'Oi, o tênis do anúncio tá quanto?', '10:02'),
+              ('in', 'Oi?', '11:40'),
+              ('in', 'E o prazo de entrega?', '11:41')],
+             'Enquanto isso, ele mandou a mesma pergunta para outras duas lojas e fechou com a que respondeu primeiro.',
+             'Quem responde primeiro no pico não precisa do maior desconto.'),
+    passos('branco', 'Anatomia de um *pico que não trava*:',
+           [('Oferta escrita antes', 'preço, prazo e estoque definidos com antecedência.'),
+            ('Resposta pronta', 'as perguntas que se repetem, respondidas na primeira hora.'),
+            ('Atendimento fora do horário', 'a dúvida chega de noite e no domingo também.'),
+            ('Pedido organizado', 'sem depender de print perdido na conversa.')],
+           'O que não estiver resolvido antes, você resolve no meio do movimento.'),
+    foto_lista('azul', 'Dá pra atender o volume *sem contratar ninguém*?', 'fila.jpg',
+               'Dá. Com a informação em 1 lugar só e o atendimento preparado:',
+               ['As perguntas repetidas respondidas sem passar pela fila.',
+                'A oferta, o preço e o prazo em 1 endereço.',
+                'O que exige decisão chegando identificado, com histórico.'],
+               'O que sobra para o time é a conversa que fecha venda.', foco='50% 45%'),
+    iba('É isso que a *IBA* monta para você.', 'A página da oferta e o atendimento no WhatsApp que aguenta o volume do pico.',
+        ['Oferta, preço e prazo em um endereço só', 'Respostas repetidas sem passar pela fila', 'Pedidos organizados, prontos para fechar'],
+        'Você não precisa entender de tecnologia. A gente cuida disso.'),
+    cta('Quanto tempo o seu atendimento demora para responder hoje?', 'E no dia 27, com bem mais mensagem chegando ao mesmo tempo?',
+        'cta.jpg', 'PICO', 'e eu te mando uma leitura do que travaria no seu pico.', foco='50% 35%'),
+]
+
+gerar(os.path.dirname(os.path.abspath(__file__)), slides)

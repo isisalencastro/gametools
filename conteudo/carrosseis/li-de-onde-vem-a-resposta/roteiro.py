@@ -1,0 +1,50 @@
+import os, sys
+sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', '_modelo'))
+from iba_carrossel import *
+
+# Versao LinkedIn. Tema: de onde a IA tira a resposta (contexto, regra, historico).
+slides = [
+    capa('capa.jpg', 'A IA só responde bem o que está', 'escrito em algum lugar', 'As 3 fontes que decidem a qualidade do atendimento automático',
+         fundo='branco', foto_css='width:1200px;height:1800px;left:-60px;top:-430px'),
+    texto('branco', 'Toda automação de atendimento parte de *3 fontes*.',
+          'Contexto, regra e histórico. Quando uma delas falta, a falha aparece na conversa com o cliente, e quase sempre é atribuída à ferramenta.',
+          'O que isso mexe:', ['A resposta que o cliente recebe', 'O tempo de quem atende depois', 'O que o time precisa conferir na mão'], tam_titulo=80),
+    numero('azul', 'De onde vem essa informação?',
+           'Da operação da IBA Estudio, que roda com 24 rotinas registradas:',
+           '24', 'rotinas em operação, 20 ativas, cada uma com dono e registro.',
+           'A base de atendimento é 1 arquivo que a empresa abre e edita.',
+           'E o histórico do que rodou fica registrado, com quem aprovou e a data.',
+           'Nada de achismo. *Só número.*'),
+    foto_xis('branco', 'O que *ficou velho* na conversa sobre automação?', 'equipe.jpg',
+             ['"É só plugar a IA e ela aprende sozinha"', '"Quanto mais ferramenta, melhor a resposta"',
+              '"O time vai ajustando na conversa"', '"Base de conhecimento é detalhe técnico"'],
+             'Nenhuma dessas ideias sobrevive à primeira pergunta que sai do roteiro.', foco='50% 40%'),
+    stats('branco', 'A conta da base *incompleta*.',
+          [('3', 'fontes sustentam cada resposta: contexto, regra e histórico.'),
+           ('1', 'arquivo de regras basta para começar, escrito na linguagem da empresa.')],
+          'Medição interna da operação da IBA Estudio, outubro de 2026.'),
+    conversa('azul', 'Sem contexto, a resposta *vira fila*.', 'Cliente',
+             [('in', 'Vocês entregam em quanto tempo?', '09:12'),
+              ('in', 'Oi?', '09:40')],
+             'É isso que o cliente recebe quando a IA responde sem base organizada. A pergunta mais simples da operação não tem resposta escrita em lugar nenhum.',
+             'Automação sem base é fila com outro nome.'),
+    passos('branco', 'Anatomia de uma *base que responde*:',
+           [('Contexto', 'o que a empresa faz, para quem e como atende.'),
+            ('Regra', 'o que pode ser prometido e o que precisa de aprovação.'),
+            ('Histórico', 'o que já foi respondido antes e deu certo.'),
+            ('Dono', 'quem atualiza o arquivo quando a operação muda.')],
+           'Sem o quarto item, os três primeiros envelhecem em silêncio.'),
+    foto_lista('azul', 'Dá pra montar isso *sem equipe técnica*?', 'processo.jpg',
+               'Dá. O caminho é juntar o que já existe:',
+               ['Conversa antiga, catálogo e política interna viram 1 arquivo de regras.',
+                'As perguntas que mais chegam ganham resposta escrita.',
+                'A primeira semana vira rotina de revisão por amostragem.'],
+               'Quem escreve a base é quem atende, não quem programa.', foco='50% 45%'),
+    iba('É isso que a *IBA* monta para você.', 'A base de atendimento escrita, revisada e ligada ao WhatsApp da operação.',
+        ['Arquivo de regras que a empresa abre e edita', 'Histórico registrado do que rodou', 'Rotinas com dono e registro'],
+        'Você não precisa entender de tecnologia. A gente cuida disso.'),
+    cta('Ter uma base que responde muda o quê?', 'O cliente recebe resposta na hora e o time deixa de conferir conversa velha.',
+        'cta.jpg', 'SESSÃO', 'sem custo e sem compromisso, eu marco os 30 minutos com você.', foco='50% 35%'),
+]
+
+gerar(os.path.dirname(os.path.abspath(__file__)), slides)
