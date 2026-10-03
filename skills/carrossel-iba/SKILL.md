@@ -15,6 +15,14 @@ Carrossel de 10 slides que pega uma notícia em alta, explica o que ela signific
 - `references/pautas-noticias.md`: como escolher a pauta a partir das notícias (Etapa 0)
 - `modelo/`: gerador (`iba_carrossel.py`), renderizador (`render.js`), `style.css`, fontes e o mascote Nó. No repositório fica em `conteudo/carrosseis/_modelo/` (se não existir, copiar `modelo/` para lá)
 
+## Ambiente
+
+- Python 3 e Node com Playwright para gerar os PNGs, acesso a `unsplash.com` e `images.unsplash.com` e busca na web.
+- Se o navegador do Playwright não estiver instalado, e o `npx playwright install chromium` falhar com `EACCES` em
+  `/opt/hermes`, apontar o caminho para uma pasta gravável:
+  `PLAYWRIGHT_BROWSERS_PATH=$HOME/.cache/ms-playwright npx playwright install chromium`.
+- O `render.js` usa `/opt/pw-browsers/chromium` quando ele existe; quando não existe, usa o navegador do Playwright.
+
 ## Identidade (fixa, não perguntar)
 
 - Instagram: **@ibaestudios** · site ibaestudio.com · contato@ibaestudio.com
