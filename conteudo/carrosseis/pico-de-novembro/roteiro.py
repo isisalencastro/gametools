@@ -10,10 +10,11 @@ slides = [
     capa('capa.jpg', 'O pico de novembro', 'se prepara agora', 'Atendimento, resposta e informação na mão do cliente',
          fundo='branco', foto_css='width:1200px;height:1800px;left:-60px;top:-430px'),
     texto('branco', 'A data deste ano vem com *mais pedido e menos ticket*.',
-          'O estudo Black Friday Talks, feito pela Stefanini Marketing e divulgado em setembro, projetou 18,3 milhões de pedidos na semana da data, 10,8% mais que em 2025, com faturamento perto de R$ 14,5 bilhões e ticket médio 2,2% menor. Mais gente perguntando, compra menor e volume de conversa muito maior.',
+          'O estudo Black Friday Talks, da Stefanini Marketing, projetou 18,3 milhões de pedidos na semana da data, 10,8% mais que em 2025, com ticket médio 2,2% menor. Mais gente perguntando, compra menor e volume de conversa muito maior.',
           'O que isso mexe:', ['O tempo de resposta, que já é o gargalo nos dias comuns',
                                'A dúvida repetida (preço, prazo, entrega), que consome o dia inteiro',
-                               'A venda de quem demora, que o cliente faz no concorrente que respondeu primeiro']),
+                               'A venda de quem demora, que o cliente faz no concorrente que respondeu primeiro'],
+          tam_titulo=76, tam_corpo=38),
     numero('azul', 'De onde vem essa informação?',
            'Estudo Black Friday Talks, da Stefanini Marketing, divulgado em 18 de setembro de 2026:',
            '18,3 milhões', 'de pedidos projetados na semana da Black Friday, 10,8% mais que em 2025.',
@@ -53,7 +54,7 @@ slides = [
     cta('Quanto tempo o seu atendimento demora para responder hoje?',
         'E no dia 27, com bem mais mensagem chegando ao mesmo tempo?',
         'celular.jpg', 'BLACKFRIDAY',
-        'e eu te mando uma análise gratuita: 2 a 3 pontos onde o seu negócio perde venda no dia de pico.', foco='50% 35%'),
+        'e eu te mando uma análise gratuita: 2 a 3 pontos onde o seu negócio perde venda.', foco='50% 35%'),
 ]
 
 gerar(os.path.dirname(os.path.abspath(__file__)), slides)

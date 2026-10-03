@@ -68,8 +68,9 @@ Só termos com snapshot arquivado funcionam. Vale usar as palavras mais simples 
 1. Criar `conteudo/carrosseis/<tema>/roteiro.py` (copiar de um tema existente) e salvar as fotos em `<tema>/imagens/`
 2. `python3 conteudo/carrosseis/<tema>/roteiro.py`
 3. `node conteudo/carrosseis/_modelo/render.js conteudo/carrosseis/<tema>/instagram/slide-*.html`
-4. Conferir **todos** os PNGs (montagem 5x2): rosto cortado, texto encavalado, buraco grande, foto escura. Ajustar `foco`/`foto_css` e renderizar de novo
-5. Salvar `carousel-text.md` com legenda, fontes e créditos das fotos
+4. Medir a margem antes de olhar: `/opt/data/.venv/bin/python conteudo/carrosseis/_modelo/mede_margens.py conteudo/carrosseis/<tema>` (72px nas laterais, 80px na base). Corpo comprido estoura a base no layout `texto`; numero longo estoura a direita no `numero`
+5. Conferir **todos** os PNGs (montagem 5x2): rosto cortado, texto encavalado, buraco grande, foto escura. Ajustar `foco`/`foto_css` e renderizar de novo
+6. Salvar `carousel-text.md` com legenda, fontes e créditos das fotos
 
 ## Saída
 

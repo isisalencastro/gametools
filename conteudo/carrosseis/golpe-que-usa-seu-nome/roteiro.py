@@ -12,7 +12,8 @@ slides = [
           'O relatório State of Scams in Brazil, da Global Anti-Scam Alliance, saiu em agosto. O criminoso não manda mais aquele texto esquisito para todo mundo: ele monta o perfil da sua loja, usa a sua logo e conversa como se fosse o seu atendimento.',
           'O que isso mexe:', ['A confiança de quem te procura pela primeira vez',
                                'O nome da sua marca, queimado por um golpe que não é seu',
-                               'O cliente que some sem reclamar, porque achou que você aplicou o golpe']),
+                               'O cliente que some sem reclamar, porque achou que você aplicou o golpe'],
+          tam_titulo=80, tam_corpo=40),
     numero('azul', 'De onde vem essa informação?',
            'Relatório State of Scams in Brazil, da Global Anti-Scam Alliance, divulgado em agosto de 2026:',
            '64%', 'das tentativas de golpe no Brasil passam pelo WhatsApp.',
@@ -53,7 +54,7 @@ slides = [
     cta('O que o seu cliente encontra quando procura o seu negócio?',
         'Antes de pagar, ele consegue confirmar que o canal é o seu?',
         'balcao.jpg', 'SEGURANCA',
-        'e eu te mando uma análise gratuita: 2 a 3 pontos onde o seu negócio perde cliente hoje.', foco='50% 35%'),
+        'e eu te mando uma análise gratuita: 2 a 3 pontos onde o seu negócio perde cliente.', foco='50% 35%'),
 ]
 
 gerar(os.path.dirname(os.path.abspath(__file__)), slides)

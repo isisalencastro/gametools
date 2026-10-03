@@ -65,7 +65,7 @@ def capa(foto, titulo, destaque, chamada, foto_css='width:1200px;height:1800px;l
     return ('capa', body, css)
 
 
-def texto(fundo, titulo, corpo, rotulo=None, itens=(), tam_titulo=88):
+def texto(fundo, titulo, corpo, rotulo=None, itens=(), tam_titulo=88, tam_corpo=44):
     """Título grande, parágrafo e (opcional) lista com setas ancorada embaixo."""
     lista = ''
     if itens:
@@ -75,7 +75,7 @@ def texto(fundo, titulo, corpo, rotulo=None, itens=(), tam_titulo=88):
     body = f'''
   <h2 class="h" style="font-size:{tam_titulo}px">{_fmt(titulo)}</h2>
   <hr style="margin:56px 0">
-  <p class="p" style="font-size:44px">{_fmt(corpo)}</p>
+  <p class="p" style="font-size:{tam_corpo}px">{_fmt(corpo)}</p>
   {lista}'''
     return (fundo, body, '')
 
@@ -92,11 +92,12 @@ def numero(fundo, titulo, intro, numero, legenda, corpo, segundo=None, fecho=Non
         extra += f'<hr style="margin:56px 0"><p class="p" style="font-size:42px">{_fmt(segundo)}</p>'
     if fecho:
         extra += f'<div class="spacer"></div><p class="h" style="font-size:64px">{_fmt(fecho)}</p>'
+    tam_n = 250 if len(numero) <= 3 else 190 if len(numero) <= 5 else 150 if len(numero) <= 8 else 118
     body = f'''
   <h2 class="h">{_fmt(titulo)}</h2>
   <hr>
   <p class="mini" style="font-size:28px;opacity:.8">{_fmt(intro)}</p>
-  <div class="big"><span class="n">{html.escape(numero)}</span><span class="t">{_fmt(legenda)}</span></div>
+  <div class="big"><span class="n" style="font-size:{tam_n}px">{html.escape(numero)}</span><span class="t">{_fmt(legenda)}</span></div>
   <p class="p" style="font-size:42px">{_fmt(corpo)}</p>
   {extra}'''
     return (fundo, body, css)
