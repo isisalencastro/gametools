@@ -32,6 +32,17 @@ Carrossel de 10 slides que pega uma notícia em alta, explica o que ela signific
 - Mascote Nó (polvo azul de traço contínuo com estrela laranja): selo da capa, bloco do slide 9 e assinatura do slide 10
 - Frase da marca: "a IBA dá um nó nos seus processos 🐙"
 
+## Cores intercaladas (obrigatório)
+
+O feed da IBA é intercalado: nenhum post repete a cor de fundo da capa do post anterior.
+
+- Antes de gerar, ler `cor_fundo_capa` do último post em `/opt/data/iba-site/instagram/feed-registro.json` e usar o
+  fundo contrário na capa (azul depois de branco, branco depois de azul). Sem registro, usar azul.
+- Depois de publicar ou agendar, atualizar o mesmo arquivo com data, cor usada e slug, para o próximo não repetir.
+- Dentro do carrossel, os fundos seguem a alternância do formato: a cor chapada troca entre branco e azul de um slide
+  para o outro, com as fotos nos slides 4 e 8. Dois slides de cor chapada igual seguidos só quando o roteiro não tiver
+  como evitar.
+
 ## Fluxo
 
 ### Etapa 0: pauta (notícia + mercado da IBA)
