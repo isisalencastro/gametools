@@ -27,3 +27,17 @@ Comenta WHATSAPP que eu te mando uma análise gratuita: qual WhatsApp você usa,
 - balcao.jpg: images.unsplash.com/photo-1571011769669-cf1e4e90d241
 - notebook.jpg: images.unsplash.com/photo-1783094269388-0a7a2efbd4cf
 - cta.jpg: images.unsplash.com/photo-1781888679143-01d758aedbe6
+
+## Alternativa de legenda (03-10-2026)
+
+```
+Tem uma mensagem circulando nos grupos: "o WhatsApp Business vai ser pago". Ela assusta e erra o alvo.
+
+O que mudou de verdade: desde 1º de outubro, a Meta cobra R$ 0,035 por mensagem de atendimento na WhatsApp Business Platform, a versão que conecta robôs e sistemas ao número da empresa. Cada número continua com 1.000 mensagens grátis por mês. Quem atende pelo aplicativo no celular não paga nada, e o cliente nunca paga para te mandar mensagem. (Regra da Meta, noticiada por O Tempo, CartaCapital e Diário do Pará nesta semana. É regra de plataforma, não uma previsão sobre o seu negócio.)
+
+A lógica nova é essa: mensagem extra custa. Quem manda 5.000 mensagens de atendimento no mês chega a R$ 140. Por isso a saída está em enxugar a conversa: juntar as perguntas numa mensagem só, responder completo na primeira vez e deixar o site tirar dúvida antes de a conversa começar.
+
+Não sabe qual WhatsApp o seu negócio usa hoje? Comenta WHATSAPP que eu te mando uma análise gratuita: qual versão você usa, se vai pagar algo e como atender gastando menos.
+
+#pequenosnegocios #whatsappbusiness #atendimentoaocliente #automacaoparapequenosnegocios #empreendedorismo #tecnologiaparanegocios #ibaestudios
+```
