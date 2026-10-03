@@ -1,0 +1,57 @@
+@import url('fonts/fonts.css');
+
+:root {
+  --azul: #185CB6;
+  --azul-escuro: #0E3F82;
+  --branco: #FFFFFF;
+  --laranja: #FFBD59;
+  --tinta: #101828;
+  --cinza: #667085;
+  --linha-clara: rgba(16, 24, 40, 0.14);
+  --linha-escura: rgba(255, 255, 255, 0.22);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html, body { width: 1080px; height: 1350px; overflow: hidden; }
+body { font-family: 'Inter', sans-serif; -webkit-font-smoothing: antialiased; }
+
+.slide { position: relative; width: 1080px; height: 1350px; overflow: hidden; padding: 128px 72px 80px; display: flex; flex-direction: column; }
+.azul { background: var(--azul); color: var(--branco); }
+.branco { background: var(--branco); color: var(--tinta); }
+.laranja { background: var(--laranja); color: var(--tinta); }
+
+/* Faixa de cabeçalho fixa (estilo revista) */
+.topo { position: absolute; top: 44px; left: 72px; right: 72px; display: flex; justify-content: space-between; align-items: center; font-size: 22px; font-weight: 500; letter-spacing: -0.01em; z-index: 5; }
+.topo span { opacity: 0.85; }
+.topo .num { opacity: 1; font-family: 'JetBrains Mono', monospace; font-weight: 700; font-size: 20px; padding: 6px 12px; border-radius: 6px; background: var(--laranja); color: var(--tinta); }
+.laranja .topo .num { background: var(--tinta); color: var(--laranja); }
+
+/* Tipografia */
+.h { font-family: 'Archivo', sans-serif; font-weight: 800; font-size: 74px; line-height: 1.02; letter-spacing: -0.025em; }
+.h em { font-style: normal; }
+.azul .h em { color: var(--laranja); }
+.branco .h em { color: var(--azul); text-decoration: underline; text-decoration-color: var(--laranja); text-decoration-thickness: 8px; text-underline-offset: 10px; }
+.p { font-size: 38px; line-height: 1.32; font-weight: 500; letter-spacing: -0.015em; }
+.p b { font-weight: 800; }
+.azul .p b.dest { color: var(--laranja); }
+.branco .p b.dest { color: var(--azul); }
+.mini { font-size: 24px; line-height: 1.4; font-weight: 500; }
+.nota { font-size: 34px; line-height: 1.3; font-weight: 600; color: var(--cinza); letter-spacing: -0.015em; }
+.azul .nota { color: rgba(255, 255, 255, 0.72); }
+.sub { display: inline-block; border-bottom: 3px solid currentColor; padding-bottom: 4px; font-weight: 700; }
+.azul .sub { border-color: var(--laranja); }
+
+hr { border: 0; border-top: 2px solid var(--linha-clara); margin: 40px 0; }
+.azul hr { border-top-color: var(--linha-escura); }
+.spacer { flex: 1; }
+
+.setas { list-style: none; }
+.setas li { font-size: 38px; line-height: 1.3; font-weight: 500; letter-spacing: -0.015em; padding-left: 52px; position: relative; margin-bottom: 10px; }
+.setas li::before { content: ""; position: absolute; left: 0; top: 0.32em; width: 34px; height: 26px; background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 34 26'%3E%3Cpath d='M2 13h26M18 3l11 10-11 10' fill='none' stroke='%23185CB6' stroke-width='5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") no-repeat center/contain; }
+.azul .setas li::before { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 34 26'%3E%3Cpath d='M2 13h26M18 3l11 10-11 10' fill='none' stroke='%23FFBD59' stroke-width='5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E"); }
+
+.foto { width: 100%; border-radius: 22px; object-fit: cover; display: block; }
+
+.marca { display: inline-flex; align-items: center; gap: 14px; font-size: 30px; font-weight: 600; }
+.logo { width: 60px; height: 60px; border-radius: 50%; background: #fff; display: grid; place-items: center; border: 3px solid var(--laranja); }
+.logo img { width: 42px; height: auto; display: block; }
