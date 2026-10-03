@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="pt-BR"><head><meta charset="utf-8"><link rel="stylesheet" href="../../_modelo/style.css">
+<style>
+  .stat { display:grid; grid-template-columns: minmax(260px, auto) 1fr; align-items:center; gap:36px; padding:40px 0; border-top:2px solid var(--linha-clara); }
+  .azul .stat { border-top-color: var(--linha-escura); }
+  .stat:last-of-type { border-bottom:2px solid var(--linha-clara); }
+  .azul .stat:last-of-type { border-bottom-color: var(--linha-escura); }
+  .stat .n { white-space:nowrap; font-family:'Archivo'; font-stretch:62%; font-weight:900; font-size:200px; line-height:.85; letter-spacing:-0.03em; }
+  .branco .stat .n { color:var(--azul); } .azul .stat .n { color:#fff; }
+  .stat .n::after { content:""; display:block; width:120px; height:12px; background:var(--laranja); margin-top:14px; }
+  .fonte { font-family:'JetBrains Mono'; font-size:22px; line-height:1.4; opacity:.75; }</style></head>
+<body>
+<div class="slide branco">
+  <div class="topo"><span>IBA Estúdios</span><span>@ibaestudios</span><span class="num">05/10</span></div>
+
+  <h2 class="h">O golpe tem número, e ele é <em>alto</em>.</h2>
+  <div class="spacer"></div>
+  <div class="stat"><div class="n" style="font-size:116px">R$ 21,2 bi</div><p class="p">de prejuízo estimado com golpes no país em um ano (Global Anti-Scam Alliance, agosto de 2026).</p></div><div class="stat"><div class="n" style="font-size:116px">26%</div><p class="p">das vítimas perdem o dinheiro em <b class="dest">minutos</b> depois do primeiro contato, segundo o mesmo relatório.</p></div>
+  <div class="spacer"></div>
+  <p class="fonte">Fontes: Global Anti-Scam Alliance, State of Scams in Brazil, agosto de 2026; via MobileTime (06/08/2026), Roole (23/09/2026) e TI Inside (30/08/2026).</p>
+</div>
+</body></html>

@@ -30,20 +30,30 @@ def _setas(itens, estilo='margin-top:28px'):
 
 # ---------------------------------------------------------------- layouts
 
-def capa(foto, titulo, destaque, chamada, foto_css='width:1200px;height:1800px;left:-60px;top:-500px', brilho=1.0):
-    """Slide 1. Foto em tela cheia + degradê azul + manchete condensada.
-    titulo: parte branca; destaque: parte em laranja; chamada: subtítulo com seta.
+def capa(foto, titulo, destaque, chamada, foto_css='width:1200px;height:1800px;left:-60px;top:-500px', brilho=1.0, fundo='azul'):
+    """Slide 1. Foto em tela cheia + degradê + manchete condensada.
+    titulo: parte do texto na cor base; destaque: parte na cor de realce; chamada: subtítulo com seta.
+    fundo='azul' (padrão): degradê azul com texto branco e destaque laranja.
+    fundo='branco': fundo claro com texto escuro e destaque azul, mantendo a mesma manchete.
     foto_css posiciona a foto para o rosto/objeto ficar acima do título."""
+    if fundo == 'branco':
+        cor_fundo, cor_texto, cor_destaque = '#FFFFFF', 'var(--tinta)', 'var(--azul)'
+        degrade = ('linear-gradient(180deg, rgba(255,255,255,0.30) 0%, rgba(255,255,255,0) 12%, '
+                   'rgba(255,255,255,0.45) 40%, rgba(255,255,255,0.92) 60%, #FFFFFF 78%)')
+    else:
+        cor_fundo, cor_texto, cor_destaque = '#0E3F82', '#fff', 'var(--laranja)'
+        degrade = ('linear-gradient(180deg, rgba(14,63,130,0.55) 0%, rgba(14,63,130,0) 14%, '
+                   'rgba(24,92,182,0) 44%, rgba(24,92,182,0.88) 62%, rgba(24,92,182,1) 80%)')
     css = f'''
-  .capa {{ padding: 0; background: #0E3F82; color: #fff; }}
+  .capa {{ padding: 0; background: {cor_fundo}; color: {cor_texto}; }}
   .capa .bg {{ position: absolute; {foto_css}; object-fit: cover; filter: brightness({brilho}) contrast(1.05); }}
-  .capa .shade {{ position: absolute; inset: 0; background: linear-gradient(180deg, rgba(14,63,130,0.55) 0%, rgba(14,63,130,0) 14%, rgba(24,92,182,0) 44%, rgba(24,92,182,0.88) 62%, rgba(24,92,182,1) 80%); }}
+  .capa .shade {{ position: absolute; inset: 0; background: {degrade}; }}
   .capa .conteudo {{ position: absolute; left: 72px; right: 72px; bottom: 96px; display: flex; flex-direction: column; align-items: center; text-align: center; }}
   .capa .marca {{ margin-bottom: 30px; }}
   .capa h1 {{ font-family: 'Archivo', sans-serif; font-stretch: 62%; font-weight: 900; text-transform: uppercase; font-size: 124px; line-height: 0.9; letter-spacing: -0.01em; }}
-  .capa h1 span {{ color: var(--laranja); }}
+  .capa h1 span {{ color: {cor_destaque}; }}
   .capa .chamada {{ margin-top: 38px; font-family: 'Archivo'; font-stretch: 75%; font-weight: 800; text-transform: uppercase; font-size: 40px; line-height: 1.15; }}
-  .capa .chamada b {{ color: var(--laranja); }}'''
+  .capa .chamada b {{ color: {cor_destaque}; }}'''
     body = f'''
   <img class="bg" src="{IMAGENS}/{foto}" alt="">
   <div class="shade"></div>
@@ -123,7 +133,7 @@ def stats(fundo, titulo, linhas, fonte):
   .stat .n::after { content:""; display:block; width:120px; height:12px; background:var(--laranja); margin-top:14px; }
   .fonte { font-family:'JetBrains Mono'; font-size:22px; line-height:1.4; opacity:.75; }'''
     maior = max(len(n) for n, _ in linhas)
-    tam = 240 if maior <= 3 else 190
+    tam = 240 if maior <= 3 else 190 if maior <= 5 else 150 if maior <= 7 else 116
     rows = ''.join(f'<div class="stat"><div class="n" style="font-size:{tam}px">{html.escape(n)}</div><p class="p">{_fmt(t)}</p></div>' for n, t in linhas)
     body = f'''
   <h2 class="h">{_fmt(titulo)}</h2>

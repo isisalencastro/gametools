@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="pt-BR"><head><meta charset="utf-8"><link rel="stylesheet" href="../../_modelo/style.css">
+<style>
+  .capa { padding: 0; background: #FFFFFF; color: var(--tinta); }
+  .capa .bg { position: absolute; width:1200px;height:1800px;left:-60px;top:-430px; object-fit: cover; filter: brightness(1.0) contrast(1.05); }
+  .capa .shade { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(255,255,255,0.30) 0%, rgba(255,255,255,0) 12%, rgba(255,255,255,0.45) 40%, rgba(255,255,255,0.92) 60%, #FFFFFF 78%); }
+  .capa .conteudo { position: absolute; left: 72px; right: 72px; bottom: 96px; display: flex; flex-direction: column; align-items: center; text-align: center; }
+  .capa .marca { margin-bottom: 30px; }
+  .capa h1 { font-family: 'Archivo', sans-serif; font-stretch: 62%; font-weight: 900; text-transform: uppercase; font-size: 124px; line-height: 0.9; letter-spacing: -0.01em; }
+  .capa h1 span { color: var(--azul); }
+  .capa .chamada { margin-top: 38px; font-family: 'Archivo'; font-stretch: 75%; font-weight: 800; text-transform: uppercase; font-size: 40px; line-height: 1.15; }
+  .capa .chamada b { color: var(--azul); }</style></head>
+<body>
+<div class="slide capa">
+  <div class="topo"><span>IBA Estúdios</span><span>@ibaestudios</span><span class="num">01/10</span></div>
+
+  <img class="bg" src="../imagens/capa.jpg" alt="">
+  <div class="shade"></div>
+  <div class="conteudo">
+    <div class="marca"><span class="logo"><img src="../../_modelo/marca/no-azul.png" alt=""></span>@ibaestudios</div>
+    <h1>Tem um golpe se passando <span>pela sua loja</span></h1>
+    <p class="chamada"><b>→</b> O cliente procura, acha e não sabe em quem confiar</p>
+  </div>
+</div>
+</body></html>

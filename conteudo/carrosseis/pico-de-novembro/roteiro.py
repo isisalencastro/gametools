@@ -1,0 +1,59 @@
+import os, sys
+sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', '_modelo'))
+from iba_carrossel import *
+
+# Pauta: o pico da Black Friday (27/11/2026) se prepara em outubro.
+# Fonte: estudo Black Friday Talks (Stefanini Marketing, Gauge, Ecglobal e W3haus),
+# divulgado em 18/09/2026 via TrendsCE; orientacao de planejamento em setembro e
+# outubro pela Agencia Sebrae e PEGN.
+slides = [
+    capa('capa.jpg', 'O pico de novembro', 'se prepara agora', 'Atendimento, resposta e informação na mão do cliente',
+         fundo='branco', foto_css='width:1200px;height:1800px;left:-60px;top:-430px'),
+    texto('branco', 'A data deste ano vem com *mais pedido e menos ticket*.',
+          'O estudo Black Friday Talks, feito pela Stefanini Marketing e divulgado em setembro, projetou 18,3 milhões de pedidos na semana da data, 10,8% mais que em 2025, com faturamento perto de R$ 14,5 bilhões e ticket médio 2,2% menor. Mais gente perguntando, compra menor e volume de conversa muito maior.',
+          'O que isso mexe:', ['O tempo de resposta, que já é o gargalo nos dias comuns',
+                               'A dúvida repetida (preço, prazo, entrega), que consome o dia inteiro',
+                               'A venda de quem demora, que o cliente faz no concorrente que respondeu primeiro']),
+    numero('azul', 'De onde vem essa informação?',
+           'Estudo Black Friday Talks, da Stefanini Marketing, divulgado em 18 de setembro de 2026:',
+           '18,3 milhões', 'de pedidos projetados na semana da Black Friday, 10,8% mais que em 2025.',
+           'O faturamento projetado é de R$ 14,5 bilhões.',
+           'E o ticket médio recua 2,2%, de R$ 808,50 para cerca de **R$ 791**.',
+           'Nada de achismo. *Só número.*'),
+    foto_xis('branco', 'O que *ficou velho* no preparo da data?', 'compras.jpg',
+             ['"Black Friday se resolve com desconto maior"', '"Dá pra improvisar na véspera"',
+              '"Quem vende no balcão não sente a data"', '"Responder no dia seguinte ainda é resposta"'],
+             'No dia de pico, cada uma dessas ideias custa venda.', foco='50% 40%'),
+    stats('branco', 'A conta do *dia de pico*.',
+          [('R$ 14,5 bi', 'de faturamento projetado na semana da Black Friday, 8,4% mais que em 2025 (Black Friday Talks, setembro de 2026).'),
+           ('2,2%', 'de queda projetada no ticket médio: mais gente comprando, cada uma levando menos.')],
+          'Fonte: estudo Black Friday Talks (Stefanini Marketing), divulgado em 18/09/2026; via TrendsCE.'),
+    conversa('azul', 'No dia do pico, *a resposta é o anúncio*.', 'Cliente',
+             [('in', 'Oi, o tênis do anúncio tá quanto?', '10:02'),
+              ('in', 'Oi?', '11:40'),
+              ('in', 'E o prazo de entrega?', '11:41')],
+             'Enquanto isso, ele mandou a mesma pergunta para outras duas lojas e fechou com a que respondeu primeiro.',
+             'Na Black Friday, quem responde primeiro não precisa do maior desconto.'),
+    passos('branco', 'Anatomia de um *dia de pico que não trava*:',
+           [('Oferta escrita antes', 'preço, prazo e estoque definidos com antecedência.'),
+            ('Resposta pronta', 'as perguntas que sempre se repetem, respondidas na primeira hora.'),
+            ('Atendimento fora do horário', 'a dúvida chega de noite e no domingo também.'),
+            ('Pedido organizado', 'sem depender de print perdido na conversa.')],
+           'O que não estiver resolvido antes, você resolve no meio do movimento.'),
+    foto_lista('azul', 'Dá pra atender o volume *sem contratar ninguém*?', 'balcao.jpg',
+               'Dá. Com a página da oferta e o atendimento no WhatsApp, o sistema:',
+               ['Responde as dúvidas repetidas na hora, de dia e de noite.',
+                'Mostra a oferta, o preço e o prazo em um endereço só.',
+                'Organiza os pedidos por quem quer, o que quer e quanto custa.'],
+               'O que sobra para você é a conversa que fecha venda.', foco='50% 45%'),
+    iba('É isso que a *IBA* monta para você.', 'Site com a página da oferta e atendimento no WhatsApp que aguenta o volume do dia de pico.',
+        ['Página da oferta com preço, prazo e estoque', 'Atendimento automático das perguntas repetidas',
+         'Pedidos organizados, prontos para fechar'],
+        'Você não precisa entender de tecnologia. A gente cuida disso.'),
+    cta('Quanto tempo o seu atendimento demora para responder hoje?',
+        'E no dia 27, com bem mais mensagem chegando ao mesmo tempo?',
+        'celular.jpg', 'BLACKFRIDAY',
+        'e eu te mando uma análise gratuita: 2 a 3 pontos onde o seu negócio perde venda no dia de pico.', foco='50% 35%'),
+]
+
+gerar(os.path.dirname(os.path.abspath(__file__)), slides)

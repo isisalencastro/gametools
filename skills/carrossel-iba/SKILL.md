@@ -39,6 +39,7 @@ O feed da IBA é intercalado: nenhum post repete a cor de fundo da capa do post 
 - Antes de gerar, ler `cor_fundo_capa` do último post em `/opt/data/iba-site/instagram/feed-registro.json` e usar o
   fundo contrário na capa (azul depois de branco, branco depois de azul). Sem registro, usar azul.
 - Depois de publicar ou agendar, atualizar o mesmo arquivo com data, cor usada e slug, para o próximo não repetir.
+- Capa branca: `capa(..., fundo='branco')` no roteiro. É a variante clara do modelo, com a mesma manchete e a chamada de seta; a versão azul continua sendo o padrão.
 - Dentro do carrossel, os fundos seguem a alternância do formato: a cor chapada troca entre branco e azul de um slide
   para o outro, com as fotos nos slides 4 e 8. Dois slides de cor chapada igual seguidos só quando o roteiro não tiver
   como evitar.
@@ -55,7 +56,13 @@ Seguir `references/pautas-noticias.md`: buscar as notícias mais faladas no Bras
 Seguir a fórmula de `references/formato-decodificado.md`. Mostrar o texto completo e esperar aprovação (mesma exceção).
 
 ### Etapa 3: fotos
-Fotos de banco gratuito (Unsplash). Página de busca: `https://unsplash.com/s/photos/<termos>?license=free&orientation=portrait` (ler com fetch e pegar as URLs `images.unsplash.com/photo-...`; descartar `plus.unsplash.com`, que é pago). Baixar `https://images.unsplash.com/photo-<id>?w=1600&q=85&fm=jpg`. **Sempre olhar a foto antes de usar** (montar uma folha de contato) e anotar os créditos no `carousel-text.md`. Precisa de 4 fotos: capa, slide 4, slide 8 e slide 10.
+Fotos de banco gratuito (Unsplash), com termos em inglês. A página de busca bloqueia robô (401/403 e "BotStopper"): buscar o termo direto no Wayback, que devolve o snapshot com os IDs, e baixar do CDN, que responde normal:
+
+1. `https://archive.org/wayback/available?url=unsplash.com/s/photos/<termo>` e depois a `closest.url`
+2. do HTML do snapshot, pegar `images\\.unsplash\\.com/photo-[0-9a-zA-Z_-]{20,}` (descartar `plus.unsplash.com`, que é pago)
+3. baixar `https://images.unsplash.com/photo-<id>?w=1600&q=85&fm=jpg`
+
+Só termos com snapshot arquivado funcionam. Vale usar as palavras mais simples possíveis (storefront, cashier, shopping, retail, phone, market). Baixar `https://images.unsplash.com/photo-<id>?w=1600&q=85&fm=jpg`. **Sempre olhar a foto antes de usar** (montar uma folha de contato) e anotar os créditos no `carousel-text.md`. Precisa de 4 fotos: capa, slide 4, slide 8 e slide 10.
 
 ### Etapa 4: gerar e renderizar
 1. Criar `conteudo/carrosseis/<tema>/roteiro.py` (copiar de um tema existente) e salvar as fotos em `<tema>/imagens/`
