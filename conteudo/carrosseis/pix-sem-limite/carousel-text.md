@@ -25,3 +25,17 @@ Comenta PIX que eu te mando uma análise gratuita de como o seu negócio cobra h
 - balcao.jpg: images.unsplash.com/photo-1705948353913-489537011406
 - dono-loja.jpg: images.unsplash.com/photo-1783309239654-e9251288f75b
 - cta.jpg: images.unsplash.com/photo-1762471712594-eadf362e7d0f
+
+## Alternativa de legenda (03-10-2026)
+
+```
+O teto de R$ 500 do Pix por aproximação caiu. Para quem vende, a mudança que importa acontece depois do "fechado".
+
+O Banco Central tirou o limite fixo (Instrução Normativa BCB nº 746, de junho de 2026) e agora vale o teto que cada cliente escolhe no próprio banco. Junto com isso, o Pix já responde por 64% dos pagamentos das pequenas e médias empresas, segundo o estudo da Asaas com mais de 300 mil clientes. São dados de terceiros, medidos em amostras de mercado, e não uma medida do seu caixa: eles mostram onde o dinheiro dos seus clientes já está.
+
+O gargalo quase nunca está no aplicativo do banco. Está nas etapas manuais: achar a chave, calcular o valor de cabeça, pedir comprovante, conferir extrato, registrar o pedido. Cada uma dessas etapas é uma chance de o cliente desistir no meio. Quando o Pix já sai pronto no fim da conversa e o pedido se organiza sozinho, a venda fecha mais rápido e sobra menos coisa para conferir no fim do dia.
+
+Quer saber quanto tempo o seu negócio gasta conferindo Pix? Comenta PIX que eu te mando uma análise gratuita: como você cobra hoje e onde dá para acelerar.
+
+#pequenosnegocios #pix #vendaspelowhatsapp #atendimentoaocliente #automacaoparapequenosnegocios #empreendedorismo #ibaestudios
+```
